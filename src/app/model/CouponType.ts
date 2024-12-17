@@ -1,0 +1,4 @@
+
+ export enum Coupontype{
+    RESTURANS = "RESTURANS", ELECTRICITY = "ELECTRICITY", HEALTH = "HEALTH"
+}

@@ -1,0 +1,37 @@
+<div class="sidenav">
+  <div class="login-main-text">
+     <h2>CouponSystem<br> Login Page</h2>
+     <p>Login from here to access.</p>
+  </div>
+</div>
+<div class="main">
+  <div class="col-md-6 col-sm-12">
+     <div class="login-form">
+        <form #loginValidation="ngForm">
+           <div class="form-group">
+              <label>User Name</label>
+              <input type="text" class="form-control" placeholder="User Name" [(ngModel)]="loggedUser.email" #userName="ngModel" required name="email"  >
+           </div>
+           <div class="form-group">
+              <label>Password</label>
+              <input type="password" class="form-control" placeholder="Password" [(ngModel)]="loggedUser.password" #password="ngModel" required name="password" >
+           </div>
+           <div class="form-group">
+            <label for="exampleFormControlSelect1">client type</label>
+            <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="loggedUser.clientType" #clientType="ngModel" name="clientType" > 
+              <option>CUSTOMER</option>
+              <option>COMPANY</option>
+              <option>ADMIN</option>
+            </select>
+          </div>
+          
+           <br><br>
+           <button type="submit" class="btn btn-black" (click)="loggin()" [disabled]="!loginValidation.valid">Login</button>
+           
+        </form>
+        
+     </div>
+  </div>
+</div>
+
+
