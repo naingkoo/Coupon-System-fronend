@@ -1,0 +1,36 @@
+<app-navigation></app-navigation>
+<div class="payment-history">
+  <h2>User Payment History</h2>
+
+  <div class="loading" *ngIf="loading">Loading...</div>
+  <div class="error" *ngIf="error">{{ error }}</div>
+  <div *ngIf="!loading && !error">
+    <div class="payment-card" *ngFor="let payment of payments">
+      <div class="payment-row">
+        <span class="payment-label">Date:</span>
+        <span class="payment-value">{{ payment.date }}</span>
+      </div>
+      <div class="payment-row">
+        <span class="payment-label">Amount:</span>
+        <span class="payment-value">${{ payment.amount.toFixed(2) }}</span>
+      </div>
+      <div class="payment-row">
+        <span class="payment-label">Method:</span>
+        <span class="payment-value">{{ payment.method }}</span>
+      </div>
+      <div class="payment-row">
+        <span class="payment-label">Status:</span>
+        <span class="payment-value">{{ payment.status }}</span>
+      </div>
+      <div class="payment-row">
+        <span class="payment-label">Description:</span>
+        <span class="payment-value">{{ payment.description }}</span>
+      </div>
+    </div>
+
+    <div *ngIf="payments.length === 0" class="no-data">
+      No payment history found.
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

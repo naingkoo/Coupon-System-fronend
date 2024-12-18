@@ -1,0 +1,128 @@
+<div class="app-container">
+  <div class="sidebar-container">
+    <app-adm-sidebar
+      [isSidebarCollapsed]="isSidebarCollapsed"
+      (sidebarToggle)="onSidebarToggle()"
+    >
+    </app-adm-sidebar>
+    <button
+      class="sidebar-toggle-btn"
+      [ngClass]="{ 'sidebar-collapsed': isSidebarCollapsed }"
+      (click)="onSidebarToggle()"
+    >
+      <i
+        [class]="
+          isSidebarCollapsed ? 'fas fa-arrow-right' : 'fas fa-arrow-left'
+        "
+      ></i>
+    </button>
+  </div>
+
+  <main class="content" [ngClass]="{ 'content-expanded': isSidebarCollapsed }">
+    <button class="card_submit" routerLink="/adm-business">
+      Business list
+    </button>
+
+    <form #Bform="ngForm" (ngSubmit)="onSubmit(Bform)">
+      <div class="card">
+        <div class="card_form">
+          <input
+            [(ngModel)]="business.user_id"
+            name="user_id"
+            placeholder="Enter user_id"
+            type="text"
+          />
+        </div>
+
+        <div class="card_form">
+          <input
+            [(ngModel)]="business.name"
+            name="name"
+            placeholder="Enter your name"
+            type="text"
+          />
+        </div>
+
+        <div class="card_form">
+          <input
+            [(ngModel)]="business.country"
+            name="country"
+            placeholder="Enter your country"
+            type="text"
+          />
+        </div>
+
+        <div class="card_form">
+          <input
+            [(ngModel)]="business.city"
+            name="city"
+            placeholder="Enter your city"
+            type="text"
+          />
+        </div>
+
+        <div class="card_form">
+          <input
+            [(ngModel)]="business.street"
+            name="street"
+            placeholder="Enter your street"
+            type="text"
+          />
+        </div>
+
+        <div class="card_form">
+          <input
+            [(ngModel)]="business.address"
+            name="address"
+            placeholder="Enter your address"
+            type="text"
+          />
+        </div>
+
+        <div class="card_form">
+          <!--<input [(ngModel)]="business.address" name="address" placeholder="Enter your address" type="text">-->
+          <input
+            type="file"
+            name="image"
+            (change)="onFileChange($event)"
+            required
+          />
+        </div>
+
+        <div class="check-box-container">
+          <div class="categories-list">
+            <p>Choose categorys</p>
+            <div *ngFor="let category of categories">
+              <label>
+                <input
+                  type="checkbox"
+                  [value]="category.id"
+                  [attr.data-name]="category.name"
+                  (change)="onCategoryChange($event)"
+                />
+                {{ category.name }}
+              </label>
+            </div>
+          </div>
+          <div class="service-list">
+            <p>Choose services</p>
+            <div *ngFor="let service of services">
+              <label>
+                <input
+                  type="checkbox"
+                  [value]="service.id"
+                  (change)="onServiceChange($event)"
+                />
+                {{ service.name }}
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-container">
+          <button class="card_submit">Add</button>
+        </div>
+      </div>
+    </form>
+  </main>
+</div>

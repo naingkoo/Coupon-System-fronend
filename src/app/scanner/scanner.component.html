@@ -1,0 +1,51 @@
+<div class="header">
+  <a [routerLink]="'/adm-home'" aria-label="Go back to admin home">
+    <i class="fa-solid fa-arrow-left"></i>
+  </a>
+  <a [routerLink]="'/home'" aria-label="Go to home">
+    <img [src]="'assets/image/logo/logo.png'" class="logo" alt="Coupon Logo" />
+    Coupon
+  </a>
+  <i class="fa-solid fa-clock-rotate-left" aria-label="History"></i>
+</div>
+
+<div class="qr-scanner">
+  <!-- Scanning Section -->
+  <div class="scanner-container" *ngIf="isScanning">
+    <video id="video" autoplay></video>
+    <div class="scanner-overlay">
+      <div class="scanner-box">
+        <div class="scanning-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scanning Result Section -->
+  <div *ngIf="!isScanning && scannedResult" class="result">
+    <p>
+      Scanned Result: <strong>{{ scannedResult }}</strong>
+    </p>
+    <div *ngIf="information.length">
+      <p>Additional Information:</p>
+      <ul>
+        <li *ngFor="let info of information">{{ info }}</li>
+      </ul>
+    </div>
+    <a href="#" (click)="reloadAndNavigateToScanner()" class="reload-link"
+      >Scan Again</a
+    >
+  </div>
+
+  <!-- Error Message Section -->
+  <div *ngIf="errorMessage" class="error">
+    <p>Error: {{ errorMessage }}</p>
+  </div>
+
+  <!-- Fallback for Camera Access -->
+  <div *ngIf="!isScanning && !scannedResult && !errorMessage" class="no-camera">
+    <p>
+      Camera access is required to scan QR codes. Please enable it and refresh
+      the page.
+    </p>
+  </div>
+</div>

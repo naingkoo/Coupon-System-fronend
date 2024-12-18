@@ -1,0 +1,143 @@
+.explore-page {
+  margin: 10px;
+}
+
+/* Base Styles */
+.filter-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filter-select,
+.search-box {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  flex: 1 1 calc(30% - 20px);
+}
+
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(250px, 1fr)
+  ); /* Auto-fit cards */
+  gap: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-photo img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-info {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-name {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.card-rating {
+  font-size: 14px;
+  color: #888;
+}
+
+.card-button {
+  background-color: #fab400;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.card-button:hover {
+  background-color: #b78403;
+}
+
+/* Responsive Design */
+
+/* Small screens (Mobile and below) */
+@media (max-width: 599px) {
+  .filter-select,
+  .search-box {
+    flex: 1 1 100%; /* Full width */
+  }
+
+  .card-list {
+    grid-template-columns: 1fr; /* Single column for small screens */
+  }
+
+  .card {
+    width: 100%; /* Ensure cards take up full width */
+  }
+}
+
+/* Medium Screens (Tablets and small desktops) */
+@media (min-width: 600px) and (max-width: 899px) {
+  .filter-select,
+  .search-box {
+    flex: 1 1 calc(50% - 20px); /* Adjusts to half-width */
+  }
+
+  .card-list {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(250px, 1fr)
+    ); /* Cards adjust to available space */
+  }
+
+  .card {
+    width: 100%; /* Ensure cards are flexible */
+  }
+}
+
+/* Large Screens (Desktops) */
+@media (min-width: 900px) and (max-width: 1199px) {
+  .filter-section {
+    gap: 15px;
+  }
+
+  .filter-select,
+  .search-box {
+    flex: 1 1 calc(33.33% - 30px); /* Adjusts to one-third width */
+  }
+
+  .card-list {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(250px, 1fr)
+    ); /* Cards adjust to available space */
+  }
+}
+
+/* Extra Large Screens (Wide desktops) */
+@media (min-width: 1200px) {
+  .card-list {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(300px, 1fr)
+    ); /* Even wider cards */
+  }
+}

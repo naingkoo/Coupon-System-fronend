@@ -1,0 +1,136 @@
+<app-navigation></app-navigation>
+<div class="main-content">
+  <!-- Banner Section -->
+  <div class="banner">
+    <div class="slideshow">
+      <div
+        class="slide"
+        *ngFor="let image of bannerImages; let i = index"
+        [class.active]="i === currentSlide"
+      >
+        <img
+          [src]="'assets/image/business/' + image"
+          alt="Banner Slide {{ i + 1 }}"
+        />
+      </div>
+      <button class="prev" (click)="previousSlide()">&#10094;</button>
+      <button class="next" (click)="nextSlide()">&#10095;</button>
+    </div>
+  </div>
+
+  <!-- Search and Select Section -->
+  <div class="search-section">
+    <div class="radio-inputs">
+      <label>
+        <input
+          class="radio-input"
+          type="radio"
+          name="engine"
+          (change)="onCategoryChange('All')"
+          [checked]="selectedCategory === 'All'"
+        />
+        <span class="radio-tile">
+          <span class="radio-icon">
+            <i class="fi fi-tc-list"></i>
+          </span>
+          <span class="radio-label">All</span>
+        </span>
+      </label>
+      <label>
+        <input
+          class="radio-input"
+          type="radio"
+          name="engine"
+          (change)="onCategoryChange('Hotel')"
+          [checked]="selectedCategory === 'Hotel'"
+        />
+        <span class="radio-tile">
+          <span class="radio-icon">
+            <i class="fi fi-ts-hotel"></i>
+          </span>
+          <span class="radio-label">Hotel</span>
+        </span>
+      </label>
+      <label>
+        <input
+          class="radio-input"
+          type="radio"
+          name="engine"
+          (change)="onCategoryChange('Bar')"
+          [checked]="selectedCategory === 'Bar'"
+        />
+        <span class="radio-tile">
+          <span class="radio-icon">
+            <i class="fi fi-ts-martini-glass-citrus"></i>
+          </span>
+          <span class="radio-label">Bar</span>
+        </span>
+      </label>
+      <label>
+        <input
+          class="radio-input"
+          type="radio"
+          name="engine"
+          (change)="onCategoryChange('Health')"
+          [checked]="selectedCategory === 'Health'"
+        />
+        <span class="radio-tile">
+          <span class="radio-icon">
+            <i class="fi fi-tr-hospital"></i>
+          </span>
+          <span class="radio-label">Health</span>
+        </span>
+      </label>
+      <label>
+        <input
+          class="radio-input"
+          type="radio"
+          name="engine"
+          (change)="onCategoryChange('Gym')"
+          [checked]="selectedCategory === 'Gym'"
+        />
+        <span class="radio-tile">
+          <span class="radio-icon">
+            <i class="fi fi-ts-gym"></i>
+          </span>
+          <span class="radio-label">Gym</span>
+        </span>
+      </label>
+      <label>
+        <input
+          class="radio-input"
+          type="radio"
+          name="engine"
+          (change)="onCategoryChange('Restaurant')"
+          [checked]="selectedCategory === 'Restaurant'"
+        />
+        <span class="radio-tile">
+          <span class="radio-icon">
+            <i class="fi fi-ts-restaurant"></i>
+          </span>
+          <span class="radio-label">Restaurant</span>
+        </span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Cards List Section -->
+  <div class="cards-list">
+    <div class="card" *ngFor="let business of showBusiness">
+      <img
+        [src]="'http://localhost:8080' + business.image"
+        alt="{{ business.name }}"
+        class="card-img"
+      />
+      <div class="card-content">
+        <h3>{{ business.name }}</h3>
+
+        <p>Address: {{ business.address }}</p>
+        <button class="card-btn" [routerLink]="['/business', business.id]">
+          View More
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

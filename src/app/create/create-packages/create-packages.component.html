@@ -1,0 +1,82 @@
+<div class="app-container">
+  <div class="sidebar-container">
+    <app-adm-sidebar
+      [isSidebarCollapsed]="isSidebarCollapsed"
+      (sidebarToggle)="onSidebarToggle()"
+    >
+    </app-adm-sidebar>
+    <button
+      class="sidebar-toggle-btn"
+      [ngClass]="{ 'sidebar-collapsed': isSidebarCollapsed }"
+      (click)="onSidebarToggle()"
+    >
+      <i
+        [class]="
+          isSidebarCollapsed ? 'fas fa-arrow-right' : 'fas fa-arrow-left'
+        "
+      ></i>
+    </button>
+  </div>
+
+  <main class="content" [ngClass]="{ 'content-expanded': isSidebarCollapsed }">
+    <form (ngSubmit)="onSubmit()" #packageForm="ngForm">
+      <h2>Create Package</h2>
+
+      <label for="name">Package Name</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        [(ngModel)]="packages.name"
+        required
+      />
+
+      <label for="unit_price">Unit Price</label>
+      <input
+        type="number"
+        id="unit_price"
+        name="unit_price"
+        [(ngModel)]="packages.unit_price"
+        required
+      />
+
+      <label for="quantity">Quantity</label>
+      <input
+        type="number"
+        id="quantity"
+        name="quantity"
+        [(ngModel)]="packages.quantity"
+        required
+      />
+
+      <label for="image">Package Image</label>
+      <input
+        type="file"
+        id="image"
+        name="image"
+        (change)="onFileChange($event)"
+        required
+      />
+
+      <label for="business">Business ID</label>
+      <input
+        type="text"
+        id="business"
+        name="business_id"
+        [(ngModel)]="businessId"
+      />
+
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        name="description"
+        [(ngModel)]="packages.description"
+        required
+      ></textarea>
+
+      <button type="submit" [disabled]="!packageForm.valid">
+        Create Package
+      </button>
+    </form>
+  </main>
+</div>

@@ -1,0 +1,122 @@
+.app-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  flex-direction: row;
+}
+
+.sidebar-container {
+  position: relative;
+}
+
+.content {
+  flex-grow: 1;
+  margin-left: 250px;
+  transition: margin-left 0.3s ease-in-out;
+  background-color: #f4f6f7;
+  overflow-y: auto;
+  padding: 2rem;
+}
+
+.content-expanded {
+  margin-left: 50px;
+}
+
+.sidebar-toggle-btn {
+  position: absolute;
+  top: 75px;
+  left: 230px;
+  transform: translateY(-50%);
+  background-color: #ffffff;
+  color: #555;
+  border: none;
+  padding: 0.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1001;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: left 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.sidebar-toggle-btn:hover {
+  background-color: #ecf0f1;
+}
+
+.sidebar-toggle-btn.sidebar-collapsed {
+  left: 30px;
+}
+
+/*---------------------------*/
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow cards to wrap */
+  justify-content: center; /* Center cards horizontally */
+  gap: 20px; /* Space between cards */
+  margin: 20px;
+}
+
+/* Card styling */
+.card {
+  float: left;
+  flex-direction: column;
+  max-width: 350px; /* Set a maximum width for cards */
+  width: 100%;
+
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #cad6b5;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+.card img {
+  max-width: 50%;
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  height: fit-content;
+  border-radius: 8px;
+  margin-bottom: 20%;
+}
+
+.card h5 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 3px;
+  color: #333;
+}
+
+.card p {
+  font-size: 0.9rem;
+  margin: 5px 0;
+  color: #555;
+}
+
+.card .card-text strong {
+  color: #000;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card {
+    max-width: 45%; /* Two cards per row on medium screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    max-width: 100%; /* One card per row on small screens */
+  }
+}

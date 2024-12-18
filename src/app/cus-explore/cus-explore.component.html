@@ -1,0 +1,55 @@
+<app-navigation></app-navigation>
+<div class="explore-page">
+  <div class="filter-section">
+    <input
+      type="text"
+      class="search-box"
+      placeholder="Search..."
+      [(ngModel)]="searchQuery"
+      (input)="filterCards()"
+    />
+
+    <select
+      class="filter-select"
+      [(ngModel)]="selectedCategory"
+      (change)="filterCards()"
+    >
+      <option value="">All Categories</option>
+      <option *ngFor="let category of showCategory" [value]="category.id">
+        {{ category.name }}
+      </option>
+    </select>
+
+    <select
+      class="filter-select"
+      [(ngModel)]="selectedService"
+      (change)="filterCards()"
+    >
+      <option value="">All Services</option>
+      <option *ngFor="let service of showService" [value]="service.id">
+        {{ service.name }}
+      </option>
+    </select>
+  </div>
+
+  <div class="card-list">
+    <div class="card" *ngFor="let business of showBusiness">
+      <div class="card-photo">
+        <img
+          [src]="'http://localhost:8080' + business.image"
+          alt="{{ business.name }}"
+          class="card-img"
+        />
+      </div>
+
+      <div class="card-info">
+        <h3 class="card-name">{{ business.name }}</h3>
+        <p>Address: {{ business.address }}</p>
+        <button class="card-button" [routerLink]="['/business', business.id]">
+          Buy Coupons
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,29 @@
+<div class="sidebar" [ngClass]="{ 'sidebar-collapsed': isSidebarCollapsed }">
+  <div class="sidebar-header">
+    <!-- Logo Section -->
+    <div class="sidebar-logo">
+      <a href="/adm-dashboard"
+        ><img [src]="'assets/image/logo/logo.png'" class="logo" />
+        <span>Coupon</span></a
+      >
+    </div>
+  </div>
+  <div class="sidebar-menu">
+    <ul>
+      <li>
+        <a routerLink="/adm-dashboard" routerLinkActive="active">
+          <i class="fi fi-rr-dashboard-monitor"><p>Dashboard</p></i>
+        </a>
+        <a routerLink="/adm-business" routerLinkActive="active">
+          <i class="fi fi-rr-briefcase"><p>Business</p></i>
+        </a>
+        <a routerLink="/adm-package" routerLinkActive="active">
+          <i class="fi fi-rr-box-circle-check"><p>Package</p></i>
+        </a>
+        <a routerLink="/adm-user-list" routerLinkActive="active">
+          <i class="fi fi-rr-users-alt"><p>Users</p></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
