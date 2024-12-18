@@ -1,1 +1,93 @@
-<p>cus-business works!</p>
+<app-navigation></app-navigation>
+
+<div class="banner">
+  <img
+    [src]="'http://localhost:8080' + businessBanner"
+    alt="Business Banner"
+    class="banner-img"
+  />
+  <div class="banner-overlay">
+    <h1>{{ businessName }}</h1>
+  </div>
+</div>
+
+<div class="business-info">
+  <div class="info-content">
+    <h2>{{ businessName }}</h2>
+    <div *ngIf="businessCategories?.length">
+      <div class="categories-container">
+        <p *ngFor="let category of businessCategories" class="category-item">
+          {{ category }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tabs">
+  <nav>
+    <ul class="tab-links">
+      <li
+        *ngFor="let tab of tabs; let i = index"
+        [class.active]="selectedTab === i"
+        (click)="selectTab(i)"
+      >
+        {{ tab.label }}
+      </li>
+    </ul>
+  </nav>
+  <div class="tab-content">
+    <div *ngIf="selectedTab === 0">
+      <div
+        class="package-container"
+        *ngIf="packages && packages.length > 0; else noPackages"
+      >
+        <div *ngFor="let pkg of packages" class="package-item">
+          <img
+            [src]="'http://localhost:8080' + pkg.image"
+            alt="{{ pkg.name }}"
+            class="package-img"
+          />
+          <div class="package-info">
+            <h3 class="package-name">{{ pkg.name }}</h3>
+            <p class="package-qty">Quantity: {{ pkg.quantity }}</p>
+            <p class="package-price">Price: {{ pkg.unit_price }} MMK</p>
+          </div>
+        </div>
+      </div>
+      <ng-template #noPackages>
+        <p>No packages available for this business.</p>
+      </ng-template>
+    </div>
+
+    <div *ngIf="selectedTab === 1">
+      <div *ngIf="businessServices?.length">
+        <h3>Services</h3>
+        <ul>
+          <li *ngFor="let service of businessServices">{{ service }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div *ngIf="selectedTab === 2">
+      <div
+        *ngIf="
+          businessCountry || businessCity || businessStreet || businessAddress
+        "
+      >
+        <h3>Location</h3>
+        <p>Country: {{ businessCountry }}</p>
+        <p>City: {{ businessCity }}</p>
+        <p>Street: {{ businessStreet }}</p>
+        <p>Address: {{ businessAddress }}</p>
+      </div>
+    </div>
+
+    <div *ngIf="selectedTab === 3">
+      <h2>Categories</h2>
+      <p>Details about business categories go here.</p>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

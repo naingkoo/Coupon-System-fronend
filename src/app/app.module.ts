@@ -3,7 +3,11 @@ import {
   BrowserModule,
   provideClientHydration,
 } from '@angular/platform-browser';
-
+import {
+  HttpClientModule,
+} from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -37,7 +41,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
 import { UnauthorizedComponent } from './shared/unauthorized/unauthorized.component';
-
+import { NavigationComponent } from './navigation/navigation.component';
+import { FooterComponent } from './footer/footer.component';
+import { MyCouponComponent } from './my-coupon/my-coupon.component';
+import { AdmSidebarComponent } from './adm-sidebar/adm-sidebar.component';
+import { CusExploreComponent } from './cus-explore/cus-explore.component';
+import { ScannerComponent } from './scanner/scanner.component';
+import { CusPackageComponent } from './cus-package/cus-package.component';
 
 @NgModule({
   declarations: [
@@ -67,13 +77,23 @@ import { UnauthorizedComponent } from './shared/unauthorized/unauthorized.compon
     BusinessEditComponent,
     AdmRegisterComponent,
     ServerDownpageComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    NavigationComponent,
+    FooterComponent,
+    MyCouponComponent,
+    AdmSidebarComponent,
+    CusExploreComponent,
+    ScannerComponent,
+    CusPackageComponent,
   ],
   imports: [
     BrowserModule, AppRoutingModule,
-    ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule, // required animations module
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgbModule,
+    NgxChartsModule,
     ToastrModule.forRoot({ // Toastr configuration
       positionClass: 'toast-bottom-right', 
       timeOut: 6000, // Duration for which the toast stays visible (in ms)
@@ -82,8 +102,9 @@ import { UnauthorizedComponent } from './shared/unauthorized/unauthorized.compon
     }),
   ],
   providers: [provideClientHydration(), provideHttpClient(withFetch(),withInterceptors([authInterceptor]))
-
   ],
+
   bootstrap: [AppComponent],
+  //schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

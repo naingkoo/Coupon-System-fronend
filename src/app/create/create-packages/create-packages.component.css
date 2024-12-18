@@ -1,0 +1,120 @@
+.app-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  flex-direction: row;
+}
+
+.sidebar-container {
+  position: relative;
+}
+
+.content {
+  flex-grow: 1;
+  margin-left: 250px;
+  transition: margin-left 0.3s ease-in-out;
+  background-color: #f4f6f7;
+  overflow-y: auto;
+  padding: 2rem;
+}
+
+.content-expanded {
+  margin-left: 50px;
+}
+
+.sidebar-toggle-btn {
+  position: absolute;
+  top: 75px;
+  left: 230px;
+  transform: translateY(-50%);
+  background-color: #ffffff;
+  color: #555;
+  border: none;
+  padding: 0.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1001;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: left 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.sidebar-toggle-btn:hover {
+  background-color: #ecf0f1;
+}
+
+.sidebar-toggle-btn.sidebar-collapsed {
+  left: 30px;
+}
+/*---------------------------*/
+
+form {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="file"],
+button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+input[type="file"] {
+  padding: 5px;
+  background-color: #fff;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+input[type="file"]:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 3px #007bff;
+}
+
+textarea {
+  width: 100%;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

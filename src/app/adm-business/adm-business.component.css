@@ -1,0 +1,310 @@
+.app-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  flex-direction: row;
+}
+
+.sidebar-container {
+  position: relative;
+}
+
+.content {
+  flex-grow: 1;
+  margin-left: 250px;
+  transition: margin-left 0.3s ease-in-out;
+  background-color: #f4f6f7;
+  overflow-y: auto;
+  padding: 2rem;
+}
+
+.content-expanded {
+  margin-left: 50px;
+}
+
+.sidebar-toggle-btn {
+  position: absolute;
+  top: 75px;
+  left: 230px;
+  transform: translateY(-50%);
+  background-color: #ffffff;
+  color: #555;
+  border: none;
+  padding: 0.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1001;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: left 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.sidebar-toggle-btn:hover {
+  background-color: #ecf0f1;
+}
+
+.sidebar-toggle-btn.sidebar-collapsed {
+  left: 30px;
+}
+/*---------------------------*/
+/* Container for Add Buttons */
+.add-btn-container {
+  display: flex;
+  flex-wrap: wrap; /* Ensures buttons wrap on smaller screens */
+  gap: 10px;
+  justify-content: center; /* Centers buttons */
+  margin-bottom: 20px;
+}
+
+.add-button {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.add-button:hover {
+  background-color: #0056b3;
+  transform: translateY(-3px);
+}
+
+/* Main card container */
+.business-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  max-width: 300px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.business-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Image styling */
+.business-card img {
+  width: 100%;
+  height: 150px;
+  border-radius: 8px 8px 0 0;
+  object-fit: cover;
+}
+
+/* Headings and text */
+.card-info {
+  margin: 10px;
+  text-align: left;
+}
+
+.business-card h3 {
+  margin: 12px 0 8px;
+  font-size: 20px;
+  color: #333;
+}
+
+.business-card p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Categories and services display */
+.business-card p:last-child {
+  margin-bottom: 12px;
+}
+
+/* Button container */
+.btn-container {
+  margin: 12px auto auto auto;
+  text-align: center;
+}
+
+.card_submit {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.card_submit:hover {
+  background-color: #45a049;
+}
+
+/* Responsive Text Sizes */
+@media (max-width: 768px) {
+  .add-button {
+    font-size: 14px;
+    padding: 8px 15px;
+  }
+
+  .business-card h3 {
+    font-size: 18px;
+  }
+
+  .business-card p {
+    font-size: 12px;
+  }
+
+  .card_submit {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .business-card {
+    max-width: 100%;
+    margin: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .add-btn-container {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .add-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .business-card {
+    padding: 15px;
+  }
+
+  .business-card h3 {
+    font-size: 16px;
+  }
+
+  .business-card p {
+    font-size: 11px;
+  }
+}
+
+/* Add Button Container */
+.add-btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.add-button {
+  background-color: #007bff; /* Solid blue */
+  color: #fff;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-button:hover {
+  background-color: #0056b3; /* Darker blue */
+  border-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.add-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
+}
+
+/* Business List Heading */
+h3 {
+  text-align: center;
+  font-size: 24px;
+  margin: 10px 0 20px;
+  color: #444;
+}
+
+/* Card Container */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Business Card */
+.business-card {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 15px;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.business-card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+}
+
+.business-card h3 {
+  margin: 10px 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.business-card p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Add Package Button */
+.card_submit {
+  background-color: #28a745; /* Solid green */
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.card_submit:hover {
+  background-color: #1e7e34; /* Darker green */
+  transform: translateY(-2px);
+}
+
+.card_submit:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .add-btn-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-container {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+}

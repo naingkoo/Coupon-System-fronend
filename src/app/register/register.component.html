@@ -1,1 +1,114 @@
-<p>register works!</p>
+<div class="page-center">
+  <!--<div>
+    <img [src]="'assets/image/register.png'" class="vector">
+  </div>-->
+  <div class="form-box">
+    <h2>Register</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input formControlName="username" type="text" id="username" />
+        <div
+          *ngIf="
+            registerForm.get('username')?.touched &&
+            registerForm.get('username')?.invalid
+          "
+          class="error-text"
+        >
+          <small *ngIf="registerForm.get('username')?.errors?.['required']"
+            >Username is required.</small
+          >
+          <small *ngIf="registerForm.get('username')?.errors?.['minlength']"
+            >Minimum 3 characters required.</small
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input formControlName="phone" type="text" id="phone" />
+        <div
+          *ngIf="
+            registerForm.get('phone')?.touched &&
+            registerForm.get('phone')?.invalid
+          "
+          class="error-text"
+        >
+          <small *ngIf="registerForm.get('phone')?.errors?.['required']"
+            >Phone is required.</small
+          >
+          <small *ngIf="registerForm.get('phone')?.errors?.['pattern']"
+            >Enter a valid 10-digit phone number.</small
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input formControlName="email" type="email" id="email" />
+        <div
+          *ngIf="
+            registerForm.get('email')?.touched &&
+            registerForm.get('email')?.invalid
+          "
+          class="error-text"
+        >
+          <small *ngIf="registerForm.get('email')?.errors?.['required']"
+            >Email is required.</small
+          >
+          <small *ngIf="registerForm.get('email')?.errors?.['email']"
+            >Enter a valid email address.</small
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input formControlName="password" type="password" id="password" />
+        <div
+          *ngIf="
+            registerForm.get('password')?.touched &&
+            registerForm.get('password')?.invalid
+          "
+          class="error-text"
+        >
+          <small *ngIf="registerForm.get('password')?.errors?.['required']"
+            >Password is required.</small
+          >
+          <small *ngIf="registerForm.get('password')?.errors?.['minlength']"
+            >Minimum 6 characters required.</small
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password:</label>
+        <input
+          formControlName="confirmPassword"
+          type="password"
+          id="confirmPassword"
+        />
+        <div
+          *ngIf="
+            registerForm.hasError('passwordMismatch') &&
+            registerForm.get('confirmPassword')?.touched
+          "
+          class="error-text"
+        >
+          <small>Passwords do not match.</small>
+        </div>
+      </div>
+
+      <input formControlName="role" type="hidden" id="role" value="User" />
+
+      <button
+        type="submit"
+        [disabled]="registerForm.invalid"
+        class="btn-submit"
+      >
+        Register
+      </button>
+    </form>
+    Already have an account?<a routerLink="/">Sign in!!</a>
+  </div>
+</div>

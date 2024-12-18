@@ -6,9 +6,6 @@ import { LoggedUser } from '../model/logged-user';
 import { ClientType } from '../model/ClientType';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -122,8 +119,6 @@ public goToRegister(){}
             console.error(`Unsupported toast type: ${type}`);
         }
       }
-    
-      
     
   };
 

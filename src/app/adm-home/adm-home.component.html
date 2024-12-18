@@ -1,1 +1,127 @@
-<p>adm-home works!</p>
+<div class="app-container">
+  <div class="sidebar-container">
+    <app-adm-sidebar
+      [isSidebarCollapsed]="isSidebarCollapsed"
+      (sidebarToggle)="onSidebarToggle()"
+    >
+    </app-adm-sidebar>
+    <button
+      class="sidebar-toggle-btn"
+      [ngClass]="{ 'sidebar-collapsed': isSidebarCollapsed }"
+      (click)="onSidebarToggle()"
+    >
+      <i
+        [class]="
+          isSidebarCollapsed ? 'fas fa-arrow-right' : 'fas fa-arrow-left'
+        "
+      ></i>
+    </button>
+  </div>
+
+  <main class="content" [ngClass]="{ 'content-expanded': isSidebarCollapsed }">
+    <!-- Metrics and Profile Section -->
+    <div class="content-inner">
+      <div class="cards-profile-container">
+        <div class="metrics">
+          <div class="metric-card1">
+            <i class="fi fi-rr-users-alt"></i>
+            <div>
+              <h6>Total Login Users</h6>
+              <p>{{ totalLoginUsers }}</p>
+            </div>
+          </div>
+          <div class="metric-card2">
+            <i class="fi fi-rr-chart-histogram"></i>
+            <div>
+              <h6>Total Businesses</h6>
+              <p>{{ totalBusinesses }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Profile Section -->
+        <div class="profile-section">
+          <img
+            [src]="adminProfile.imageUrl"
+            alt="Profile Image"
+            class="profile-image"
+          />
+          <div class="profile-text">
+            <p><strong>Name:</strong> {{ adminProfile.name }}</p>
+            <p><strong>Email:</strong> {{ adminProfile.email }}</p>
+            <p><strong>Role:</strong> {{ adminProfile.role }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chart Filters -->
+      <div class="filters">
+        <div>
+          <label for="year">Year:</label>
+          <select
+            id="year"
+            [(ngModel)]="selectedYear"
+            (change)="filterBarChartData()"
+          >
+            <option *ngFor="let year of availableYears" [value]="year">
+              {{ year }}
+            </option>
+          </select>
+        </div>
+        <div>
+          <label for="region">Region:</label>
+          <select
+            id="region"
+            [(ngModel)]="selectedRegion"
+            (change)="filterPieChartData()"
+          >
+            <option *ngFor="let region of availableRegions" [value]="region">
+              {{ region }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Chart and Pie Chart Section -->
+      <div class="charts-container">
+        <!-- Bar Chart -->
+        <div class="chart-container">
+          <h3>Coupon Sales Over Time</h3>
+          <ngx-charts-bar-vertical
+            [view]="view"
+            [scheme]="colorScheme"
+            [results]="filteredBarChartData"
+            [gradient]="gradient"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [legend]="showLegend"
+            [xAxisLabel]="'Months'"
+            [yAxisLabel]="'Sales'"
+            [barPadding]="8"
+            [roundEdges]="true"
+            [animations]="true"
+            (select)="onSelect($event)"
+          >
+          </ngx-charts-bar-vertical>
+        </div>
+
+        <!-- Pie Chart -->
+        <div class="chart-section">
+          <h3>Business Categories</h3>
+          <ngx-charts-pie-chart
+            [view]="view2"
+            [scheme]="colorScheme2"
+            [results]="filteredPieChartData"
+            [gradient]="gradient2"
+            [legend]="showLegend2"
+            [doughnut]="true"
+            [arcWidth]="0.3"
+            [animations]="true"
+            (select)="onChartSelect($event)"
+          >
+          </ngx-charts-pie-chart>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

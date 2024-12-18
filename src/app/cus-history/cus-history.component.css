@@ -1,0 +1,52 @@
+.payment-history {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.payment-history h2 {
+  text-align: center;
+  color: #333;
+}
+
+.payment-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #f9f9f9;
+  transition: box-shadow 0.3s ease;
+}
+
+.payment-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.payment-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.payment-label {
+  font-weight: bold;
+  color: #555;
+}
+
+.payment-value {
+  color: #333;
+}
+
+.loading,
+.no-data,
+.error {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 16px;
+  color: #555;
+}
+
+.error {
+  color: #d9534f;
+}
