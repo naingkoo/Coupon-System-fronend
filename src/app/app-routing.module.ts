@@ -6,6 +6,7 @@ import { ServerDownpageComponent } from './server-downpage/server-downpage.compo
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AdmHomeComponent } from './adm-home/adm-home.component';
 import { authGuard } from './core/guards/auth.guard';
+import { UnauthorizedComponent } from './shared/unauthorized/unauthorized.component';
 
 const routes: Routes = [
   {path:"", redirectTo:"login", pathMatch:"full"},
@@ -16,7 +17,8 @@ const routes: Routes = [
     canActivate: [authGuard], 
     data: { role: 'ADMIN' } 
   },
-  {path:"**",component:NotFoundComponent,pathMatch:"full"},
+  {path:"401",component:UnauthorizedComponent},
+  {path:"**",component:NotFoundComponent,pathMatch:"full"}
   
 ];
 

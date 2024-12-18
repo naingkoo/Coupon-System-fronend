@@ -19,7 +19,7 @@ export const authGuard: CanActivateFn = (route, state) => {
       return true; // Allow access
     } else {
       // If role does not match, redirect to unauthorized page
-      router.navigate(['/unauthorized']);
+      router.navigate(['/401']);
       return false;
     }
   } else {

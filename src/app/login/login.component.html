@@ -1,37 +1,66 @@
-<div class="sidenav">
-  <div class="login-main-text">
-     <h2>CouponSystem<br> Login Page</h2>
-     <p>Login from here to access.</p>
-  </div>
-</div>
-<div class="main">
-  <div class="col-md-6 col-sm-12">
-     <div class="login-form">
-        <form #loginValidation="ngForm">
-           <div class="form-group">
-              <label>User Name</label>
-              <input type="text" class="form-control" placeholder="User Name" [(ngModel)]="loggedUser.email" #userName="ngModel" required name="email"  >
-           </div>
-           <div class="form-group">
-              <label>Password</label>
-              <input type="password" class="form-control" placeholder="Password" [(ngModel)]="loggedUser.password" #password="ngModel" required name="password" >
-           </div>
-           <div class="form-group">
-            <label for="exampleFormControlSelect1">client type</label>
-            <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="loggedUser.clientType" #clientType="ngModel" name="clientType" > 
-              <option>CUSTOMER</option>
-              <option>COMPANY</option>
-              <option>ADMIN</option>
-            </select>
-          </div>
-          
-           <br><br>
-           <button type="submit" class="btn btn-black" (click)="loggin()" [disabled]="!loginValidation.valid">Login</button>
-           
-        </form>
-        
-     </div>
-  </div>
-</div>
+<div class="loginform">
+<form [formGroup]="loginForm" class="form" (ngSubmit)="onSubmit()">
+  
+   <!-- Email -->
+   <div class="flex-column">
+     <label for="email">Email</label>
+   </div>
+   <div class="inputForm">
+     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32">
+       <!-- SVG content -->
+     </svg>
+     <input
+       id="email"
+       type="text"
+       placeholder="Enter your Email"
+       class="input"
+       formControlName="email"
+     />
+   </div>
+   <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error">
+     Valid email is required
+   </div>
+ 
+   <!-- Password -->
+   <div class="flex-column">
+     <label for="password">Password</label>
+   </div>
+   <div class="inputForm">
+     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="-64 0 512 512">
+       <!-- SVG content -->
+     </svg>
+     <input
+       id="password"
+       type="password"
+       placeholder="Enter your Password"
+       class="input"
+       formControlName="password"
+     />
+   </div>
+   <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
+     Password must be at least 6 characters
+   </div>
+ 
+   <!-- Submit Button -->
+   <button type="submit" class="button-submit" [disabled]="loginForm.invalid">
+     Sign In
+   </button>
+ 
+   <!-- Sign Up -->
+   <p class="p">Don't have an account? <span class="span" (click)="goToRegister()">Sign Up</span></p>
+ 
+   <!-- Divider -->
+   <p class="p line">Or With</p>
+ 
+   <!-- Google Login -->
+   <div class="flex-row">
+     <button type="button" class="btn google" (click)="onGoogleLogin()">
+       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
+         <!-- SVG content -->
+       </svg>
+       Google
+     </button>
+   </div>
+ </form>
 
-
+</div>

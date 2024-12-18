@@ -36,6 +36,7 @@ import { ServerDownpageComponent } from './server-downpage/server-downpage.compo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
+import { UnauthorizedComponent } from './shared/unauthorized/unauthorized.component';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { authInterceptor } from './core/interceptors/auth.interceptor';
     CusEditComponent,
     BusinessEditComponent,
     AdmRegisterComponent,
-    ServerDownpageComponent
+    ServerDownpageComponent,
+    UnauthorizedComponent
   ],
   imports: [
     BrowserModule, AppRoutingModule,

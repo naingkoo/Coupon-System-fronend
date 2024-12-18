@@ -2,6 +2,11 @@
   width: 100%;
   margin: auto;
 }
+.loginform{
+  display: flex;
+  margin:auto;
+
+}
 
 .login2 {
   margin: auto;

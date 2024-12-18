@@ -5,6 +5,7 @@ import { CheckConService } from '../../Servises/check-con.service';
 import { LoggedUser } from '../model/logged-user';
 import { ClientType } from '../model/ClientType';
 import { ToastrService } from 'ngx-toastr';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 
@@ -13,8 +14,9 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-
+export class LoginComponent implements OnInit {
+  loginForm!: FormGroup;
+  loginError: string = '';
 
   public  loggedUser:LoggedUser = new LoggedUser(0,ClientType.CUSTOMER,"","");
   public loging:boolean = false;
@@ -22,7 +24,8 @@ export class LoginComponent {
 
 
   constructor(public logginServise:LogginService, private router:Router,private check:CheckConService,
-    private toast: ToastrService
+    private toast: ToastrService,
+    private fb: FormBuilder
   ) { }
 
   // ngOnInit() {
@@ -33,7 +36,31 @@ export class LoginComponent {
   //     this.router.navigate(["serverIsDown"]);
   //   });
   // }
+  ngOnInit(): void {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
+  }
     
+//here is start from zue
+onSubmit(): void {
+  if (this.loginForm.valid) {
+     this.loggedUser.email = this.loginForm.value.email;
+     this.loggedUser.password=this.loginForm.value.password
+   
+    this.loggin();
+    
+  } else {
+    this.loginForm.markAllAsTouched(); // Highlight validation errors
+  }
+}
+
+public onGoogleLogin(){}
+
+public goToRegister(){}
+
+  // here is end from zue 
    public loggin(){
    
       this.logginServise.login(this.loggedUser).subscribe(c =>{
@@ -45,7 +72,7 @@ export class LoginComponent {
         switch (c.data.role) {
           case ClientType.ADMIN:
             this.logginServise.ifLoggdIn(this.loggedUser);
-            this.router.navigate(["adminPersonalArea"]);
+            this.router.navigate(["adminHome"]);
             break;
             case ClientType.COMPANY:
             this.logginServise.ifLoggdIn(this.loggedUser);
@@ -68,10 +95,8 @@ export class LoginComponent {
           alert( this.erorr)
           
         }else{
-          alert(err.messages)
+           this.loginError = 'Invalid email or password. Please try again.';
         } 
-
-
         this.erorr.splice(0,this.erorr.length)
 
       });
