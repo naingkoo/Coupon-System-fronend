@@ -45,7 +45,6 @@ onSubmit(): void {
   if (this.loginForm.valid) {
      this.loggedUser.email = this.loginForm.value.email;
      this.loggedUser.password=this.loginForm.value.password
-   
     this.loggin();
     
   } else {

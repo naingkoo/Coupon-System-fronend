@@ -119,6 +119,7 @@ export class CreateBusinessComponent implements OnInit {
           },
           (error) => {
             console.log('Error creating business:', error);
+            alert( error);
           }
         );
       } else {

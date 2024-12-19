@@ -28,7 +28,7 @@ import { CreatePackagesComponent } from './create/create-packages/create-package
 const routes: Routes = [
 
   { path: 'register', component: RegisterComponent },
-  { path: '', component: CusHomeComponent },
+  {path:"", redirectTo:"login", pathMatch:"full"},
   { path: 'home', component: CusHomeComponent },
   { path: 'explore', component: CusExploreComponent },
   { path: 'package', component: CusPackageComponent },
@@ -53,7 +53,6 @@ const routes: Routes = [
     component: AddBusinessServicesComponent,
   },
   { path: 'Package/create/:id', component: CreatePackagesComponent },
-  {path:"", redirectTo:"login", pathMatch:"full"},
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: CusHomeComponent },
   {path:"404",component:NotFoundComponent},{path:"serverIsDown",component:ServerDownpageComponent},

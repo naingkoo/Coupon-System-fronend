@@ -11,7 +11,7 @@ export class PackageService {
   constructor(private http: HttpClient) {}
 
   getALL(): Observable<Packages[]> {
-    return this.http.get<Packages[]>('http://localhost:8080/package/list');
+    return this.http.get<Packages[]>('http://localhost:8080/package/public/list');
   }
 
   create(formData: FormData): Observable<any> {

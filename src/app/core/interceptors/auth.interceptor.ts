@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  const token = localStorage.getItem('auth_token'); // Retrieve the token from localStorage
+  const token = localStorage.getItem('token'); // Retrieve the token from localStorage
   const router = inject(Router);
   const toastr = inject(ToastrService); 
   // If the token exists, clone the request and add the Authorization header

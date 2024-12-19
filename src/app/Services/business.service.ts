@@ -32,15 +32,15 @@ export class BusinessService {
   }
 
   getCategory(): Observable<any[]> {
-    return this.http.get<any[]>(this.CURL + '/list');
+    return this.http.get<any[]>(this.CURL + '/public/list');
   }
 
   getService(): Observable<any[]> {
-    return this.http.get<any[]>(this.SURL + '/list');
+    return this.http.get<any[]>(this.SURL + '/public/list');
   }
 
   getBusiness(): Observable<any[]> {
-    return this.http.get<any[]>(this.BURL + '/list');
+    return this.http.get<any[]>(this.BURL + '/public/list');
   }
 
   getBusinessById(id: number): Observable<Business> {
