@@ -1,11 +1,5 @@
 import { NgModule } from '@angular/core';
-import {
-  BrowserModule,
-  provideClientHydration,
-} from '@angular/platform-browser';
-import {
-  HttpClientModule,
-} from '@angular/common/http';
+import {BrowserModule} from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { AppRoutingModule } from './app-routing.module';
@@ -91,7 +85,6 @@ import { CusPackageComponent } from './cus-package/cus-package.component';
     FormsModule,
     BrowserAnimationsModule, // required animations module
     ReactiveFormsModule,
-    HttpClientModule,
     NgbModule,
     NgxChartsModule,
     ToastrModule.forRoot({ // Toastr configuration
@@ -101,7 +94,7 @@ import { CusPackageComponent } from './cus-package/cus-package.component';
       progressBar:true// Prevent duplicate toasts
     }),
   ],
-  providers: [provideClientHydration(), provideHttpClient(withFetch(),withInterceptors([authInterceptor]))
+  providers: [ provideHttpClient(withFetch(),withInterceptors([authInterceptor]))
   ],
 
   bootstrap: [AppComponent],

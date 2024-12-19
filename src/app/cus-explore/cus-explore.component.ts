@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Business } from '../models/business'; // Adjust the path as needed
 import { Service } from '../models/service';
 import { Category } from '../models/category';
-import { BusinessService } from '../service/business.service';
+import { BusinessService } from '../Services/business.service';
 
 @Component({
   selector: 'app-cus-explore',

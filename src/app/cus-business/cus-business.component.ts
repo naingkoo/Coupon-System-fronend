@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Business } from '../models/business'; // Ensure correct import path
 import { Packages } from '../models/package-model'; // Correct import path
-import { BusinessService } from '../service/business.service';
-import { PackageService } from '../service/package.service';
+import { BusinessService } from '../Services/business.service';
+import { PackageService } from '../Services/package.service';
 
 @Component({
   selector: 'app-cus-business',

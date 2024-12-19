@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Category } from '../../models/category';
-import { BusinessService } from '../../service/business.service';
+import { BusinessService } from '../../Services/business.service';
 
 @Component({
   selector: 'app-add-business-categories',

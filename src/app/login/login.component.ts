@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
-import { LogginService } from '../../Servises/loggin.service';
+import { LogginService } from '../Services/loggin.service';
 import {  Router } from '@angular/router';
-import { CheckConService } from '../../Servises/check-con.service';
+import { CheckConService } from '../Services/check-con.service';
 import { LoggedUser } from '../model/logged-user';
 import { ClientType } from '../model/ClientType';
 import { ToastrService } from 'ngx-toastr';

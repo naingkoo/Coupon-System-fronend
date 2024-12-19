@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PackageService } from '../service/package.service';
 import { Packages } from '../models/package-model';
+import { PackageService } from '../Services/package.service';
 
 @Component({
   selector: 'app-adm-package',

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Packages } from '../models/package-model';
 import { Business } from '../models/business';
-import { PackageService } from '../service/package.service';
+import { PackageService } from '../Services/package.service';
 
 @Component({
   selector: 'app-cus-package',

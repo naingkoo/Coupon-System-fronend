@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-
 import { ActivatedRoute, Router } from '@angular/router';
-import { PackageService } from '../../service/package.service';
-
+import { PackageService } from '../../Services/package.service';
 @Component({
   selector: 'app-create-package',
   templateUrl: './create-packages.component.html',

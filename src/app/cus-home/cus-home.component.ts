@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Business } from '../models/business';
-import { BusinessService } from '../service/business.service';
+import { BusinessService } from '../Services/business.service';
 
 @Component({
   selector: 'app-cus-home',
