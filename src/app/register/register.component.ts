@@ -6,7 +6,9 @@ import {
   AbstractControl,
   ValidationErrors,
 } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../Services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +21,7 @@ export class RegisterComponent implements OnInit {
   successMessage: string | null = null;
   errorMessage: string | null = null;
 
-  constructor(private fb: FormBuilder, private userService: UserService) {
+  constructor(private fb: FormBuilder, private userService: UserService,private router:Router,private toast:ToastrService) {
     this.registerForm = this.fb.group(
       {
         username: ['', [Validators.required, Validators.minLength(3)]],
@@ -55,14 +57,15 @@ export class RegisterComponent implements OnInit {
         password: this.registerForm.value.password,
         role: 'USER', // Assuming a default role
       };
-
+      console.log(user);
       this.userService.registerUser(user).subscribe({
         next: (response: any) => {
           // Specify 'any' explicitly if response type isn't defined yet
           this.successMessage = 'Registration successful!';
           this.errorMessage = null;
           this.registerForm.reset();
-          console.log('User registered successfully:', response);
+          this.toast.success('User registered successfully, please login', "Sign Up");
+          this.router.navigate(["login"])
         },
         error: (error: any) => {
           // Specify 'any' explicitly for error as well

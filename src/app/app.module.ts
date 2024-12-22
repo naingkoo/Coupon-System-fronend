@@ -42,6 +42,7 @@ import { AdmSidebarComponent } from './adm-sidebar/adm-sidebar.component';
 import { CusExploreComponent } from './cus-explore/cus-explore.component';
 import { ScannerComponent } from './scanner/scanner.component';
 import { CusPackageComponent } from './cus-package/cus-package.component';
+import { isPlatformBrowser } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,7 @@ import { CusPackageComponent } from './cus-package/cus-package.component';
       progressBar:true// Prevent duplicate toasts
     }),
   ],
-  providers: [ provideHttpClient(withFetch(),withInterceptors([authInterceptor]))
+  providers: [ provideHttpClient(withFetch(),withInterceptors([authInterceptor])),
   ],
 
   bootstrap: [AppComponent],

@@ -38,7 +38,8 @@ const routes: Routes = [
   { path: 'history', component: CusHistoryComponent },
   { path: 'cart', component: CusCartComponent },
   { path: 'my-coupon', component: MyCouponComponent },
-  { path: 'adm-dashboard', component: AdmHomeComponent },
+  { path: 'adm-dashboard', component: AdmHomeComponent, canActivate: [authGuard], 
+          data: { role: 'ADMIN' } },
   { path: 'adm-business', component: AdmBusinessComponent },
   { path: 'adm-package', component: AdmPackageComponent },
   { path: 'adm-user-list', component: AdmUserListComponent },
@@ -53,13 +54,9 @@ const routes: Routes = [
     component: AddBusinessServicesComponent,
   },
   { path: 'Package/create/:id', component: CreatePackagesComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent},
   { path: 'dashboard', component: CusHomeComponent },
   {path:"404",component:NotFoundComponent},{path:"serverIsDown",component:ServerDownpageComponent},
-  {path:"adminHome",component:AdmHomeComponent,
-    canActivate: [authGuard], 
-    data: { role: 'ADMIN' } 
-  },
   {path:"401",component:UnauthorizedComponent},
   {path:"**",component:NotFoundComponent,pathMatch:"full"}
   

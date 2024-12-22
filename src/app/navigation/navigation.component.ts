@@ -1,7 +1,6 @@
 import { Component, HostListener } from '@angular/core';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { User } from '../models/user.model';
 import { Router } from '@angular/router';
+import { AuthService } from '../core/auth/auth.service';
 
 @Component({
   selector: 'app-navigation',
@@ -10,6 +9,8 @@ import { Router } from '@angular/router';
 })
 export class NavigationComponent {
   mobileMenuOpen = false;
+
+  constructor(private router:Router,private authService:AuthService){}
 
   // Triggered when the checkbox state changes
   onMenuToggleChange() {
@@ -53,8 +54,6 @@ export class NavigationComponent {
   }
 
   logout(): void {
-    alert('Logging out...');
-    // Add logout logic here
-    this.togglePopup();
+    this.authService.logout();
   }
 }

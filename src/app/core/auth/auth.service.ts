@@ -1,12 +1,23 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { PLATFORM_ID,inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private jwtHelper = new JwtHelperService();
 
+  constructor(private router:Router){}
+   platformId = inject(PLATFORM_ID);
   getToken(): string | null {
-    return localStorage.getItem('token');
+    // Use inject(PLATFORM_ID) and check if in browse
+    
+    if (isPlatformBrowser(this.platformId)) {
+      // Safely access localStorage only in the browser
+      return localStorage.getItem('token');
+    }
+    return null;
   }
   
   isAuthenticated(): boolean {
@@ -14,6 +25,7 @@ export class AuthService {
     const token = this.getToken();
     return token ? !this.jwtHelper.isTokenExpired(token) : false; // Check token validity
   }
+
 
   getRoles(): string[] {
     const token = this.getToken();
@@ -25,6 +37,12 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem('auth_token');
+    if (isPlatformBrowser(this.platformId)) {
+      // Safely access localStorage only in the browser
+       localStorage.getItem('token');
+    }
+    
+    this.router.navigate(["login"])
+
   }
 }

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { LoggedUser } from '../model/logged-user';
+import { LoggedUser } from '../models/logged-user';
 import { environment } from '../../environments/environment';
-import { ClientType } from '../model/ClientType';
+import { ClientType } from '../models/ClientType';
 
 
 
@@ -13,7 +13,7 @@ import { ClientType } from '../model/ClientType';
 export class LogginService {
   private baseUrl=environment.apiUrl;
 
-  private  loggdUser:LoggedUser = new LoggedUser(0,ClientType.CUSTOMER,"","");
+  private  loggdUser:LoggedUser = new LoggedUser(0,ClientType.USER,"","");
   
 public constructor(private httpClient : HttpClient) { }
 
@@ -22,10 +22,10 @@ public login(loggedUser:LoggedUser):Observable<any>{
   return this.httpClient.post<LoggedUser>( `${this.baseUrl}/loginUser`,loggedUser,{withCredentials:true});
 }
 
-public logOut():Observable<any>{
+// public logOut():Observable<any>{
 
-  return this.httpClient.post<any>("http://localhost:8080/login/logOut",{withCredentials:true});
-}
+//   return this.httpClient.post<any>("http://localhost:8080/login/logOut",{withCredentials:true});
+// }
 
 
   public ifLoggdIn(l:LoggedUser){

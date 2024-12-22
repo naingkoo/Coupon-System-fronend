@@ -5,20 +5,30 @@ import { throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { inject } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-
+import { AuthService } from '../auth/auth.service';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  const token = localStorage.getItem('token'); // Retrieve the token from localStorage
   const router = inject(Router);
   const toastr = inject(ToastrService); 
+  const authService=inject(AuthService);
+  const token =authService.getToken();
+debugger;
+    if (token) {
+      if(!authService.isAuthenticated()){
+        authService.logout();
+      }
+      req = req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${token}`, // Attach the token as a Bearer token
+        },
+      });
+    }
+  // Retrieve the token from localStorage
+  
+ 
+  
   // If the token exists, clone the request and add the Authorization header
-  if (token) {
-    req = req.clone({
-      setHeaders: {
-        Authorization: `Bearer ${token}`, // Attach the token as a Bearer token
-      },
-    });
-  }
+
 
   // Continue with the request and handle errors
   return next(req).pipe(
