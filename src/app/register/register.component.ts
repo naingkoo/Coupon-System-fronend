@@ -9,6 +9,7 @@ import {
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../Services/user.service';
 import { Router } from '@angular/router';
+import { ClientType } from '../models/ClientType';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +22,8 @@ export class RegisterComponent implements OnInit {
   successMessage: string | null = null;
   errorMessage: string | null = null;
 
-  constructor(private fb: FormBuilder, private userService: UserService,private router:Router,private toast:ToastrService) {
+  constructor(private fb: FormBuilder, private userService: UserService, private router: Router, private toast: ToastrService,
+  ) {
     this.registerForm = this.fb.group(
       {
         username: ['', [Validators.required, Validators.minLength(3)]],
@@ -55,7 +57,7 @@ export class RegisterComponent implements OnInit {
         phone: this.registerForm.value.phone,
         email: this.registerForm.value.email,
         password: this.registerForm.value.password,
-        role: 'USER', // Assuming a default role
+        role: ClientType.CUSTOMER, // Assuming a default role
       };
       console.log(user);
       this.userService.registerUser(user).subscribe({
@@ -69,6 +71,7 @@ export class RegisterComponent implements OnInit {
         },
         error: (error: any) => {
           // Specify 'any' explicitly for error as well
+          this.toast.success(`${error.message}`, "Sign Up");
           this.successMessage = null;
           this.errorMessage = 'Failed to register user. Please try again.';
           console.error('Error during registration:', error);

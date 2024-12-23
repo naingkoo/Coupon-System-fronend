@@ -14,14 +14,14 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const token =authService.getToken();
 debugger;
     if (token) {
-      if(!authService.isAuthenticated()){
-        authService.logout();
+      if(authService.isAuthenticated()){
+        req = req.clone({
+          setHeaders: {
+            Authorization: `Bearer ${token}`, // Attach the token as a Bearer token
+          },
+        });
       }
-      req = req.clone({
-        setHeaders: {
-          Authorization: `Bearer ${token}`, // Attach the token as a Bearer token
-        },
-      });
+     
     }
   // Retrieve the token from localStorage
   

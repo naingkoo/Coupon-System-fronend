@@ -1,11 +1,11 @@
 import { Component, OnInit} from '@angular/core';
-import { LogginService } from '../Services/loggin.service';
 import {  Router } from '@angular/router';
 import { CheckConService } from '../Services/check-con.service';
 import { LoggedUser } from '../models/logged-user';
 import { ClientType } from '../models/ClientType';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../core/auth/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,12 +15,12 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   loginError: string = '';
 
-  public  loggedUser:LoggedUser = new LoggedUser(0,ClientType.USER,"","");
+  public  loggedUser:LoggedUser = new LoggedUser(0,ClientType.CUSTOMER,"","");
   public loging:boolean = false;
   public erorr:string[] = [];
 
 
-  constructor(public logginServise:LogginService, private router:Router,private check:CheckConService,
+  constructor(public authService:AuthService, private router:Router,private check:CheckConService,
     private toast: ToastrService, //TODO make toastr service
     private fb: FormBuilder
   ) { }
@@ -59,22 +59,22 @@ public goToRegister(){}
   // here is end from zue 
    public loggin(){
    
-      this.logginServise.login(this.loggedUser).subscribe(c =>{
+      this.authService.login(this.loggedUser).subscribe(c =>{
         this.toast.success("succfully logined!"," Login ");
         console.log(`token: ${c.data.token}`);
         localStorage.setItem('token', c.data.token);
 
         switch (c.data.role) {
           case ClientType.ADMIN:
-            this.logginServise.ifLoggdIn(this.loggedUser);
-            this.router.navigate(["adminHome"]);
+            this.authService.ifLoggdIn(this.loggedUser);
+            this.router.navigate(["adm-dashboard"]);
             break;
             case ClientType.COMPANY:
-            this.logginServise.ifLoggdIn(this.loggedUser);
+            this.authService.ifLoggdIn(this.loggedUser);
             this.router.navigate(["comapnyPersonalArea"]);
             break;
-            case ClientType.USER:
-            this.logginServise.ifLoggdIn(this.loggedUser);
+            case ClientType.CUSTOMER:
+            this.authService.ifLoggdIn(this.loggedUser);
             this.router.navigate(["home"]);
             break;
          
