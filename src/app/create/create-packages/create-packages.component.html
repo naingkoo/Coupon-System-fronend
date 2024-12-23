@@ -20,7 +20,7 @@
 
   <main class="content" [ngClass]="{ 'content-expanded': isSidebarCollapsed }">
     <form (ngSubmit)="onSubmit()" #packageForm="ngForm">
-      <h2>Create Package</h2>
+      <h3 style="text-align: center;">Create Package</h3>
 
       <label for="name">Package Name</label>
       <input
@@ -49,15 +49,6 @@
         required
       />
 
-      <label for="image">Package Image</label>
-      <input
-        type="file"
-        id="image"
-        name="image"
-        (change)="onFileChange($event)"
-        required
-      />
-
       <label for="business">Business ID</label>
       <input
         type="text"
@@ -74,9 +65,31 @@
         required
       ></textarea>
 
-      <button type="submit" [disabled]="!packageForm.valid">
-        Create Package
-      </button>
+      <label for="image">Package Image</label>
+      <input
+        type="file"
+        id="image"
+        name="image"
+        (change)="onFileChange($event)"
+        required
+      />
+
+      <div class="image-preview-container" *ngIf="imagePreview">
+        <p>Image Preview:</p>
+        <img
+          [src]="imagePreview"
+          alt="Image Preview"
+          class="image-preview"
+        />
+      </div>
+
+      <div class="btn-container">
+        <button type="submit" [disabled]="!packageForm.valid">
+          Create Package
+        </button>
+        <button type="button" (click)="onCancel()">Cancel</button>
+      </div>
+
     </form>
   </main>
 </div>

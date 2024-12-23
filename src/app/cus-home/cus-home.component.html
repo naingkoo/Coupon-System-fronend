@@ -2,20 +2,14 @@
 <div class="main-content">
   <!-- Banner Section -->
   <div class="banner">
-    <div class="slideshow">
-      <div
-        class="slide"
-        *ngFor="let image of bannerImages; let i = index"
-        [class.active]="i === currentSlide"
-      >
-        <img
-          [src]="'assets/image/business/' + image"
-          alt="Banner Slide {{ i + 1 }}"
-        />
-      </div>
-      <button class="prev" (click)="previousSlide()">&#10094;</button>
-      <button class="next" (click)="nextSlide()">&#10095;</button>
-    </div>
+    <!-- <video autoplay muted loop class="banner-video">
+      <source [src]="'assets/image/logo/banner.mp4'" type="video/mp4" />
+    </video> -->
+    <img
+      [src]="'assets/image/logo/banner.gif'"
+      alt="Description of the GIF"
+      class="banner-video"
+    />
   </div>
 
   <!-- Search and Select Section -->

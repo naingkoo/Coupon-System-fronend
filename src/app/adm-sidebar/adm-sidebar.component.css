@@ -37,6 +37,7 @@
   padding: 1rem 15px;
 }
 
+
 .sidebar-menu a {
   color: #555;
   text-decoration: none;
@@ -47,6 +48,7 @@
 .sidebar-menu a i {
   display: flex;
   align-items: center;
+  font-size: 17px;
 }
 
 .sidebar-menu a i p {

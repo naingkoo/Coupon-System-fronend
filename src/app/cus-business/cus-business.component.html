@@ -84,8 +84,80 @@
     </div>
 
     <div *ngIf="selectedTab === 3">
-      <h2>Categories</h2>
-      <p>Details about business categories go here.</p>
+      <div class="reviews-toggle-container">
+        <a (click)="toggleReviews()" class="toggle-reviews-link">
+          {{ reviewsVisible ? "Hide Reviews" : "See Reviews" }}
+        </a>
+      </div>
+
+      <div
+        class="reviews-list-container"
+        *ngIf="reviewsVisible && reviews && reviews.length > 0; else noReviews"
+      >
+        <div *ngFor="let review of reviews" class="review-card">
+          <div class="review-header">
+            <span class="review-rating">Rating: {{ review.rating }} / 5</span>
+            <span class="review-date">{{
+              review.reviewDate | date : "short"
+            }}</span>
+          </div>
+          <div class="review-message">
+            <p>{{ review.message }}</p>
+          </div>
+          <div class="review-footer">
+            <span class="review-user">User ID: {{ review.userId }}</span>
+            <span class="review-business"
+              >Business ID: {{ review.businessId }}</span
+            >
+          </div>
+        </div>
+      </div>
+      <ng-template #noReviews>
+        <p *ngIf="reviewsVisible">No reviews available.</p>
+      </ng-template>
+
+      <div class="review-form-container">
+        <form (ngSubmit)="submitReview()">
+          <div class="form-group">
+            <label for="userId">User ID</label>
+            <input
+              type="number"
+              [(ngModel)]="review.userId"
+              name="userId"
+              class="form-control"
+              id="userId"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="rating">Rating</label>
+            <input
+              type="number"
+              [(ngModel)]="review.rating"
+              name="rating"
+              class="form-control"
+              id="rating"
+              required
+              min="1"
+              max="5"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea
+              [(ngModel)]="review.message"
+              name="message"
+              class="form-control"
+              id="message"
+              rows="4"
+              required
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit Review</button>
+        </form>
+      </div>
     </div>
   </div>
 </div>

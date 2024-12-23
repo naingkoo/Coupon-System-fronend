@@ -24,7 +24,7 @@
 
 .sidebar-toggle-btn {
   position: absolute;
-  top: 75px;
+  top: 320px;
   left: 230px;
   transform: translateY(-50%);
   background-color: #ffffff;
@@ -58,27 +58,7 @@ p {
 }
 
 /* Business List Button */
-.card_submit {
-  display: block;
-  width: 100%;
-  max-width: 200px;
-  margin: 0 auto 20px;
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
 
-.card_submit:hover {
-  background-color: #0056b3;
-  transform: translateY(-2px);
-}
 
 /* Form Container */
 form {
@@ -90,6 +70,19 @@ form {
   margin: 0 auto;
   border: none;
 }
+.form-container {
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+.input-container {
+  flex: 1;
+  padding-right: 20px; /* Space between input fields and checkboxes */
+}
+
+
+
 
 /* Input Fields */
 .card_form {
@@ -111,21 +104,38 @@ form {
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
 }
 
+.image-preview-container {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.image-preview {
+  width: 200px; /* Adjust this to your desired size */
+  height: 120px; /* Match the width for a 1:1 ratio */
+  border: 1px solid #ddd;
+  border-radius: 8px; /* Optional: Adds rounded corners */
+  object-fit: cover; /* Ensures the image fits within the square */
+}
+
+
+
 /* Checkbox Container */
 .check-box-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin-bottom: 15px;
+  
 }
 
 .categories-list,
 .service-list {
-  width: 48%;
+  width: 100%;
   background: #f9f9f9;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
+  margin-bottom: 20px; 
 }
 
 .categories-list p,
@@ -153,26 +163,50 @@ form {
 
 /* Button Container */
 .btn-container {
-  text-align: center;
-  margin-top: 15px;
+  display: flex;
+  justify-content: right; /* Align buttons to the left */
+  gap: 10px; /* Space between the buttons */
+  margin-top: 20px; /* Add margin to the top */
+
 }
 
-.btn-container .card_submit {
-  display: inline-block;
-  background-color: #28a745;
-  color: #fff;
-  font-size: 16px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  text-transform: uppercase;
-  transition: background-color 0.3s ease;
+/* Styling the "Add" button */
+.card_submit {
+  background-color: #fab400; /* Green background for "Add" */
+  color: white; /* White text color */
+  padding: 10px 20px; /* Padding inside the button */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition on hover */
 }
 
-.btn-container .card_submit:hover {
-  background-color: #218838;
+/* "Add" button hover effect */
+.card_submit:hover {
+  background-color:#fab400; /* Darker green when hovering */
 }
+
+/* Styling the "Cancel" button */
+.card_cancel {
+  background-color: #f44336; /* Red background for "Cancel" */
+  color: white; /* White text color */
+  padding: 10px 20px; /* Padding inside the button */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+/* "Cancel" button hover effect */
+.card_cancel:hover {
+  background-color: #d32f2f; /* Darker red when hovering */
+}
+
+
+
+
+
+
 
 /* Responsive Design */
 @media (max-width: 768px) {

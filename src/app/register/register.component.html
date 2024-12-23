@@ -1,7 +1,4 @@
 <div class="page-center">
-  <!--<div>
-    <img [src]="'assets/image/register.png'" class="vector">
-  </div>-->
   <div class="form-box">
     <h2>Register</h2>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
@@ -15,12 +12,12 @@
           "
           class="error-text"
         >
-          <small *ngIf="registerForm.get('username')?.errors?.['required']"
-            >Username is required.</small
-          >
-          <small *ngIf="registerForm.get('username')?.errors?.['minlength']"
-            >Minimum 3 characters required.</small
-          >
+          <small *ngIf="registerForm.get('username')?.errors?.['required']">
+            Username is required.
+          </small>
+          <small *ngIf="registerForm.get('username')?.errors?.['minlength']">
+            Minimum 3 characters required.
+          </small>
         </div>
       </div>
 
@@ -34,12 +31,9 @@
           "
           class="error-text"
         >
-          <small *ngIf="registerForm.get('phone')?.errors?.['required']"
-            >Phone is required.</small
-          >
-          <small *ngIf="registerForm.get('phone')?.errors?.['pattern']"
-            >Enter a valid 10-digit phone number.</small
-          >
+          <small *ngIf="registerForm.get('phone')?.errors?.['required']">
+            Phone is required.
+          </small>
         </div>
       </div>
 
@@ -53,12 +47,12 @@
           "
           class="error-text"
         >
-          <small *ngIf="registerForm.get('email')?.errors?.['required']"
-            >Email is required.</small
-          >
-          <small *ngIf="registerForm.get('email')?.errors?.['email']"
-            >Enter a valid email address.</small
-          >
+          <small *ngIf="registerForm.get('email')?.errors?.['required']">
+            Email is required.
+          </small>
+          <small *ngIf="registerForm.get('email')?.errors?.['email']">
+            Enter a valid email address.
+          </small>
         </div>
       </div>
 
@@ -72,12 +66,12 @@
           "
           class="error-text"
         >
-          <small *ngIf="registerForm.get('password')?.errors?.['required']"
-            >Password is required.</small
-          >
-          <small *ngIf="registerForm.get('password')?.errors?.['minlength']"
-            >Minimum 6 characters required.</small
-          >
+          <small *ngIf="registerForm.get('password')?.errors?.['required']">
+            Password is required.
+          </small>
+          <small *ngIf="registerForm.get('password')?.errors?.['minlength']">
+            Minimum 6 characters required.
+          </small>
         </div>
       </div>
 

@@ -15,8 +15,7 @@ export class AdmPackageComponent {
   onSidebarToggle() {
     this.isSidebarCollapsed = !this.isSidebarCollapsed;
   }
-
-  submittedPackage: Packages[] = [];
+  packages: Packages[] = [];
 
   constructor(
     private service: PackageService,
@@ -25,13 +24,34 @@ export class AdmPackageComponent {
   ) {}
 
   ngOnInit(): void {
+    this.fetchPackages();
+  }
+
+  // Fetch all packages from the service
+  fetchPackages(): void {
     this.service.getALL().subscribe(
       (data) => {
-        this.submittedPackage = data;
+        this.packages = data;
       },
       (error) => {
-        console.log('error' + error);
+        console.error('Error fetching packages:', error);
       }
     );
+  }
+
+  // Handle package deletion
+  onDelete(id: number): void {
+    if (confirm('Are you sure you want to delete this package?')) {
+      this.service.softDeletePackage(id).subscribe(
+        (response: string) => {
+          console.log('Package deleted successfully:', response); // Log the response
+
+          this.packages = this.packages.filter((pkg) => pkg.id !== id);
+        },
+        (error) => {
+          console.error('Error while deleting:', error);
+        }
+      );
+    }
   }
 }

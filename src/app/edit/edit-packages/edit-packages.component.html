@@ -1,0 +1,74 @@
+<form #packageForm="ngForm" (ngSubmit)="onSubmit(packageForm)">
+  <h2>Edit Package</h2>
+
+  <label for="name">Package Name</label>
+  <input
+    type="text"
+    id="name"
+    name="name"
+    [(ngModel)]="package.name"
+    required
+  />
+
+  <label for="unit_price">Unit Price</label>
+  <input
+    type="number"
+    id="unit_price"
+    name="unit_price"
+    [(ngModel)]="package.unit_price"
+    required
+  />
+
+  <label for="quantity">Quantity</label>
+  <input
+    type="number"
+    id="quantity"
+    name="quantity"
+    [(ngModel)]="package.quantity"
+    required
+  />
+
+  <div *ngIf="imagePreview; else currentImage">
+    <h4>Preview New Image:</h4>
+    <img [src]="imagePreview" alt="New Image Preview" width="200" />
+  </div>
+
+  <ng-template #currentImage>
+    <div *ngIf="package.image">
+      <h4>Current Image:</h4>
+      <img
+        [src]="'http://localhost:8080/images/' + package.image"
+        alt="Package Image"
+        width="200"
+      />
+    </div>
+  </ng-template>
+
+  <label for="image">Package Image</label>
+  <input
+    type="file"
+    id="image"
+    name="image"
+    (change)="onFileChange($event)"
+    accept="image/*"
+    required
+  />
+
+  <label for="business">Business ID</label>
+  <input
+    type="text"
+    id="business"
+    name="business"
+    [(ngModel)]="package.business_id"
+  />
+
+  <label for="description">Description</label>
+  <textarea
+    id="description"
+    name="description"
+    [(ngModel)]="package.description"
+    required
+  ></textarea>
+
+  <button type="submit" [disabled]="!packageForm.valid">Edit Package</button>
+</form>

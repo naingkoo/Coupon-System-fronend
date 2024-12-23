@@ -19,21 +19,11 @@
   </div>
 
   <main class="content" [ngClass]="{ 'content-expanded': isSidebarCollapsed }">
-    <div class="table-container">
-      <h3>Category List</h3>
-      <table class="table">
-        <tbody>
-          <tr *ngFor="let category of showCategory">
-            <p>{{ category.name }}</p>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
     <div class="form-container">
       <form #Cform="ngForm" (ngSubmit)="onSubmit(Cform)">
         <div class="card">
           <div class="card_form">
+            <h4 style="text-align: center;">Add Category</h4>
             <input
               [(ngModel)]="category.name"
               name="name"
@@ -43,7 +33,8 @@
           </div>
 
           <div class="btn-container">
-            <button class="card_submit">Add</button>
+            <button class="card_submit" type="submit">Add</button>
+            <button class="card_cancel" type="button" (click)="onCancel()">Cancel</button>
           </div>
         </div>
       </form>

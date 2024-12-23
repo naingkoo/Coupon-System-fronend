@@ -15,8 +15,6 @@ export class BusinessService {
 
   constructor(private http: HttpClient) {}
 
-  category: Category = new Category();
-
   createCategory(category: Category): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<any>(this.CURL + '/create', category, { headers });
@@ -47,9 +45,11 @@ export class BusinessService {
     return this.http.get<Business>(`${this.BURL}/getById/${id}`);
   }
 
-  updateBusinessbyId(business: Business): Observable<any> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const burl = `${this.BURL}/${business.id}`;
-    return this.http.put<any>(burl, business, { headers });
+  updateBusinessById(id: number, business: Business): Observable<any> {
+    return this.http.put(`${this.BURL}/edit/${id}`, business);
+  }
+
+  deleteBusiness(id: number): Observable<any> {
+    return this.http.post(`${this.BURL}/delete/${id}`, {});
   }
 }

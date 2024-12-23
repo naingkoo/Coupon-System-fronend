@@ -19,29 +19,46 @@
   </div>
 
   <main class="content" [ngClass]="{ 'content-expanded': isSidebarCollapsed }">
-    <div *ngIf="submittedPackage && submittedPackage.length > 0">
-      <div *ngFor="let package of submittedPackage" class="card">
-        <div *ngIf="package.image">
-          <img
-            [src]="'http://localhost:8080' + package.image"
-            alt="Package Image"
-          />
-        </div>
-        <h5 class="card-title">{{ package.name }}</h5>
-        <p class="card-text">
-          <strong>Unit Price:</strong> {{ package.unit_price }}
-        </p>
-        <p class="card-text">
-          <strong>Quantity:</strong> {{ package.quantity }}
-        </p>
-        <p class="card-text">
-          <strong>Description:</strong> {{ package.description }}
-        </p>
-      </div>
-    </div>
-
-    <div *ngIf="submittedPackage.length === 0">
-      <p>No packages found.</p>
-    </div>
+    <table class="package-table">
+      <thead>
+        <tr>
+          <th>Photo</th>
+          <th>Name</th>
+          <th>Unit Price</th>
+          <th>Quantity</th>
+          <th>Business</th>
+          <th>Create Date</th>
+          <th>Description</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let package of packages">
+          <td>
+            <div *ngIf="package.image">
+              <img
+                [src]="'http://localhost:8080' + package.image"
+                alt="Package Image"
+                class="package-image"
+              />
+            </div>
+          </td>
+          <td>{{ package.name }}</td>
+          <td>{{ package.unit_price }}</td>
+          <td>{{ package.quantity }}</td>
+          <td>{{ package.business_id }}</td>
+          <td>{{ package.create_date }}</td>
+          <td>{{ package.description }}</td>
+          <td>
+            <a [routerLink]="['/edit-package', package.id]" class="edit-btn"
+              ><i class="fa-solid fa-pen-to-square"></i
+            ></a>
+            <button (click)="onDelete(package.id)" class="delete-btn">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </main>
 </div>

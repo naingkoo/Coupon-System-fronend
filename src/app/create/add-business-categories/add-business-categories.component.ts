@@ -1,32 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Category } from '../../models/category';
 import { BusinessService } from '../../Services/business.service';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr'; // Import ToastrService
 
 @Component({
   selector: 'app-add-business-categories',
   templateUrl: './add-business-categories.component.html',
-  styleUrl: './add-business-categories.component.css',
+  styleUrls: ['./add-business-categories.component.css'],
 })
 export class AddBusinessCategoriesComponent {
-  showCategory: Category[] = [];
-
-  constructor(private service: BusinessService) {}
-
-  fetchCategories() {
-    this.service.getCategory().subscribe(
-      (data) => {
-        this.showCategory = data; // Assign the fetched categories to the showCategory variable
-      },
-      (error) => {
-        console.log('Error fetching categories: ', error);
-      }
-    );
-  }
-
-  ngOnInit(): void {
-    this.fetchCategories();
-  }
+  constructor(
+    private service: BusinessService,
+    private location: Location,
+    private router: Router,
+    private toastr: ToastrService // Inject ToastrService
+  ) {}
 
   isSidebarCollapsed = false;
   title: any;
@@ -42,14 +33,32 @@ export class AddBusinessCategoriesComponent {
       console.log(this.category);
       this.service.createCategory(this.category).subscribe(
         (response) => {
-          console.log('Category create successfully!!', response);
+          console.log('Category created successfully!!', response);
+
+          // Show success toast
+          this.toastr.success('Category created successfully!', 'Success');
+
+          this.router.navigate(['/adm-categorylist-servicelist']);
         },
         (error) => {
-          console.log('errors: ', error);
+          console.log('Error: ', error);
+
+          // Show error toast
+          this.toastr.error(
+            'An error occurred while creating the category.',
+            'Error'
+          );
         }
       );
     } else {
-      console.log('form invalide');
+      console.log('Form invalid');
+
+      // Show warning toast for invalid form
+      this.toastr.warning('Please fill out the form correctly.', 'Warning');
     }
+  }
+
+  onCancel() {
+    this.location.back(); // Navigates back to the previous page
   }
 }

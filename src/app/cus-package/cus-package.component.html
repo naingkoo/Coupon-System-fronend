@@ -52,21 +52,69 @@
       <p class="package-qty">Quantity: {{ package.quantity }}</p>
       <p class="package-price">Price: {{ package.unit_price }} MMK</p>
     </div>
-    <!-- Quantity adjustment container -->
-    <div class="quantity-container">
-      <button (click)="decreaseQuantity(package)" class="qty-btn">
-        <i class="fa-solid fa-minus"></i>
-      </button>
-      <span class="quantity-display">{{ package.selectedQuantity || 1 }}</span>
-      <button (click)="increaseQuantity(package)" class="qty-btn">
-        <i class="fa-solid fa-plus"></i>
-      </button>
-    </div>
+
     <div class="btn-container">
       <button class="btn-cart">Add to cart</button>
-      <button class="btn-buy">Buy now</button>
+      <button (click)="openBuyNowPopup(package)" class="btn-buy">
+        Buy now
+      </button>
     </div>
   </div>
 </div>
 
 <app-footer></app-footer>
+
+<!-- Popup Modal -->
+<div id="popupModal" [class.hidden]="!isPopupVisible" class="popup">
+  <div class="popup-content">
+    <span (click)="closeBuyNowPopup()" class="close">&times;</span>
+    <div class="popup-body">
+      <img
+        *ngIf="selectedPackage?.image"
+        [src]="'http://localhost:8080' + selectedPackage.image"
+        alt="{{ selectedPackage.name }}"
+        class="popup-image"
+      />
+      <div class="popup-info">
+        <h3>{{ selectedPackage?.name }}</h3>
+        <div class="info">
+          <label>Price:</label>
+          <p>{{ selectedPackage?.unit_price }} MMK</p>
+        </div>
+        <div class="info">
+          <label>Description:</label>
+          <p>{{ selectedPackage?.description }}</p>
+        </div>
+        <div class="info">
+          <label>Available Quantity:</label>
+          <p>{{ selectedPackage?.quantity }}</p>
+        </div>
+        <div class="info">
+          <label>Total price:</label>
+          <p>
+            {{
+              (selectedPackage?.unit_price || 0) *
+                (selectedPackage?.selectedQuantity || 1)
+            }}
+            MMK
+          </p>
+        </div>
+
+        <div class="quantity-container">
+          <button (click)="decreaseQuantity(selectedPackage)" class="qty-btn">
+            <i class="fa-solid fa-minus"></i>
+          </button>
+          <span class="quantity-display">{{
+            selectedPackage?.selectedQuantity || 1
+          }}</span>
+          <button (click)="increaseQuantity(selectedPackage)" class="qty-btn">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+        <button (click)="confirmPurchase()" class="btn-confirmpurchase">
+          Confirm Purchase
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
