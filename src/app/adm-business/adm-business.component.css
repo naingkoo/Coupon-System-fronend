@@ -24,7 +24,7 @@
 
 .sidebar-toggle-btn {
   position: absolute;
-  top: 75px;
+  top: 320px;
   left: 230px;
   transform: translateY(-50%);
   background-color: #ffffff;
@@ -50,7 +50,55 @@
 .sidebar-toggle-btn.sidebar-collapsed {
   left: 30px;
 }
+
 /*---------------------------*/
+
+/* Dropdown container styling */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown button styling */
+.dropdown-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Dropdown menu container styling */
+.add-btn-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: none; /* Initially hidden */
+}
+
+/* Button inside the dropdown menu */
+.add-btn-container button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.add-btn-container button:hover {
+  background-color: #f1f1f1;
+}
+
 /* Container for Add Buttons */
 .add-btn-container {
   display: flex;
@@ -61,7 +109,7 @@
 }
 
 .add-button {
-  background-color: #007bff;
+  background-color: #fab400;
   color: #ffffff;
   border: none;
   padding: 10px 20px;
@@ -72,42 +120,82 @@
 }
 
 .add-button:hover {
-  background-color: #0056b3;
+  background-color: #fab400;
   transform: translateY(-3px);
 }
 
-/* Main card container */
+/* Business Card Section */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Default 3 cards per row */
+  gap: 16px;
+  transition: grid-template-columns 0.3s ease;
+}
+
+.card-container.expanded-layout {
+  grid-template-columns: repeat(
+    4,
+    1fr
+  ); /* 4 cards per row when sidebar is hidden */
+}
+
+.card-container.collapsed-layout {
+  grid-template-columns: repeat(
+    3,
+    1fr
+  ); /* 3 cards per row when sidebar is open */
+}
+
+/* Business Card Section */
 .business-card {
   border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px; /* Slightly rounded corners */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  max-width: 300px;
+  max-width: 100%;
+  width: 100%;
+  display: flex;
+  flex: 0 0 320px; /* Set the card width and prevent shrinking */
+  flex-direction: column;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 16px; /* Add padding for spacing */
 }
 
 .business-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-6px); /* Slightly larger hover effect */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* More prominent shadow */
+}
+
+/*---------------------------*/
+
+.business-card {
+  position: relative; /* Enable positioning for dropdown inside the card */
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
 /* Image styling */
 .business-card img {
   width: 100%;
-  height: 150px;
-  border-radius: 8px 8px 0 0;
+  height: 180px; /* Reduced image height for better card balance */
+  border-radius: 6px;
   object-fit: cover;
+  margin-bottom: 12px; /* Space between image and text */
 }
 
 /* Headings and text */
 .card-info {
-  margin: 10px;
+  padding: 0;
   text-align: left;
+  flex-grow: 1;
 }
 
 .business-card h3 {
-  margin: 12px 0 8px;
-  font-size: 20px;
+  margin: 8px 0 4px;
+  font-size: 18px; /* More consistent font size */
   color: #333;
 }
 
@@ -124,165 +212,23 @@
 
 /* Button container */
 .btn-container {
-  margin: 12px auto auto auto;
-  text-align: center;
-}
-
-.card_submit {
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  padding: 10px 16px;
-  font-size: 14px;
-  border-radius: 4px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-.card_submit:hover {
-  background-color: #45a049;
-}
-
-/* Responsive Text Sizes */
-@media (max-width: 768px) {
-  .add-button {
-    font-size: 14px;
-    padding: 8px 15px;
-  }
-
-  .business-card h3 {
-    font-size: 18px;
-  }
-
-  .business-card p {
-    font-size: 12px;
-  }
-
-  .card_submit {
-    font-size: 12px;
-    padding: 8px 12px;
-  }
-}
-
-@media (max-width: 600px) {
-  .business-card {
-    max-width: 100%;
-    margin: 8px;
-  }
-}
-
-@media (max-width: 480px) {
-  .add-btn-container {
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .add-button {
-    width: 100%;
-    text-align: center;
-  }
-
-  .business-card {
-    padding: 15px;
-  }
-
-  .business-card h3 {
-    font-size: 16px;
-  }
-
-  .business-card p {
-    font-size: 11px;
-  }
-}
-
-/* Add Button Container */
-.add-btn-container {
   display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin: 20px 0;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  gap: 10px;
 }
 
-.add-button {
-  background-color: #007bff; /* Solid blue */
-  color: #fff;
-  border: 1px solid #007bff;
-  border-radius: 4px;
-  padding: 10px 18px;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.add-button:hover {
-  background-color: #0056b3; /* Darker blue */
-  border-color: #0056b3;
-  transform: translateY(-2px);
-}
-
-.add-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
-}
-
-/* Business List Heading */
-h3 {
-  text-align: center;
-  font-size: 24px;
-  margin: 10px 0 20px;
-  color: #444;
-}
-
-/* Card Container */
-.card-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-/* Business Card */
-.business-card {
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 15px;
-  transition: box-shadow 0.3s ease, transform 0.2s ease;
-}
-
-.business-card:hover {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transform: translateY(-3px);
-}
-
-.business-card h3 {
-  margin: 10px 0;
-  font-size: 18px;
-  color: #333;
-}
-
-.business-card p {
-  margin: 5px 0;
-  font-size: 14px;
-  color: #555;
-}
-
-/* Add Package Button */
 .card_submit {
   background-color: #28a745; /* Solid green */
-  color: #ffffff;
+  color: #fff;
   border: none;
-  border-radius: 4px;
-  padding: 8px 12px;
+  padding: 12px 16px; /* More padding for a bigger button */
   font-size: 14px;
-  cursor: pointer;
   font-weight: bold;
-  margin-top: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%; /* Full-width button for consistency */
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -296,15 +242,191 @@ h3 {
   box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.3);
 }
 
+.dots-menu {
+  position: relative;
+}
+
+.dots-btn {
+  background-color: #008cff; /* Solid green */
+  color: #fff;
+  border: none;
+  padding: 12px 16px; /* More padding for a bigger button */
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%; /* Full-width button for consistency */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.dots-btn:hover {
+  background-color: #005da8; /* Darker green on hover */
+
+  transform: scale(1.1);
+}
+
+.dots-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.3); /* Add focus ring */
+}
+
+.dots-dropdown {
+  position: absolute;
+  right: 100%;
+  top: 50%; /* Center relative to button */
+  transform: translateY(-50%); /* Adjust alignment */
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  transform: translateY(-10px); /* Slide up slightly */
+  transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dots-dropdown .dropdown-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  text-align: left;
+  background: none;
+  border: none;
+  width: 100%;
+}
+
+.dots-dropdown .dropdown-item:hover {
+  background-color: #f5f5f5;
+}
+
+.floating-add-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  z-index: 1000;
+}
+
+.floating-add-btn:hover {
+  background-color: #0056b3;
+  transform: scale(1.1);
+}
+
+/* Dropdown Menu */
+.floating-btn-dropdown {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.dropdown-menu {
+  position: absolute;
+  bottom: 0;
+  right: 60px; /* Position to the left of the button */
+  display: block; /* Arrange items in a line */
+  flex-direction: row; /* Horizontal layout */
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 5px 10px;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(-10px); /* Slide up slightly */
+  transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown-menu.dropdown-visible {
+  max-height: 300px; /* Adjust based on your content */
+  opacity: 1;
+  transform: translateY(0); /* Slide back to original position */
+}
+
+.dropdown-item {
+  padding: 10px 15px;
+  text-align: left;
+  font-size: 14px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+.dropdown-item:focus {
+  outline: none;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
-  .add-btn-container {
-    flex-direction: column;
-    align-items: center;
+  .business-card {
+    max-width: 100%;
+    margin-bottom: 20px; /* Add spacing between cards */
   }
 
   .card-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Stack cards on smaller screens */
+    gap: 16px; /* Ensure space between cards */
     padding: 10px;
+  }
+
+  .business-card h3 {
+    font-size: 16px; /* Adjust for smaller screens */
+  }
+
+  .business-card p {
+    font-size: 12px; /* Adjust for readability */
+  }
+
+  .card_submit {
+    font-size: 12px; /* Smaller button text */
+    padding: 10px 14px; /* Smaller button */
+  }
+}
+
+@media (max-width: 480px) {
+  .business-card {
+    padding: 10px;
+  }
+
+  .card_submit {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+  /* Responsive design for smaller screens */
+  @media (max-width: 768px) {
+    .card-container {
+      grid-template-columns: repeat(
+        2,
+        1fr
+      ); /* 2 cards per row on smaller screens */
+    }
+
+    .card-container.expanded-layout {
+      grid-template-columns: repeat(
+        2,
+        1fr
+      ); /* 2 cards per row when sidebar is hidden */
+    }
+
+    .card-container.collapsed-layout {
+      grid-template-columns: 1fr; /* 1 card per row when sidebar is open */
+    }
   }
 }

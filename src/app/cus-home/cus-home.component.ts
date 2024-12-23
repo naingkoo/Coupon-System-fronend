@@ -9,19 +9,7 @@ import { BusinessService } from '../Services/business.service';
 })
 export class CusHomeComponent {
   searchQuery: string = '';
-  bannerImages = [
-    'yangon-hotel.jpg',
-    'thumb-1920-462280.jpg',
-    'hospital.jpg',
-    'life-resort-hotel-resort-hotel-wallpaper-preview.jpg',
-    'entrancebanasura_1428041013m.jpg',
-    'hti.jpg',
-    '11625_health_center_exterior19-2.rev.1702911213.jpg',
-    'Exterior 2_1440.jpg',
-    'maxresdefault.jpg',
-    'bars-clubs-vie-nocturne-megeve.jpg',
-  ]; // Sample banner images
-  currentSlide = 0;
+
   categories: string[] = ['All', 'Hotel', 'Bar', 'Health', 'Restaurant', 'Gym']; // Include 'All' in categories
   selectedCategory: string = 'All'; // Default to 'All'
 
@@ -42,20 +30,6 @@ export class CusHomeComponent {
 
   ngOnInit(): void {
     this.fetchBusiness();
-  }
-
-  previousSlide(): void {
-    this.currentSlide =
-      this.currentSlide === 0
-        ? this.bannerImages.length - 1
-        : this.currentSlide - 1;
-  }
-
-  nextSlide(): void {
-    this.currentSlide =
-      this.currentSlide === this.bannerImages.length - 1
-        ? 0
-        : this.currentSlide + 1;
   }
 
   // Handle the change in category selection

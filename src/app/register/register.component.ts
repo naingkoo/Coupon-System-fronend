@@ -23,10 +23,11 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.fb.group(
       {
         username: ['', [Validators.required, Validators.minLength(3)]],
-        phone: ['', [Validators.required]], // Assuming 10-digit phone numbers
+        phone: ['', [Validators.required]],
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', Validators.required],
+        role: ['CUSTOMER', Validators.required], // Default role is set here
       },
       { validators: this.passwordMatchValidator }
     );
@@ -39,36 +40,23 @@ export class RegisterComponent implements OnInit {
   passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
     const password = control.get('password')?.value;
     const confirmPassword = control.get('confirmPassword')?.value;
-    if (password !== confirmPassword) {
-      return { passwordMismatch: true };
-    }
-    return null;
+    return password !== confirmPassword ? { passwordMismatch: true } : null;
   }
 
   onSubmit(): void {
     if (this.registerForm.valid) {
       this.isLoading = true;
-      const user = {
-        name: this.registerForm.value.username,
-        phone: this.registerForm.value.phone,
-        email: this.registerForm.value.email,
-        password: this.registerForm.value.password,
-        role: 'USER', // Assuming a default role
-      };
+      const user = this.registerForm.value;
 
       this.userService.registerUser(user).subscribe({
         next: (response: any) => {
-          // Specify 'any' explicitly if response type isn't defined yet
           this.successMessage = 'Registration successful!';
           this.errorMessage = null;
           this.registerForm.reset();
-          console.log('User registered successfully:', response);
         },
         error: (error: any) => {
-          // Specify 'any' explicitly for error as well
           this.successMessage = null;
           this.errorMessage = 'Failed to register user. Please try again.';
-          console.error('Error during registration:', error);
         },
         complete: () => {
           this.isLoading = false;

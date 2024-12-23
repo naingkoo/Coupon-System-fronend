@@ -19,79 +19,88 @@
   </div>
 
   <main class="content" [ngClass]="{ 'content-expanded': isSidebarCollapsed }">
-    <button class="card_submit" routerLink="/adm-business">
-      Business list
-    </button>
-
     <form #Bform="ngForm" (ngSubmit)="onSubmit(Bform)">
-      <div class="card">
-        <div class="card_form">
-          <input
-            [(ngModel)]="business.user_id"
-            name="user_id"
-            placeholder="Enter user_id"
-            type="text"
-          />
+      <div class="form-container">
+        <!-- Left div with input fields -->
+        <div class="input-container">
+          <div class="card_form">
+            <input
+              [(ngModel)]="business.user_id"
+              name="user_id"
+              placeholder="Enter user_id"
+              type="text"
+            />
+          </div>
+
+          <div class="card_form">
+            <input
+              [(ngModel)]="business.name"
+              name="name"
+              placeholder="Enter your name"
+              type="text"
+            />
+          </div>
+
+          <div class="card_form">
+            <input
+              [(ngModel)]="business.country"
+              name="country"
+              placeholder="Enter your country"
+              type="text"
+            />
+          </div>
+
+          <div class="card_form">
+            <input
+              [(ngModel)]="business.city"
+              name="city"
+              placeholder="Enter your city"
+              type="text"
+            />
+          </div>
+
+          <div class="card_form">
+            <input
+              [(ngModel)]="business.street"
+              name="street"
+              placeholder="Enter your street"
+              type="text"
+            />
+          </div>
+
+          <div class="card_form">
+            <input
+              [(ngModel)]="business.address"
+              name="address"
+              placeholder="Enter your address"
+              type="text"
+            />
+          </div>
+
+          <div class="card_form">
+            <input
+              type="file"
+              name="image"
+              (change)="onFileChange($event)"
+              required
+            />
+
+            <div class="image-preview-container" *ngIf="imagePreview">
+              <p>Image Preview:</p>
+              <img
+                [src]="imagePreview"
+                alt="Image Preview"
+                class="image-preview"
+              />
+            </div>
+            
+          </div>
         </div>
 
-        <div class="card_form">
-          <input
-            [(ngModel)]="business.name"
-            name="name"
-            placeholder="Enter your name"
-            type="text"
-          />
-        </div>
-
-        <div class="card_form">
-          <input
-            [(ngModel)]="business.country"
-            name="country"
-            placeholder="Enter your country"
-            type="text"
-          />
-        </div>
-
-        <div class="card_form">
-          <input
-            [(ngModel)]="business.city"
-            name="city"
-            placeholder="Enter your city"
-            type="text"
-          />
-        </div>
-
-        <div class="card_form">
-          <input
-            [(ngModel)]="business.street"
-            name="street"
-            placeholder="Enter your street"
-            type="text"
-          />
-        </div>
-
-        <div class="card_form">
-          <input
-            [(ngModel)]="business.address"
-            name="address"
-            placeholder="Enter your address"
-            type="text"
-          />
-        </div>
-
-        <div class="card_form">
-          <!--<input [(ngModel)]="business.address" name="address" placeholder="Enter your address" type="text">-->
-          <input
-            type="file"
-            name="image"
-            (change)="onFileChange($event)"
-            required
-          />
-        </div>
-
-        <div class="check-box-container">
+        <!-- Right div with checkboxes -->
+        <div class="checkbox-container">
           <div class="categories-list">
-            <p>Choose categorys</p>
+            <p>Choose categories</p>
             <div *ngFor="let category of categories">
               <label>
                 <input
@@ -104,6 +113,7 @@
               </label>
             </div>
           </div>
+
           <div class="service-list">
             <p>Choose services</p>
             <div *ngFor="let service of services">
@@ -118,10 +128,11 @@
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="btn-container">
-          <button class="card_submit">Add</button>
-        </div>
+      <div class="btn-container">
+        <button class="card_submit">Add</button>
+        <button type="button" class="card_cancel" (click)="onCancel()">Cancel</button>
       </div>
     </form>
   </main>

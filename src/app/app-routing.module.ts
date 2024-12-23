@@ -24,11 +24,15 @@ import { CreateBusinessComponent } from './create/create-business/create-busines
 import { AddBusinessCategoriesComponent } from './create/add-business-categories/add-business-categories.component';
 import { AddBusinessServicesComponent } from './create/add-business-services/add-business-services.component';
 import { CreatePackagesComponent } from './create/create-packages/create-packages.component';
+import { AdmCategorylistServicelistComponent } from './adm-categorylist-servicelist/adm-categorylist-servicelist.component';
+import { EditBusinessComponent } from './edit/edit-business/edit-business.component';
+import { EditPackagesComponent } from './edit/edit-packages/edit-packages.component';
+import { AdmCategorylistComponent } from './adm-categorylist/adm-categorylist.component';
+import { AdmServicelistComponent } from './adm-servicelist/adm-servicelist.component';
 
 const routes: Routes = [
-
   { path: 'register', component: RegisterComponent },
-  {path:"", redirectTo:"login", pathMatch:"full"},
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'home', component: CusHomeComponent },
   { path: 'explore', component: CusExploreComponent },
   { path: 'package', component: CusPackageComponent },
@@ -40,10 +44,18 @@ const routes: Routes = [
   { path: 'my-coupon', component: MyCouponComponent },
   { path: 'adm-dashboard', component: AdmHomeComponent },
   { path: 'adm-business', component: AdmBusinessComponent },
+  {
+    path: 'adm-categorylist-servicelist',
+    component: AdmCategorylistServicelistComponent,
+  },
+  { path: 'adm-categorylist', component: AdmCategorylistComponent },
+  { path: 'adm-servicelist', component: AdmServicelistComponent },
   { path: 'adm-package', component: AdmPackageComponent },
   { path: 'adm-user-list', component: AdmUserListComponent },
   { path: 'scanner', component: ScannerComponent },
   { path: 'Business/create', component: CreateBusinessComponent },
+  { path: 'Business/edit/:id', component: EditBusinessComponent },
+  { path: 'edit-package/:id', component: EditPackagesComponent },
   {
     path: 'adm-business/Category/create',
     component: AddBusinessCategoriesComponent,
@@ -55,15 +67,16 @@ const routes: Routes = [
   { path: 'Package/create/:id', component: CreatePackagesComponent },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: CusHomeComponent },
-  {path:"404",component:NotFoundComponent},{path:"serverIsDown",component:ServerDownpageComponent},
-  {path:"adminHome",component:AdmHomeComponent,
-    canActivate: [authGuard], 
-    data: { role: 'ADMIN' } 
+  { path: '404', component: NotFoundComponent },
+  { path: 'serverIsDown', component: ServerDownpageComponent },
+  {
+    path: 'adminHome',
+    component: AdmHomeComponent,
+    canActivate: [authGuard],
+    data: { role: 'ADMIN' },
   },
-  {path:"401",component:UnauthorizedComponent},
-  {path:"**",component:NotFoundComponent,pathMatch:"full"}
-  
-
+  { path: '401', component: UnauthorizedComponent },
+  { path: '**', component: NotFoundComponent, pathMatch: 'full' },
 ];
 
 @NgModule({

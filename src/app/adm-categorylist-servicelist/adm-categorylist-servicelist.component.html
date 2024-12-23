@@ -1,0 +1,121 @@
+<div class="app-container">
+  <div class="sidebar-container">
+    <app-adm-sidebar
+      [isSidebarCollapsed]="isSidebarCollapsed"
+      (sidebarToggle)="onSidebarToggle()"
+    >
+    </app-adm-sidebar>
+    <button
+      class="sidebar-toggle-btn"
+      [ngClass]="{ 'sidebar-collapsed': isSidebarCollapsed }"
+      (click)="onSidebarToggle()"
+    >
+      <i
+        [class]="
+          isSidebarCollapsed ? 'fas fa-arrow-right' : 'fas fa-arrow-left'
+        "
+      ></i>
+    </button>
+  </div>
+
+  <main class="content" [ngClass]="{ 'content-expanded': isSidebarCollapsed }">
+    <div class="add-btn-container">
+      <button class="add-button" routerLink="/adm-business">
+        Business List
+      </button>
+      <button class="add-button" routerLink="/adm-categorylist-servicelist">
+        Category and Service List
+      </button>
+    </div>
+
+    <div class="container">
+      <div class="table-container">
+        <h4>Category List</h4>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Category Name</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let category of showCategory; let i = index">
+              <td>{{ i + 1 }}</td>
+              <!-- Numbering -->
+              <td>{{ category.name }}</td>
+              <td class="edit-btn-container">
+                <button
+                  class="action-btn edit-btn"
+                  [routerLink]="['/Category/edit', category.id]"
+                >
+                  Edit
+                </button>
+                <button
+                  class="action-btn delete-btn"
+                  [routerLink]="['/Category/delete', category.id]"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-container">
+        <h4>Service List</h4>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Service Name</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let service of showService; let i = index">
+              <td>{{ i + 1 }}</td>
+              <!-- Numbering -->
+              <td>{{ service.name }}</td>
+              <td class="edit-btn-container">
+                <button
+                  class="action-btn edit-btn"
+                  [routerLink]="['/Service/edit', service.id]"
+                >
+                  Edit
+                </button>
+                <button
+                  class="action-btn delete-btn"
+                  [routerLink]="['/Service/delete', service.id]"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="floating-btn-dropdown">
+      <button class="floating-add-btn" (click)="toggleDropdown()">
+        <i class="fas fa-plus"></i>
+      </button>
+      <div class="dropdown-menu" *ngIf="isDropdownOpen">
+        <button class="dropdown-item" routerLink="/Business/create">
+          Add Business
+        </button>
+        <button
+          class="dropdown-item"
+          routerLink="/adm-business/Category/create"
+        >
+          Add Category
+        </button>
+        <button class="dropdown-item" routerLink="/Service/create">
+          Add Service
+        </button>
+      </div>
+    </div>
+  </main>
+</div>

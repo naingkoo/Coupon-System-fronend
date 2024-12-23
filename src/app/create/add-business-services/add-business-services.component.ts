@@ -1,32 +1,23 @@
 import { Component } from '@angular/core';
 import { Service } from '../../models/service';
-import { NgForm } from '@angular/forms';
 import { BusinessService } from '../../Services/business.service';
+import { NgForm } from '@angular/forms';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr'; // Import ToastrService
 
 @Component({
   selector: 'app-add-business-services',
   templateUrl: './add-business-services.component.html',
-  styleUrl: './add-business-services.component.css',
+  styleUrls: ['./add-business-services.component.css'],
 })
 export class AddBusinessServicesComponent {
-  showService: Service[] = [];
-
-  constructor(private service: BusinessService) {}
-
-  fetchServices() {
-    this.service.getService().subscribe(
-      (data) => {
-        this.showService = data; // Assign the fetched categories to the showCategory variable
-      },
-      (error) => {
-        console.log('Error fetching services: ', error);
-      }
-    );
-  }
-
-  ngOnInit(): void {
-    this.fetchServices();
-  }
+  constructor(
+    private service: BusinessService,
+    private location: Location,
+    private router: Router,
+    private toastr: ToastrService // Inject ToastrService
+  ) {}
 
   isSidebarCollapsed = false;
   title: any;
@@ -42,14 +33,33 @@ export class AddBusinessServicesComponent {
       console.log(this.services);
       this.service.createService(this.services).subscribe(
         (response) => {
-          console.log('successfully', response);
+          console.log('Service created successfully!', response);
+
+          // Show success toast
+          this.toastr.success('Service created successfully!', 'Success');
+
+          // Navigate to the service list page
+          this.router.navigate(['/adm-categorylist-servicelist']);
         },
         (error) => {
-          console.log('errors: ', error);
+          console.log('Error: ', error);
+
+          // Show error toast
+          this.toastr.error(
+            'An error occurred while creating the service.',
+            'Error'
+          );
         }
       );
     } else {
-      console.log('form invalide');
+      console.log('Form is invalid');
+
+      // Show warning toast
+      this.toastr.warning('Please fill out the form correctly.', 'Warning');
     }
+  }
+
+  onCancel() {
+    this.location.back(); // Navigate back to the previous page
   }
 }

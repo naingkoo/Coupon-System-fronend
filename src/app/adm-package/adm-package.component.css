@@ -24,7 +24,7 @@
 
 .sidebar-toggle-btn {
   position: absolute;
-  top: 75px;
+  top: 320px;
   left: 230px;
   transform: translateY(-50%);
   background-color: #ffffff;
@@ -52,71 +52,99 @@
 }
 
 /*---------------------------*/
-
-.card-container {
-  display: flex;
-  flex-wrap: wrap; /* Allow cards to wrap */
-  justify-content: center; /* Center cards horizontally */
-  gap: 20px; /* Space between cards */
-  margin: 20px;
-}
-
-/* Card styling */
-.card {
-  float: left;
-  flex-direction: column;
-  max-width: 350px; /* Set a maximum width for cards */
+/* Styling for the table container */
+.package-table {
   width: 100%;
-
-  margin: 20px;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background-color: #cad6b5;
-  transition: transform 0.3s ease-in-out;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  border: 1px solid #dddddd;
+  background-color: #ffffff;
 }
 
-.card:hover {
-  transform: scale(1.05); /* Slight zoom effect on hover */
+.package-table thead {
+  background-color: #f5f5f5;
+  color: #333333;
+  text-align: left;
 }
 
-.card img {
-  max-width: 50%;
-  display: flex;
-  justify-self: center;
-  align-items: center;
-  height: fit-content;
-  border-radius: 8px;
-  margin-bottom: 20%;
+.package-table thead th {
+  padding: 12px 15px;
+  font-weight: 600;
+  border-bottom: 2px solid #dddddd;
 }
 
-.card h5 {
-  font-size: 1.25rem;
-  font-weight: bold;
-  margin-bottom: 3px;
-  color: #333;
+.package-table tbody tr {
+  transition: background-color 0.2s ease-in-out;
 }
 
-.card p {
-  font-size: 0.9rem;
-  margin: 5px 0;
-  color: #555;
+.package-table tbody tr:nth-of-type(even) {
+  background-color: #f9f9f9;
 }
 
-.card .card-text strong {
-  color: #000;
+.package-table tbody tr:hover {
+  background-color: #f3f3f3;
 }
 
-/* Responsive adjustments */
+.package-table tbody td {
+  padding: 12px 15px;
+  vertical-align: middle;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.package-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 4px;
+  object-fit: cover;
+  border: 1px solid #dddddd;
+}
+
+/* Action buttons */
+.edit-btn {
+  color: #007bff;
+  text-decoration: none;
+  padding: 8px 10px;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+  margin-right: 5px;
+}
+
+.edit-btn:hover {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.delete-btn {
+  color: #ffffff;
+  background-color: #e3342f;
+  border: none;
+  padding: 10px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.delete-btn:hover {
+  background-color: #d21d17;
+}
+
+/* Responsive design for smaller screens */
 @media (max-width: 768px) {
-  .card {
-    max-width: 45%; /* Two cards per row on medium screens */
+  .package-table {
+    font-size: 14px;
   }
-}
 
-@media (max-width: 480px) {
-  .card {
-    max-width: 100%; /* One card per row on small screens */
+  .package-image {
+    width: 50px;
+    height: 50px;
+  }
+
+  .edit-btn,
+  .delete-btn {
+    font-size: 12px;
+    padding: 4px 8px;
   }
 }
