@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr'; // Import ToastrService
+
+import { BusinessService } from '../../Services/business.service';
 import { Category } from '../../models/category';
 import { Business } from '../../models/business';
 import { Service } from '../../models/service';
-import { BusinessService } from '../../Services/business.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-create-business',
   templateUrl: './create-business.component.html',
-  styleUrl: './create-business.component.css',
+  styleUrls: ['./create-business.component.css'],
 })
 export class CreateBusinessComponent implements OnInit {
   isSidebarCollapsed = false;
@@ -25,17 +28,21 @@ export class CreateBusinessComponent implements OnInit {
   services: Service[] = [];
   selectedService: number[] = [];
 
-  //userId: number | null = null; // Assuming you have a method to get the current user's ID
   selectedFile: File | null = null;
+  imagePreview: string | ArrayBuffer | null = null;
 
-  constructor(private service: BusinessService, private router: Router) {}
+  constructor(
+    private service: BusinessService,
+    private router: Router,
+    private location: Location,
+    private toastr: ToastrService // Inject ToastrService
+  ) {}
 
   ngOnInit(): void {
-    this.fetchCategories(); // Fetch categories when component initializes
-    this.fetchServices(); // Fetch services when component initializes
+    this.fetchCategories();
+    this.fetchServices();
   }
 
-  // Fetch categories from the backend
   fetchCategories(): void {
     this.service.getCategory().subscribe(
       (data: Category[]) => {
@@ -43,11 +50,11 @@ export class CreateBusinessComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching categories:', error);
+        this.toastr.error('Error fetching categories', 'Error'); // Show error toast
       }
     );
   }
 
-  // Fetch services from the backend
   fetchServices(): void {
     this.service.getService().subscribe(
       (data: Service[]) => {
@@ -55,50 +62,48 @@ export class CreateBusinessComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching services:', error);
+        this.toastr.error('Error fetching services', 'Error'); // Show error toast
       }
     );
   }
 
   onCategoryChange(event: any): void {
-    const categoryId = Number(event.target.value); // Only push the ID, not the whole object
-
+    const categoryId = Number(event.target.value);
     if (event.target.checked) {
-      // Check if the checkbox is checked
-      this.selectedCategory.push(categoryId); // Add value to selectedCategories if checked
+      this.selectedCategory.push(categoryId);
     } else {
       const index = this.selectedCategory.indexOf(categoryId);
-
       if (index !== -1) {
         this.selectedCategory.splice(index, 1);
       }
     }
-    console.log('Selected Categories: ', this.selectedCategory);
   }
 
   onServiceChange(event: any): void {
     if (event.target.checked) {
-      // Check if the checkbox is checked
-      this.selectedService.push(Number(event.target.value)); // Add value to selectedServices if checked
+      this.selectedService.push(Number(event.target.value));
     } else {
       const index = this.selectedService.indexOf(Number(event.target.value));
-
       if (index !== -1) {
         this.selectedService.splice(index, 1);
       }
     }
-    console.log('Selected Services: ', this.selectedService);
   }
 
   onFileChange(event: any): void {
     const file = event.target.files[0];
     if (file) {
       this.selectedFile = file;
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result;
+      };
+      reader.readAsDataURL(file);
     }
   }
 
   onSubmit(form: NgForm): void {
     if (form.valid) {
-      console.log(this.business);
       this.business.categoryId = this.selectedCategory;
       this.business.serviceId = this.selectedService;
 
@@ -114,17 +119,23 @@ export class CreateBusinessComponent implements OnInit {
 
         this.service.createBusiness(formData).subscribe(
           (response) => {
-            console.log('Successfully created business: ', response);
+            console.log('Successfully created business:', response);
+            this.toastr.success('Business created successfully!', 'Success'); // Success toast
             this.router.navigate(['/adm-business']);
           },
           (error) => {
             console.log('Error creating business:', error);
-            alert( error);
+            this.toastr.error('Error creating business', 'Error'); // Error toast
           }
         );
-      } else {
-        console.log('form invalide');
       }
+    } else {
+      console.log('Form is invalid');
+      this.toastr.warning('Please fill out the form correctly.', 'Warning'); // Warning toast for invalid form
     }
+  }
+
+  onCancel() {
+    this.location.back();
   }
 }

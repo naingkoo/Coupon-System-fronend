@@ -1,0 +1,94 @@
+<div class="edit-business">
+  <h2>Edit Business</h2>
+
+  <form (ngSubmit)="OnSubmit()">
+    <div class="form-group">
+      <label for="name">Business Name:</label>
+      <input
+        type="text"
+        id="name"
+        [(ngModel)]="business.name"
+        name="name"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="address">Business Country:</label>
+      <input
+        type="text"
+        id="country"
+        [(ngModel)]="business.country"
+        name="country"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="address">Business City:</label>
+      <input
+        type="text"
+        id="city"
+        [(ngModel)]="business.city"
+        name="city"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="address">Business Street:</label>
+      <input
+        type="text"
+        id="street"
+        [(ngModel)]="business.street"
+        name="street"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="address">Business Address:</label>
+      <input
+        type="text"
+        id="address"
+        [(ngModel)]="business.address"
+        name="address"
+        required
+      />
+    </div>
+
+    <div class="check-box">
+      <div>
+        <label>Categories:</label>
+        <div *ngFor="let category of categories">
+          <input
+            type="checkbox"
+            [value]="category.id"
+            [(ngModel)]="category.selected"
+            [ngModelOptions]="{ standalone: true }"
+            [checked]="isCategorySelected(category.id)"
+          />
+          {{ category.name }}
+        </div>
+      </div>
+
+      <div>
+        <label>Services:</label>
+        <div *ngFor="let sevice of services">
+          <input
+            type="checkbox"
+            [value]="sevice.id"
+            [(ngModel)]="sevice.selected"
+            [ngModelOptions]="{ standalone: true }"
+            [checked]="isCategorySelected(sevice.id)"
+          />
+          {{ sevice.name }}
+        </div>
+      </div>
+    </div>
+
+    <button type="submit">Update Business</button>
+  </form>
+
+  <!-- <div *ngIf="isLoading" class="loading-spinner">Updating...</div> --->
+</div>

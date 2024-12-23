@@ -19,21 +19,13 @@
   </div>
 
   <main class="content" [ngClass]="{ 'content-expanded': isSidebarCollapsed }">
-    <div class="table-container">
-      <h3>Service List</h3>
-      <table class="table">
-        <tbody>
-          <tr *ngFor="let service of showService">
-            <p>{{ service.name }}</p>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    
 
     <div class="form-container">
       <form #Sform="ngForm" (ngSubmit)="onSubmit(Sform)">
         <div class="card">
           <div class="card_form">
+            <h4 style="text-align: center;">Add Service</h4>
             <input
               [(ngModel)]="services.name"
               name="name"
@@ -42,8 +34,9 @@
             />
           </div>
 
-          <div class="card_form">
-            <button class="card_submit">Add</button>
+          <div class="btn-container">
+            <button class="card_submit" type="submit">Add</button>
+            <button class="card_cancel" type="button" (click)="onCancel()">Cancel</button>
           </div>
         </div>
       </form>

@@ -19,20 +19,30 @@
   </div>
 
   <main class="content" [ngClass]="{ 'content-expanded': isSidebarCollapsed }">
-    <div class="add-btn-container">
-      <button class="add-button" routerLink="/Business/create">
-        Add Business
-      </button>
-      <button class="add-button" routerLink="Category/create">
-        Add Category
-      </button>
-      <button class="add-button" routerLink="/Service/create">
-        Add Service
-      </button>
+    <div style="display: flex; align-items: center">
+      <h3 style="text-align: left; margin-right: 10px">Business List</h3>
+      <div class="dropdown">
+        <button class="dropdown-button" (click)="Dropdown()">▼</button>
+        <div
+          class="add-btn-container"
+          [style.display]="isDropdownVisible ? 'block' : 'none'"
+        >
+          <button class="add-button" routerLink="/adm-categorylist">
+            Category List
+          </button>
+          <button class="add-button" routerLink="/adm-servicelist">
+            Service List
+          </button>
+        </div>
+      </div>
     </div>
-
-    <h3>Business List</h3>
-    <div class="card-container">
+    <div
+      class="card-container"
+      [ngClass]="{
+        'expanded-layout': isSidebarCollapsed,
+        'collapsed-layout': !isSidebarCollapsed
+      }"
+    >
       <div *ngFor="let business of showBusiness" class="business-card">
         <div *ngIf="business.image" class="business-image">
           <img
@@ -56,8 +66,50 @@
           >
             Add Package
           </button>
+          <!-- Dots Menu -->
+          <div class="dots-menu">
+            <button class="dots-btn" (click)="toggleDotsMenu(business.id)">
+              <i class="fas fa-ellipsis-h"></i>
+            </button>
+            <div
+              class="dots-dropdown"
+              *ngIf="dotsMenuOpenId === business.id"
+              [@dotsDropdown]="
+                dotsMenuOpenId === business.id ? 'open' : 'closed'
+              "
+            >
+              <button
+                class="dropdown-item"
+                [routerLink]="['/Business/edit', business.id]"
+              >
+                Edit
+              </button>
+              <button
+                class="dropdown-item"
+                (click)="onDeleteBusiness(business.id)"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </main>
+  <div class="floating-btn-dropdown">
+    <button class="floating-add-btn" (click)="toggleDropdown()">
+      <i class="fas fa-plus"></i>
+    </button>
+    <div class="dropdown-menu" [class.dropdown-visible]="isDropdownOpen">
+      <button class="dropdown-item" routerLink="/Business/create">
+        Add Business
+      </button>
+      <button class="dropdown-item" routerLink="Category/create">
+        Add Category
+      </button>
+      <button class="dropdown-item" routerLink="/Service/create">
+        Add Service
+      </button>
+    </div>
+  </div>
 </div>

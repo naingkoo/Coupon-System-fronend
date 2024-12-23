@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Packages } from '../models/package-model';
-import { Business } from '../models/business';
 import { PackageService } from '../Services/package.service';
 
 @Component({
@@ -17,6 +16,9 @@ export class CusPackageComponent implements OnInit {
   maxPrice: number = 10000;
 
   submittedPackage: Packages[] = [];
+
+  selectedPackage: any = null; // To store the selected package for the popup
+  isPopupVisible: boolean = false; // To track popup visibility
 
   constructor(
     private service: PackageService,
@@ -35,24 +37,6 @@ export class CusPackageComponent implements OnInit {
     );
   }
 
-  increaseQuantity(packages: any): void {
-    // Initialize the selectedQuantity if not already set
-    if (!packages.selectedQuantity) {
-      packages.selectedQuantity = 1;
-    }
-    // Prevent incrementing beyond the available quantity
-    if (packages.selectedQuantity < packages.quantity) {
-      packages.selectedQuantity++;
-    }
-  }
-
-  decreaseQuantity(packages: any): void {
-    // Ensure quantity cannot go below 1
-    if (packages.selectedQuantity && packages.selectedQuantity > 1) {
-      packages.selectedQuantity--;
-    }
-  }
-
   filterPackages(): void {
     // this.filteredPackages = this.packages.filter((pkg) => {
     //   const matchesBusiness = pkg.business_id?.
@@ -62,5 +46,35 @@ export class CusPackageComponent implements OnInit {
     //     pkg.unit_price >= this.minPrice && pkg.unit_price <= this.maxPrice;
     //   return matchesBusiness && matchesPrice;
     // });
+  }
+
+  openBuyNowPopup(packages: any): void {
+    console.log('Opening popup with package:', packages);
+    this.selectedPackage = { ...packages, selectedQuantity: 1 };
+    this.isPopupVisible = true;
+  }
+
+  closeBuyNowPopup(): void {
+    this.isPopupVisible = false;
+  }
+
+  increaseQuantity(packages: any): void {
+    if (packages.selectedQuantity < packages.quantity) {
+      packages.selectedQuantity++;
+    }
+  }
+
+  decreaseQuantity(packages: any): void {
+    if (packages.selectedQuantity > 1) {
+      packages.selectedQuantity--;
+    }
+  }
+
+  confirmPurchase(): void {
+    console.log('Purchase confirmed for:', this.selectedPackage);
+    alert(
+      `You purchased ${this.selectedPackage.selectedQuantity} of ${this.selectedPackage.name}.`
+    );
+    this.closeBuyNowPopup();
   }
 }

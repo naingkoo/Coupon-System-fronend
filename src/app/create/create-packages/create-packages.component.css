@@ -24,7 +24,7 @@
 
 .sidebar-toggle-btn {
   position: absolute;
-  top: 75px;
+  top: 310px;
   left: 230px;
   transform: translateY(-50%);
   background-color: #ffffff;
@@ -53,68 +53,141 @@
 /*---------------------------*/
 
 form {
+  width: 90%;
   max-width: 500px;
-  margin: 40px auto;
+  height: 90vh; /* Adjust form height based on viewport height */
+  margin: 0 auto;
+  background-color: #fff;
   padding: 20px;
-  border: 1px solid #ddd;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box; /* Include padding in the element's width/height */
+  overflow-y: auto; /* Allow scrolling within the form if needed */
 }
 
-label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
+/* Heading */
+h3 {
+  margin-bottom: 20px;
+  font-size: 20px; /* Reduced font size */
+  text-align: center;
   color: #333;
 }
 
-input[type="text"],
-input[type="number"],
-input[type="date"],
-input[type="file"],
-button {
+/* Labels */
+label {
+  font-size: 12px; /* Reduced label font size */
+  color: #333;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Input Fields */
+input,
+textarea {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
+  padding: 8px; /* Reduced padding */
+  margin-bottom: 5px; /* Adjusted margin */
   border: 1px solid #ccc;
   border-radius: 4px;
+  font-size: 12px; /* Reduced font size */
   box-sizing: border-box;
-  font-size: 1rem;
 }
 
 input[type="file"] {
-  padding: 5px;
-  background-color: #fff;
-}
-
-input[type="text"]:focus,
-input[type="number"]:focus,
-input[type="date"]:focus,
-input[type="file"]:focus {
-  border-color: #007bff;
-  outline: none;
-  box-shadow: 0 0 3px #007bff;
+  padding: 6px;
 }
 
 textarea {
-  width: 100%;
+  height: 80px; /* Reduced height */
+  resize: vertical;
 }
 
+
+.image-preview-container {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.image-preview {
+  width: 200px; /* Adjust this to your desired size */
+  height: 120px; /* Match the width for a 1:1 ratio */
+  border: 1px solid #ddd;
+  border-radius: 8px; /* Optional: Adds rounded corners */
+  object-fit: cover; /* Ensures the image fits within the square */
+}
+
+/* Buttons */
 button {
-  background-color: #007bff;
-  color: #fff;
-  font-weight: bold;
+  padding: 8px 15px; /* Reduced padding */
+  background-color: #3498db;
+  color: white;
   border: none;
+  margin-top: 10px;
+  border-radius: 4px;
   cursor: pointer;
+  font-size: 14px; /* Reduced font size */
   transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: #0056b3;
+button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
 }
 
-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+button[type="button"] {
+  background-color: #e74c3c;
+  margin-left: 10px;
+}
+
+button[type="button"]:hover {
+  background-color: #c0392b;
+}
+
+/* Button Container */
+.btn-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .app-container {
+    flex-direction: column;
+  }
+
+  .sidebar-container {
+    width: 100%;
+    height: auto;
+  }
+
+  .content {
+    margin-left: 0;
+    padding: 15px;
+  }
+
+  form {
+    width: 100%;
+    height: auto; /* Adjust height to auto for small screens */
+    padding: 15px;
+  }
+
+  h3 {
+    font-size: 18px; /* Reduced font size for small screens */
+  }
+
+  label {
+    font-size: 12px; /* Maintain smaller label font size */
+  }
+
+  input,
+  textarea,
+  button {
+    font-size: 12px; /* Smaller font size for inputs */
+    padding: 6px 10px; /* Adjust padding */
+  }
+
+  textarea {
+    height: 100px; /* Reduce textarea height */
+  }
 }
