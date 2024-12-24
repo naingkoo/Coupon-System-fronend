@@ -29,6 +29,7 @@ import { EditBusinessComponent } from './edit/edit-business/edit-business.compon
 import { EditPackagesComponent } from './edit/edit-packages/edit-packages.component';
 import { AdmCategorylistComponent } from './adm-categorylist/adm-categorylist.component';
 import { AdmServicelistComponent } from './adm-servicelist/adm-servicelist.component';
+import { CusPaymentComponent } from './cus-payment/cus-payment.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -41,9 +42,14 @@ const routes: Routes = [
   { path: 'contact-us', component: CusContactComponent },
   { path: 'history', component: CusHistoryComponent },
   { path: 'cart', component: CusCartComponent },
+  { path: 'payment', component: CusPaymentComponent },
   { path: 'my-coupon', component: MyCouponComponent },
-  { path: 'adm-dashboard', component: AdmHomeComponent, canActivate: [authGuard], 
-          data: { role: 'ADMIN' } },
+  {
+    path: 'adm-dashboard',
+    component: AdmHomeComponent,
+    canActivate: [authGuard],
+    data: { role: 'ADMIN' },
+  },
   { path: 'adm-business', component: AdmBusinessComponent },
   {
     path: 'adm-categorylist-servicelist',
@@ -66,13 +72,12 @@ const routes: Routes = [
     component: AddBusinessServicesComponent,
   },
   { path: 'Package/create/:id', component: CreatePackagesComponent },
-  { path: 'login', component: LoginComponent},
+  { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: CusHomeComponent },
-  {path:"404",component:NotFoundComponent},{path:"serverIsDown",component:ServerDownpageComponent},
-  {path:"401",component:UnauthorizedComponent},
-  {path:"**",component:NotFoundComponent,pathMatch:"full"}
-  
-
+  { path: '404', component: NotFoundComponent },
+  { path: 'serverIsDown', component: ServerDownpageComponent },
+  { path: '401', component: UnauthorizedComponent },
+  { path: '**', component: NotFoundComponent, pathMatch: 'full' },
 ];
 
 @NgModule({

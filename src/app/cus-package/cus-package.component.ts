@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Packages } from '../models/package-model';
 import { PackageService } from '../Services/package.service';
 
 @Component({
   selector: 'app-cus-package',
   templateUrl: './cus-package.component.html',
-  styleUrls: ['./cus-package.component.css'], // Corrected typo
+  styleUrls: ['./cus-package.component.css'],
 })
 export class CusPackageComponent implements OnInit {
   packages: Packages[] = [];
@@ -17,14 +17,13 @@ export class CusPackageComponent implements OnInit {
 
   submittedPackage: Packages[] = [];
 
-  selectedPackage: any = null; // To store the selected package for the popup
-  isPopupVisible: boolean = false; // To track popup visibility
+  selectedPackage: any = null;
+  isPopupVisible: boolean = false;
 
-  constructor(
-    private service: PackageService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
+  selectedCartPackage: any = null;
+  isCartPopupVisible: boolean = false;
+
+  constructor(private service: PackageService, private router: Router) {}
 
   ngOnInit(): void {
     this.service.getALL().subscribe(
@@ -38,18 +37,10 @@ export class CusPackageComponent implements OnInit {
   }
 
   filterPackages(): void {
-    // this.filteredPackages = this.packages.filter((pkg) => {
-    //   const matchesBusiness = pkg.business_id?.
-    //     .toLowerCase()
-    //     .includes(this.searchText.toLowerCase());
-    //   const matchesPrice =
-    //     pkg.unit_price >= this.minPrice && pkg.unit_price <= this.maxPrice;
-    //   return matchesBusiness && matchesPrice;
-    // });
+    // Add your filtering logic here if needed
   }
 
   openBuyNowPopup(packages: any): void {
-    console.log('Opening popup with package:', packages);
     this.selectedPackage = { ...packages, selectedQuantity: 1 };
     this.isPopupVisible = true;
   }
@@ -58,23 +49,42 @@ export class CusPackageComponent implements OnInit {
     this.isPopupVisible = false;
   }
 
-  increaseQuantity(packages: any): void {
-    if (packages.selectedQuantity < packages.quantity) {
-      packages.selectedQuantity++;
-    }
-  }
-
-  decreaseQuantity(packages: any): void {
-    if (packages.selectedQuantity > 1) {
-      packages.selectedQuantity--;
-    }
-  }
-
   confirmPurchase(): void {
-    console.log('Purchase confirmed for:', this.selectedPackage);
     alert(
       `You purchased ${this.selectedPackage.selectedQuantity} of ${this.selectedPackage.name}.`
     );
     this.closeBuyNowPopup();
+  }
+
+  openAddToCartPopup(packages: any): void {
+    this.selectedCartPackage = { ...packages, selectedQuantity: 1 };
+    this.isCartPopupVisible = true;
+  }
+
+  closeAddToCartPopup(): void {
+    this.isCartPopupVisible = false;
+  }
+
+  confirmAddToCart(): void {
+    alert(
+      `Added ${this.selectedCartPackage.selectedQuantity} of ${this.selectedCartPackage.name} to the cart.`
+    );
+    this.closeAddToCartPopup();
+  }
+
+  increaseQuantity(packageObj: any): void {
+    if (packageObj.selectedQuantity < packageObj.quantity) {
+      packageObj.selectedQuantity++;
+    }
+  }
+
+  decreaseQuantity(packageObj: any): void {
+    if (packageObj.selectedQuantity > 1) {
+      packageObj.selectedQuantity--;
+    }
+  }
+
+  navigateToPayment(packageData: any) {
+    this.router.navigate(['/payment'], { state: { package: packageData } });
   }
 }

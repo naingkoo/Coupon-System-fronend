@@ -4,11 +4,9 @@ import { AuthService } from '../auth/auth.service';
 
 export const authGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService); // Inject AuthService
-  const router = inject(Router);          // Inject Router
-
+  const router = inject(Router); // Inject Router
 
   const requiredRole = route.data['role'];
-  debugger;
   if (authService.isAuthenticated()) {
     const userRole = authService.getRoles();
     console.log(userRole);

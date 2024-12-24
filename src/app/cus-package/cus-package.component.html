@@ -54,9 +54,11 @@
     </div>
 
     <div class="btn-container">
-      <button class="btn-cart">Add to cart</button>
+      <button (click)="openAddToCartPopup(package)" class="btn-cart">
+        Add to Cart
+      </button>
       <button (click)="openBuyNowPopup(package)" class="btn-buy">
-        Buy now
+        Buy Now
       </button>
     </div>
   </div>
@@ -64,8 +66,8 @@
 
 <app-footer></app-footer>
 
-<!-- Popup Modal -->
-<div id="popupModal" [class.hidden]="!isPopupVisible" class="popup">
+<!-- "Buy Now" Popup Modal -->
+<div id="buyNowPopupModal" [class.hidden]="!isPopupVisible" class="popup">
   <div class="popup-content">
     <span (click)="closeBuyNowPopup()" class="close">&times;</span>
     <div class="popup-body">
@@ -111,8 +113,77 @@
             <i class="fa-solid fa-plus"></i>
           </button>
         </div>
-        <button (click)="confirmPurchase()" class="btn-confirmpurchase">
+        <button
+          routerLink="/payment"
+          class="btn-confirmpurchase"
+          (click)="navigateToPayment(selectedPackage)"
+        >
           Confirm Purchase
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- "Add to Cart" Popup Modal -->
+<div
+  id="addToCartPopupModal"
+  [class.hidden]="!isCartPopupVisible"
+  class="popup"
+>
+  <div class="popup-content">
+    <span (click)="closeAddToCartPopup()" class="close">&times;</span>
+    <div class="popup-body">
+      <img
+        *ngIf="selectedCartPackage?.image"
+        [src]="'http://localhost:8080' + selectedCartPackage.image"
+        alt="{{ selectedCartPackage.name }}"
+        class="popup-image"
+      />
+      <div class="popup-info">
+        <h3>{{ selectedCartPackage?.name }}</h3>
+        <div class="info">
+          <label>Price:</label>
+          <p>{{ selectedPackage?.unit_price }} MMK</p>
+        </div>
+        <div class="info">
+          <label>Description:</label>
+          <p>{{ selectedPackage?.description }}</p>
+        </div>
+        <div class="info">
+          <label>Available Quantity:</label>
+          <p>{{ selectedPackage?.quantity }}</p>
+        </div>
+        <div class="info">
+          <label>Total price:</label>
+          <p>
+            {{
+              (selectedCartPackage?.unit_price || 0) *
+                (selectedCartPackage?.selectedQuantity || 1)
+            }}
+            MMK
+          </p>
+        </div>
+
+        <div class="quantity-container">
+          <button
+            (click)="decreaseQuantity(selectedCartPackage)"
+            class="qty-btn"
+          >
+            <i class="fa-solid fa-minus"></i>
+          </button>
+          <span class="quantity-display">{{
+            selectedCartPackage?.selectedQuantity || 1
+          }}</span>
+          <button
+            (click)="increaseQuantity(selectedCartPackage)"
+            class="qty-btn"
+          >
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+        <button (click)="confirmAddToCart()" class="btn-confirmpurchase">
+          Add to Cart
         </button>
       </div>
     </div>
