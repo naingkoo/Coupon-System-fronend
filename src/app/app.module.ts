@@ -33,9 +33,7 @@ import { CreatePackagesComponent } from './create/create-packages/create-package
 import { AddBusinessCategoriesComponent } from './create/add-business-categories/add-business-categories.component';
 import { AddBusinessServicesComponent } from './create/add-business-services/add-business-services.component';
 import { CusEditComponent } from './edit/cus-edit/cus-edit.component';
-
 import { AdmRegisterComponent } from './adm-register/adm-register.component';
-
 import { ServerDownpageComponent } from './server-downpage/server-downpage.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -48,7 +46,6 @@ import { AdmSidebarComponent } from './adm-sidebar/adm-sidebar.component';
 import { CusExploreComponent } from './cus-explore/cus-explore.component';
 import { ScannerComponent } from './scanner/scanner.component';
 import { CusPackageComponent } from './cus-package/cus-package.component';
-import { isPlatformBrowser } from '@angular/common';
 import { AdmCategorylistServicelistComponent } from './adm-categorylist-servicelist/adm-categorylist-servicelist.component';
 import { EditBusinessComponent } from './edit/edit-business/edit-business.component';
 import { EditPackagesComponent } from './edit/edit-packages/edit-packages.component';

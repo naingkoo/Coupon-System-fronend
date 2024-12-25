@@ -9,30 +9,29 @@ import { AuthService } from '../auth/auth.service';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router);
-  const toastr = inject(ToastrService);
-  const authService = inject(AuthService);
-  const token = authService.getToken();
-  if (token) {
-    if (authService.isAuthenticated()) {
-      req = req.clone({
-        setHeaders: {
-          Authorization: `Bearer ${token}`, // Attach the token as a Bearer token
-        },
-      });
+  const toastr = inject(ToastrService); 
+  const authService=inject(AuthService);
+  const token =authService.getToken();
+    if (token) {
+      if(authService.isAuthenticated()){
+        req = req.clone({
+          setHeaders: {
+            Authorization: `Bearer ${token}`, // Attach the token as a Bearer token
+          },
+        });
+      }
+     
     }
-  }
-  // Retrieve the token from localStorage
 
-  // If the token exists, clone the request and add the Authorization header
-
-  // Continue with the request and handle errors
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
       let errorMessage = '';
-
       // Handle error message from the backend (if available)
       if (error.error instanceof Object) {
         errorMessage = error.error.message || 'An unknown error occurred.';
+        if(errorMessage==="Failed to fetch"){
+          router.navigate(["serverIsDown"]);
+        }
       } else {
         errorMessage = error.message || 'An unknown error occurred.';
       }

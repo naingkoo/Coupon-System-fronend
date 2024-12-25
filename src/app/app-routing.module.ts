@@ -30,6 +30,7 @@ import { EditPackagesComponent } from './edit/edit-packages/edit-packages.compon
 import { AdmCategorylistComponent } from './adm-categorylist/adm-categorylist.component';
 import { AdmServicelistComponent } from './adm-servicelist/adm-servicelist.component';
 import { CusPaymentComponent } from './cus-payment/cus-payment.component';
+import { loginGuard } from './core/guards/login.guard';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -51,33 +52,47 @@ const routes: Routes = [
     data: { role: 'ADMIN' },
   },
   { path: 'adm-business', component: AdmBusinessComponent },
-  {
-    path: 'adm-categorylist-servicelist',
-    component: AdmCategorylistServicelistComponent,
+  { path: 'adm-categorylist-servicelist', component: AdmCategorylistServicelistComponent},
+  { path: 'adm-dashboard', component: AdmHomeComponent, canActivate: [authGuard], 
+          data: { role: 'ADMIN' } },
+  { path: 'adm-business', component: AdmBusinessComponent ,canActivate: [authGuard], 
+    data: { role: 'ADMIN' }},
+  { path: 'adm-categorylist', component: AdmCategorylistComponent, canActivate: [authGuard], 
+    data: { role: 'ADMIN' } },
+  { path: 'adm-servicelist', component: AdmServicelistComponent,canActivate: [authGuard], 
+    data: { role: 'ADMIN' } },
+  { path: 'adm-package', component: AdmPackageComponent,canActivate: [authGuard], 
+    data: { role: 'ADMIN' } },
+  { path: 'adm-user-list', component: AdmUserListComponent ,
+    canActivate: [authGuard], 
+    data: { role: 'ADMIN' }
   },
-  { path: 'adm-categorylist', component: AdmCategorylistComponent },
-  { path: 'adm-servicelist', component: AdmServicelistComponent },
-  { path: 'adm-package', component: AdmPackageComponent },
-  { path: 'adm-user-list', component: AdmUserListComponent },
   { path: 'scanner', component: ScannerComponent },
-  { path: 'Business/create', component: CreateBusinessComponent },
-  { path: 'Business/edit/:id', component: EditBusinessComponent },
-  { path: 'edit-package/:id', component: EditPackagesComponent },
+  { path: 'Business/create', component: CreateBusinessComponent, canActivate: [authGuard], 
+    data: { role: 'ADMIN' }},
+  { path: 'Business/edit/:id', component: EditBusinessComponent,canActivate: [authGuard], 
+    data: { role: 'ADMIN' } },
+  { path: 'edit-package/:id', component: EditPackagesComponent,canActivate: [authGuard], 
+    data: { role: 'ADMIN' } },
   {
     path: 'adm-business/Category/create',
-    component: AddBusinessCategoriesComponent,
+    component: AddBusinessCategoriesComponent,canActivate: [authGuard], 
+    data: { role: 'ADMIN' }
   },
   {
     path: 'Service/create',
-    component: AddBusinessServicesComponent,
+    component: AddBusinessServicesComponent,canActivate: [authGuard], 
+    data: { role: 'ADMIN' }
   },
-  { path: 'Package/create/:id', component: CreatePackagesComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: CusHomeComponent },
-  { path: '404', component: NotFoundComponent },
-  { path: 'serverIsDown', component: ServerDownpageComponent },
-  { path: '401', component: UnauthorizedComponent },
-  { path: '**', component: NotFoundComponent, pathMatch: 'full' },
+  
+  { path: 'Package/create/:id', component: CreatePackagesComponent ,canActivate: [authGuard], 
+    data: { role: 'ADMIN' }},
+  { path: 'login', component: LoginComponent,canActivate: [loginGuard]},
+  {path:"404",component:NotFoundComponent},{path:"serverIsDown",component:ServerDownpageComponent},
+  {path:"401",component:UnauthorizedComponent},
+  {path:"**",component:NotFoundComponent,pathMatch:"full"}
+  
+
 ];
 
 @NgModule({
