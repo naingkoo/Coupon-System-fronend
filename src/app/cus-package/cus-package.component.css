@@ -44,7 +44,7 @@
 .package-card {
   display: flex;
   flex-direction: column;
-  border-radius: 15px;
+  border-radius: 10px;
   overflow: hidden;
   background-color: #ffffff;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
@@ -59,8 +59,8 @@
   width: 100%;
   height: auto;
   overflow: hidden;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .package-image {

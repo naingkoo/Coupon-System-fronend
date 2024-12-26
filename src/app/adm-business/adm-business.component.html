@@ -19,18 +19,20 @@
   </div>
 
   <main class="content" [ngClass]="{ 'content-expanded': isSidebarCollapsed }">
-    <div style="display: flex; align-items: center">
+    <div style="display: flex; align-items: center; margin-bottom: 10px">
       <h3 style="text-align: left; margin-right: 10px">Business List</h3>
       <div class="dropdown">
-        <button class="dropdown-button" (click)="Dropdown()">▼</button>
+        <button class="dropdown-button" (click)="Dropdown()">
+          <i class="fi fi-rr-angle-small-down"></i>
+        </button>
         <div
-          class="add-btn-container"
+          class="list-btn-container"
           [style.display]="isDropdownVisible ? 'block' : 'none'"
         >
-          <button class="add-button" routerLink="/adm-categorylist">
+          <button class="list-button" routerLink="/adm-categorylist">
             Category List
           </button>
-          <button class="add-button" routerLink="/adm-servicelist">
+          <button class="list-button" routerLink="/adm-servicelist">
             Service List
           </button>
         </div>

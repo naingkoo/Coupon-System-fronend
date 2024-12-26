@@ -30,6 +30,13 @@ import { EditPackagesComponent } from './edit/edit-packages/edit-packages.compon
 import { AdmCategorylistComponent } from './adm-categorylist/adm-categorylist.component';
 import { AdmServicelistComponent } from './adm-servicelist/adm-servicelist.component';
 import { CusPaymentComponent } from './cus-payment/cus-payment.component';
+import { BusinessHomeComponent } from './business-home/business-home.component';
+import { BusinessSaleComponent } from './business-sale/business-sale.component';
+import { ScanHistoryComponent } from './scan-history/scan-history.component';
+import { BusinessPackageComponent } from './business-package/business-package.component';
+import { BusinessContactComponent } from './business-contact/business-contact.component';
+import { BusinessAboutComponent } from './business-about/business-about.component';
+import { AdmRegisterComponent } from './adm-register/adm-register.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -55,6 +62,7 @@ const routes: Routes = [
     path: 'adm-categorylist-servicelist',
     component: AdmCategorylistServicelistComponent,
   },
+  { path: 'adm-register', component: AdmRegisterComponent },
   { path: 'adm-categorylist', component: AdmCategorylistComponent },
   { path: 'adm-servicelist', component: AdmServicelistComponent },
   { path: 'adm-package', component: AdmPackageComponent },
@@ -71,6 +79,16 @@ const routes: Routes = [
     path: 'Service/create',
     component: AddBusinessServicesComponent,
   },
+
+  { path: 'business-home', component: BusinessHomeComponent },
+  { path: 'business-sale', component: BusinessSaleComponent },
+  { path: 'business-package', component: BusinessPackageComponent },
+  { path: 'business-contact', component: BusinessContactComponent },
+  { path: 'business-about', component: BusinessAboutComponent },
+  { path: 'scan', component: ScannerComponent },
+  { path: 'scan-history', component: ScanHistoryComponent },
+
+  { path: 'adm-categorylist', component: AdmCategorylistComponent },
   { path: 'Package/create/:id', component: CreatePackagesComponent },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: CusHomeComponent },
