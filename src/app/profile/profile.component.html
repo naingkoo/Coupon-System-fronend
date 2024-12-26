@@ -1,1 +1,8 @@
-<p>profile works!</p>
+<div *ngIf="profile?.photoName">
+  <img [src]="'http://localhost:8080/uploads/' + profile.photoName" alt="Profile Image" />
+</div>
+
+<div>
+  <input type="file" (change)="onFileSelected($event)" />
+  <button (click)="onUpload()">Upload</button>
+</div>

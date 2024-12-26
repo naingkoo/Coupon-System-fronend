@@ -31,6 +31,9 @@ import { AdmCategorylistComponent } from './adm-categorylist/adm-categorylist.co
 import { AdmServicelistComponent } from './adm-servicelist/adm-servicelist.component';
 import { CusPaymentComponent } from './cus-payment/cus-payment.component';
 import { loginGuard } from './core/guards/login.guard';
+import { ProfileComponent } from './profile/profile.component';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { FeedbacklistComponent } from './feedbacklist/feedbacklist.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -88,10 +91,13 @@ const routes: Routes = [
   { path: 'Package/create/:id', component: CreatePackagesComponent ,canActivate: [authGuard], 
     data: { role: 'ADMIN' }},
   { path: 'login', component: LoginComponent,canActivate: [loginGuard]},
+  { path: 'profile', component: ProfileComponent},
+  { path: 'feedback', component: FeedbackComponent},
+  { path: 'feedbacklist', component: FeedbacklistComponent},
   {path:"404",component:NotFoundComponent},{path:"serverIsDown",component:ServerDownpageComponent},
   {path:"401",component:UnauthorizedComponent},
-  {path:"**",component:NotFoundComponent,pathMatch:"full"}
-  
+  {path:"**",component:NotFoundComponent,pathMatch:"full"},
+ 
 
 ];
 

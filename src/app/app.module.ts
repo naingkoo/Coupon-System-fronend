@@ -51,6 +51,8 @@ import { EditBusinessComponent } from './edit/edit-business/edit-business.compon
 import { EditPackagesComponent } from './edit/edit-packages/edit-packages.component';
 import { AdmCategorylistComponent } from './adm-categorylist/adm-categorylist.component';
 import { AdmServicelistComponent } from './adm-servicelist/adm-servicelist.component';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { FeedbacklistComponent } from './feedbacklist/feedbacklist.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +94,8 @@ import { AdmServicelistComponent } from './adm-servicelist/adm-servicelist.compo
     EditPackagesComponent,
     AdmCategorylistComponent,
     AdmServicelistComponent,
+    FeedbackComponent,
+    FeedbacklistComponent,
   ],
   imports: [
     BrowserModule,

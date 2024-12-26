@@ -1,0 +1,7 @@
+.profile-image {
+  width: 150px;        /* Set width */
+  height: 150px;       /* Set height */
+  border-radius: 50%;  /* Make it circular */
+  object-fit: cover;   /* Crop the image if necessary to fit the container */
+  border: 2px solid #ddd; /* Optional: Border around the image */
+}
