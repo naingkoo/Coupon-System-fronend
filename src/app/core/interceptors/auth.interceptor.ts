@@ -29,7 +29,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
       let errorMessage = '';
-
+      console.log(error);
       // Handle error message from the backend (if available)
       if (error.error instanceof Object) {
         errorMessage = error.error.message || 'An unknown error occurred.';
@@ -46,6 +46,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
           break;
         case 403:
+      
           toastr.error(
             'Access denied. You do not have permission.',
             'Authorization Error'

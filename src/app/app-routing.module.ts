@@ -30,6 +30,7 @@ import { EditPackagesComponent } from './edit/edit-packages/edit-packages.compon
 import { AdmCategorylistComponent } from './adm-categorylist/adm-categorylist.component';
 import { AdmServicelistComponent } from './adm-servicelist/adm-servicelist.component';
 import { CusPaymentComponent } from './cus-payment/cus-payment.component';
+import { PaymentHistoryComponent } from './payment-history/payment-history.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -63,6 +64,8 @@ const routes: Routes = [
   { path: 'Business/create', component: CreateBusinessComponent },
   { path: 'Business/edit/:id', component: EditBusinessComponent },
   { path: 'edit-package/:id', component: EditPackagesComponent },
+  { path: 'payment/list', component:  PaymentHistoryComponent},
+
   {
     path: 'adm-business/Category/create',
     component: AddBusinessCategoriesComponent,
@@ -78,6 +81,9 @@ const routes: Routes = [
   { path: 'serverIsDown', component: ServerDownpageComponent },
   { path: '401', component: UnauthorizedComponent },
   { path: '**', component: NotFoundComponent, pathMatch: 'full' },
+
+
+
 ];
 
 @NgModule({

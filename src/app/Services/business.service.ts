@@ -52,4 +52,9 @@ export class BusinessService {
   deleteBusiness(id: number): Observable<any> {
     return this.http.post(`${this.BURL}/delete/${id}`, {});
   }
+
+
+  getBusinessBycategoryName(categoryName: string): Observable<Business[]> {
+    return this.http.get<Business[]>(`${this.BURL}/${categoryName}`);
+  }
 }
