@@ -1,1 +1,179 @@
-<p>adm-register works!</p>
+<div class="body">
+  <div class="container">
+    <div class="register-left">
+      <h2>Sign Up</h2>
+      <p>Please enter your details</p>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="form">
+        <div class="form-group">
+          <div class="inputForm">
+            <i class="fi fi-rr-user"></i>
+            <input
+              formControlName="username"
+              type="text"
+              id="username"
+              placeholder="Enter your name"
+            />
+          </div>
+          <div
+            *ngIf="
+              registerForm.get('username')?.touched &&
+              registerForm.get('username')?.invalid
+            "
+            class="error-text"
+          >
+            <small *ngIf="registerForm.get('username')?.errors?.['required']">
+              Username is required.
+            </small>
+            <small *ngIf="registerForm.get('username')?.errors?.['minlength']">
+              Minimum 3 characters required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="inputForm">
+            <i class="fi fi-rr-phone-call"></i>
+            <input
+              formControlName="phone"
+              type="text"
+              id="phone"
+              placeholder="Enter your phone"
+            />
+          </div>
+          <div
+            *ngIf="
+              registerForm.get('phone')?.touched &&
+              registerForm.get('phone')?.invalid
+            "
+            class="error-text"
+          >
+            <small *ngIf="registerForm.get('phone')?.errors?.['required']">
+              Phone is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="inputForm">
+            <i class="fi fi-rr-at"></i>
+            <input
+              formControlName="email"
+              type="email"
+              id="email"
+              placeholder="Enter your email"
+            />
+          </div>
+          <div
+            *ngIf="
+              registerForm.get('email')?.touched &&
+              registerForm.get('email')?.invalid
+            "
+            class="error-text"
+          >
+            <small *ngIf="registerForm.get('email')?.errors?.['required']">
+              Email is required.
+            </small>
+            <small *ngIf="registerForm.get('email')?.errors?.['email']">
+              Enter a valid email address.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="inputForm">
+            <i class="fi fi-rr-lock"></i>
+            <input
+              formControlName="password"
+              type="password"
+              id="password"
+              placeholder="Enter your Password"
+            />
+          </div>
+          <div
+            *ngIf="
+              registerForm.get('password')?.touched &&
+              registerForm.get('password')?.invalid
+            "
+            class="error-text"
+          >
+            <small *ngIf="registerForm.get('password')?.errors?.['required']">
+              Password is required.
+            </small>
+            <small *ngIf="registerForm.get('password')?.errors?.['minlength']">
+              Minimum 6 characters required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="inputForm">
+            <i class="fi fi-rr-password-lock"></i>
+            <input
+              formControlName="confirmPassword"
+              type="password"
+              id="confirmPassword"
+              placeholder="Confirm Password"
+            />
+          </div>
+          <div
+            *ngIf="
+              registerForm.hasError('passwordMismatch') &&
+              registerForm.get('confirmPassword')?.touched
+            "
+            class="error-text"
+          >
+            <small>Passwords do not match.</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="radioGroup">
+            <label>
+              <input
+                formControlName="role"
+                type="radio"
+                value="ADMIN"
+                id="userTypeAdmin"
+              />
+              Admin
+            </label>
+            <label>
+              <input
+                formControlName="role"
+                type="radio"
+                value="BUSINESS"
+                id="userTypeBusiness"
+              />
+              Business
+            </label>
+          </div>
+          <div
+            *ngIf="
+              registerForm.get('role')?.touched &&
+              registerForm.get('role')?.invalid
+            "
+            class="error-text"
+          >
+            <small>User type is required.</small>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          [disabled]="registerForm.invalid"
+          class="button-submit"
+        >
+          Register
+        </button>
+      </form>
+    </div>
+    <div class="register-right">
+      <div class="illustration">
+        <div class="logo">
+          <img src="assets/image/logo/logo.png" alt="Logo" />
+          <p>Coupon</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

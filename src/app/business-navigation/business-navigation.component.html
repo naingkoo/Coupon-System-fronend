@@ -1,0 +1,97 @@
+<nav class="navbar">
+  <!-- Mobile Menu Toggle -->
+  <div class="hamburger">
+    <label class="mobile-menu-toggle">
+      <input
+        type="checkbox"
+        [(ngModel)]="mobileMenuOpen"
+        (change)="onMenuToggleChange()"
+      />
+      <svg viewBox="0 0 32 32">
+        <path
+          class="line line-top-bottom"
+          d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"
+        ></path>
+        <path class="line" d="M7 16 27 16"></path>
+      </svg>
+    </label>
+
+    <!-- Logo Section -->
+    <div class="navbar-logo">
+      <a href="/home"
+        ><img [src]="'assets/image/logo/logo.png'" class="logo" />Coupon</a
+      >
+    </div>
+  </div>
+
+  <!-- Navigation Links (Desktop Only) -->
+  <div class="navbar-links desktop">
+    <a routerLink="/business-home" routerLinkActive="active">Home</a>
+    <a routerLink="/business-sale" routerLinkActive="active">Sale</a>
+    <a routerLink="/business-package" routerLinkActive="active">Packages</a>
+    <a routerLink="/business-about" routerLinkActive="active">About</a>
+    <a routerLink="/business-contact" routerLinkActive="active">Contact Us</a>
+  </div>
+
+  <!-- Actions Section -->
+  <div class="navbar-actions">
+    <a routerLink="/scan" routerLinkActive="active" class="icon">
+      <i class="fi fi-rr-qr-scan"></i>
+    </a>
+    <a routerLink="/notifications" routerLinkActive="active" class="icon">
+      <i class="fi fi-rr-bell-ring"></i>
+    </a>
+    <div (click)="togglePopup()" class="profile">
+      <img [src]="'assets/image/users/user.png'" />
+    </div>
+  </div>
+</nav>
+
+<!-- Sidebar (Mobile Only) -->
+<div class="mobile-sidebar" [class.open]="mobileMenuOpen">
+  <div class="mobile-links">
+    <a routerLink="/-business-home" routerLinkActive="active"
+      ><i class="fi fi-rr-house-chimney"><p>Home</p></i></a
+    >
+    <a routerLink="/business-sale" routerLinkActive="active"
+      ><i class="fi fi-rr-chart-line-up"><p>Sale</p></i></a
+    >
+    <a routerLink="/business-package" routerLinkActive="active"
+      ><i class="fi fi-rr-box-circle-check"><p>Packages</p></i></a
+    >
+    <a routerLink="/business-about" routerLinkActive="active"
+      ><i class="fi fi-rr-info"><p>About</p></i></a
+    >
+    <a routerLink="/business-contact" routerLinkActive="active"
+      ><i class="fi fi-rr-user-headset"><p>Contact Us</p></i></a
+    >
+  </div>
+</div>
+
+<div class="profile-container" *ngIf="showPopup">
+  <div class="profile-popup">
+    <button class="close-btn" (click)="togglePopup()">
+      <i class="fi fi-rr-angle-small-up"></i>
+    </button>
+    <div class="profile-header">
+      <img
+        [src]="'assets/image/users/user.png'"
+        alt="Profile Picture"
+        class="profile-image"
+      />
+      <h3>{{ userName }}</h3>
+      <p>{{ userEmail }}</p>
+    </div>
+    <div class="my-action">
+      <a routerLink="/edit"
+        ><i class="fi fi-rr-edit"><p>Edit profile</p></i></a
+      >
+      <a routerLink="/scan-history"
+        ><i class="fi fi-rr-time-past"><p>Scan History</p></i></a
+      >
+      <a (click)="logout()"
+        ><i class="fi fi-rr-exit"><p>Logout</p></i></a
+      >
+    </div>
+  </div>
+</div>

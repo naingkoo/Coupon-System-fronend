@@ -45,13 +45,23 @@ export class AuthService {
     return false; // Check token validity
   }
 
-  getRoles(): string[] {
+
+  getRoles(): string {
     const token = this.getToken();
     if (token) {
       const decodedToken = this.jwtHelper.decodeToken(token); // Decode the token
-      return decodedToken.roles || []; // Extract roles from the decoded token (or return an empty array if no roles)
+      return decodedToken.roles; // Extract roles from the decoded token (or return an empty array if no roles)
     }
-    return []; // If no token is available, return an empty array
+    return ''; // If no token is available, return an empty array
+  }
+
+  getLoggedUserID(): any {
+    const token = this.getToken();
+    if (token) {
+      const decodedToken = this.jwtHelper.decodeToken(token); // Decode the token
+      return decodedToken.id; // Extract roles from the decoded token (or return an empty array if no roles)
+    }
+    return 0; // If no token is available, return an empty array
   }
 
   logout(): void {

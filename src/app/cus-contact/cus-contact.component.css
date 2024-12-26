@@ -19,6 +19,8 @@
   max-width: 1200px;
   padding: 10px 20px;
   margin: auto;
+  background-color: #fff;
+  border-radius: 10px;
 }
 
 .vector-image {

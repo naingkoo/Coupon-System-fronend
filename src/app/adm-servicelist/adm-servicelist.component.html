@@ -19,57 +19,55 @@
   </div>
 
   <main class="content" [ngClass]="{ 'content-expanded': isSidebarCollapsed }">
-    <div style="display: flex; align-items: center">
-      <h3 style="text-align: left; margin-right: 10px">Services List</h3>
+    <div style="display: flex; align-items: center; margin-bottom: 10px">
+      <h3 style="text-align: left; margin-right: 10px">Service List</h3>
       <div class="dropdown">
-        <button class="dropdown-button" (click)="Dropdown()">▼</button>
+        <button class="dropdown-button" (click)="Dropdown()">
+          <i class="fi fi-rr-angle-small-down"></i>
+        </button>
         <div
-          class="add-btn-container"
+          class="list-btn-container"
           [style.display]="isDropdownVisible ? 'block' : 'none'"
         >
-          <button class="add-button" routerLink="/adm-business">
-            Business List
-          </button>
-          <button class="add-button" routerLink="/adm-categorylist">
+          <button class="list-button" routerLink="/adm-categorylist">
             Category List
+          </button>
+          <button class="list-button" routerLink="/adm-business">
+            Business List
           </button>
         </div>
       </div>
     </div>
-
-    <div class="container">
-      <div class="table-container">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Service Name</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let service of showService; let i = index">
-              <td>{{ i + 1 }}</td>
-              <!-- Numbering -->
-              <td>{{ service.name }}</td>
-              <td class="edit-btn-container">
-                <button
-                  class="action-btn edit-btn"
-                  [routerLink]="['/Service/edit', service.id]"
-                >
-                  Edit
-                </button>
-                <button
-                  class="action-btn delete-btn"
-                  [routerLink]="['/Service/delete', service.id]"
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="table-container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Service Name</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let service of showService; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ service.name }}</td>
+            <td class="edit-btn-container">
+              <button
+                class="action-btn edit-btn"
+                [routerLink]="['/Service/edit', service.id]"
+              >
+                Edit
+              </button>
+              <button
+                class="action-btn delete-btn"
+                [routerLink]="['/Service/delete', service.id]"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <div class="floating-btn-dropdown">
