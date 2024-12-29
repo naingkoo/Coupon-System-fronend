@@ -12,39 +12,55 @@
     >
       <i
         [class]="
-          isSidebarCollapsed ? 'fas fa-arrow-right' : 'fas fa-arrow-left'
+          isSidebarCollapsed
+            ? 'fa-solid fa-angle-left'
+            : 'fa-solid fa-angle-right'
         "
       ></i>
     </button>
   </div>
 
   <main class="content" [ngClass]="{ 'content-expanded': isSidebarCollapsed }">
-    <div class="users-table-container">
-      <div class="users-table-header">
-        <h4>User List</h4>
-        <button class="btn btn-primary" (click)="onAddUser()">Add User</button>
+    <div class="header">
+      <h4>User List</h4>
+      <div class="header-actions">
+        <input type="text" placeholder="Search users..." class="search-box" />
+        <select class="filter-select">
+          <option value="">All Roles</option>
+          <option value="admin">Admin</option>
+          <option value="user">User</option>
+        </select>
+        <button class="addUser-btn" (click)="onAddUser()">Add User</button>
       </div>
-
-      <table class="users-table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Register Date</th>
-            <th>Role</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let user of users">
-            <td>{{ user.name }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.phone }}</td>
-            <td>{{ user.register_date }}</td>
-            <td>{{ user.role }}</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
+
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>Profile</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Register Date</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>
+            <img
+              [src]="'assets/image/users/user.png'"
+              alt="Profile Image"
+              class="profile-image"
+            />
+          </td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.phone }}</td>
+          <td>{{ user.register_date }}</td>
+          <td>{{ user.role }}</td>
+        </tr>
+      </tbody>
+    </table>
   </main>
 </div>

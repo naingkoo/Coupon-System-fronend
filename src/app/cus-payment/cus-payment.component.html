@@ -1,6 +1,17 @@
-<app-navigation></app-navigation>
+<div class="header">
+  <a (click)="refreshAndNavigate()">
+    <i class="fa-solid fa-angle-left"></i>
+  </a>
+
+  <div class="navbar-logo">
+    <a href="/home"
+      ><img [src]="'assets/image/logo/logo.png'" class="logo" />Coupon</a
+    >
+  </div>
+</div>
 <div class="payment-container">
-  <div class="payment-div">
+  <div class="payment">
+    <!-- QR Codes Section -->
     <div class="qr-codes">
       <div class="qr-code">
         <img [src]="qrCode" alt="QR Code" />
@@ -9,7 +20,6 @@
 
     <!-- Payment Form -->
     <form class="payment-form" (ngSubmit)="submitPayment()">
-      <!-- Payment Radio Buttons (Horizontal) -->
       <div class="payment-options">
         <label>
           <input
@@ -74,7 +84,7 @@
         id="total-amount"
         name="total-amount"
         [(ngModel)]="paymentData.totalAmount"
-        required
+        readonly
       />
 
       <button type="submit">Submit Payment</button>
@@ -82,36 +92,51 @@
   </div>
 
   <!-- Packages Section -->
-  <div class="packages-div">
-    <h2>Your Packages</h2>
-    <div class="package-card" *ngIf="packageData">
+  <div class="packages-list">
+    <h4>Selected Package</h4>
+    <div *ngIf="packageData" class="package-card">
       <div class="package-card-inner">
-        <div class="package-image-wrapper">
+        <img
+          class="package-img"
+          [src]="'http://localhost:8080' + packageData.image"
+          alt="{{ packageData.name }}"
+        />
+        <div class="package-details">
+          <h5>{{ packageData.name }}</h5>
+          <p class="package-info">
+            Unit Price: {{ packageData.unit_price }} MMK
+          </p>
+          <p class="package-info">
+            Chosen Qty: {{ packageData.selectedQuantity }}
+          </p>
+          <p class="package-info">
+            Total Price:
+            {{ packageData.unit_price * packageData.selectedQuantity }} MMK
+          </p>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="cartData.length > 0">
+      <div *ngFor="let item of cartData" class="package-card">
+        <div class="package-card-inner">
           <img
             class="package-img"
-            [src]="'http://localhost:8080' + packageData.image"
-            alt="{{ packageData.name }}"
+            [src]="'http://localhost:8080' + item.packageDetails.image"
+            alt="{{ item.packageDetails.name }}"
           />
-        </div>
-        <div class="package-details">
-          <h3 class="package-name">{{ packageData.name }}</h3>
-          <p class="package-info">
-            <span>Chosen Qty:</span> {{ packageData.selectedQuantity || 1 }}
-          </p>
-          <p class="package-info">
-            <span>Unit Price:</span> {{ packageData.unit_price }} MMK
-          </p>
-          <p class="package-info total">
-            <span>Total Price:</span>
-            {{
-              (packageData.unit_price || 0) *
-                (packageData.selectedQuantity || 1)
-            }}
-            MMK
-          </p>
+          <div class="package-details">
+            <h5>{{ item.packageDetails.name }}</h5>
+            <p class="package-info">
+              Unit Price: {{ item.packageDetails.unit_price }} MMK
+            </p>
+            <p class="package-info">Chosen Qty: {{ item.unit_quantity }}</p>
+            <p class="package-info">
+              Total Price:
+              {{ item.packageDetails.unit_price * item.unit_quantity }} MMK
+            </p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<app-footer></app-footer>

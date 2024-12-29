@@ -5,6 +5,7 @@ import { Packages } from '../models/package-model';
 import { PackageService } from '../Services/package.service';
 import { CartService } from '../Services/cart.service';
 import { Cart } from '../models/cart';
+import { PaymentDataShareService } from '../Services/payment-data-share.service';
 
 @Component({
   selector: 'app-cus-package',
@@ -29,6 +30,7 @@ export class CusPackageComponent implements OnInit {
   user_id: number = 1; // Replace with the logged-in user's ID
 
   constructor(
+    private paymentDataShare: PaymentDataShareService,
     private service: PackageService,
     private cartService: CartService,
     private router: Router,
@@ -87,8 +89,9 @@ export class CusPackageComponent implements OnInit {
     }
   }
 
-  navigateToPayment(packageData: any) {
-    this.router.navigate(['/payment'], { state: { package: packageData } });
+  buynow(packageData: any) {
+    this.paymentDataShare.setPackageData(packageData);
+    this.router.navigate(['/payment']); // Navigate to the payment page
   }
 
   //-----------------Add to Cart-----------------

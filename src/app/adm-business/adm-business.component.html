@@ -12,30 +12,61 @@
     >
       <i
         [class]="
-          isSidebarCollapsed ? 'fas fa-arrow-right' : 'fas fa-arrow-left'
+          isSidebarCollapsed
+            ? 'fa-solid fa-angle-left'
+            : 'fa-solid fa-angle-right'
         "
       ></i>
     </button>
   </div>
 
   <main class="content" [ngClass]="{ 'content-expanded': isSidebarCollapsed }">
-    <div style="display: flex; align-items: center; margin-bottom: 10px">
-      <h3 style="text-align: left; margin-right: 10px">Business List</h3>
-      <div class="dropdown">
-        <button class="dropdown-button" (click)="Dropdown()">
-          <i class="fi fi-rr-angle-small-down"></i>
-        </button>
-        <div
-          class="list-btn-container"
-          [style.display]="isDropdownVisible ? 'block' : 'none'"
-        >
-          <button class="list-button" routerLink="/adm-categorylist">
-            Category List
+    <div class="header">
+      <div class="header-title">
+        <h4>Business List</h4>
+        <div class="dropdown">
+          <button class="dropdown-button" (click)="Dropdown()">
+            <i class="fi fi-rr-angle-small-down"></i>
           </button>
-          <button class="list-button" routerLink="/adm-servicelist">
-            Service List
-          </button>
+          <div
+            class="list-btn-container"
+            [style.display]="isDropdownVisible ? 'block' : 'none'"
+          >
+            <button class="list-button" routerLink="/adm-categorylist">
+              Category List
+            </button>
+            <button class="list-button" routerLink="/adm-servicelist">
+              Service List
+            </button>
+          </div>
         </div>
+      </div>
+      <div class="header-actions">
+        <input
+          type="text"
+          placeholder="Search businesses..."
+          class="search-box"
+        />
+        <select
+          class="filter-select"
+          [(ngModel)]="selectedCategory"
+          (change)="filterCards()"
+        >
+          <option value="">All Categories</option>
+          <option *ngFor="let category of showCategory" [value]="category.id">
+            {{ category.name }}
+          </option>
+        </select>
+        <select
+          class="filter-select"
+          [(ngModel)]="selectedService"
+          (change)="filterCards()"
+        >
+          <option value="">All Services</option>
+          <option *ngFor="let service of showService" [value]="service.id">
+            {{ service.name }}
+          </option>
+        </select>
       </div>
     </div>
     <div
@@ -49,19 +80,22 @@
         <div *ngIf="business.image" class="business-image">
           <img
             [src]="'http://localhost:8080' + business.image"
-            alt="Package Image"
+            alt="Business Image"
           />
         </div>
         <div class="card-info">
           <h3>{{ business.name }}</h3>
-          <p>ID: {{ business.id }}</p>
           <p>Address: {{ business.address }}</p>
           <p>Country: {{ business.country }}</p>
           <p>City: {{ business.city }}</p>
-          <p>Categories: {{ business.categoryName.join(", ") }}</p>
-          <p>Services: {{ business.serviceName.join(", ") }}</p>
         </div>
         <div class="btn-container">
+          <button
+            class="card_submit"
+            [routerLink]="['/adm-business-details', business.id]"
+          >
+            View Business
+          </button>
           <button
             class="card_submit"
             [routerLink]="['/Package/create/', business.id]"

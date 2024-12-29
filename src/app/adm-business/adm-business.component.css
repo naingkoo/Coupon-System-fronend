@@ -102,178 +102,131 @@
 }
 
 /* Business Card Section */
-.card-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Default 3 cards per row */
-  gap: 16px;
-  transition: grid-template-columns 0.3s ease;
-}
-
-.card-container.expanded-layout {
-  grid-template-columns: repeat(
-    4,
-    1fr
-  ); /* 4 cards per row when sidebar is hidden */
-}
-
-.card-container.collapsed-layout {
-  grid-template-columns: repeat(
-    3,
-    1fr
-  ); /* 3 cards per row when sidebar is open */
-}
-
-/* Business Card Section */
-.business-card {
-  border: 1px solid #ddd;
-  border-radius: 8px; /* Slightly rounded corners */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-  max-width: 100%;
-  width: 100%;
+.header {
   display: flex;
-  flex: 0 0 320px; /* Set the card width and prevent shrinking */
-  flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  padding: 16px; /* Add padding for spacing */
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  margin-bottom: 10px;
 }
 
-.business-card:hover {
-  transform: translateY(-6px); /* Slightly larger hover effect */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* More prominent shadow */
+.header-title {
+  display: flex;
 }
 
-/*---------------------------*/
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Space between elements */
+}
+
+.search-box {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 200px;
+}
+
+.filter-select {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+}
+/* Business Card Styling */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
 
 .business-card {
-  position: relative; /* Enable positioning for dropdown inside the card */
-  background: #fff;
-  padding: 20px;
-  border: 1px solid #ddd;
+  background: white;
   border-radius: 8px;
-  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  width: calc(33.333% - 20px);
 }
 
-/* Image styling */
-.business-card img {
+.business-image {
   width: 100%;
-  height: 180px; /* Reduced image height for better card balance */
-  border-radius: 6px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.business-image img {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
   object-fit: cover;
-  margin-bottom: 12px; /* Space between image and text */
 }
 
-/* Headings and text */
 .card-info {
-  padding: 0;
-  text-align: left;
-  flex-grow: 1;
+  margin: 10px 0;
 }
 
-.business-card h3 {
-  margin: 8px 0 4px;
-  font-size: 18px; /* More consistent font size */
-  color: #333;
+.card-info h3 {
+  margin: 0 0 10px;
+  font-size: 1.2em;
 }
 
-.business-card p {
-  margin: 4px 0;
-  font-size: 14px;
-  color: #555;
-}
-
-/* Categories and services display */
-.business-card p:last-child {
-  margin-bottom: 12px;
-}
-
-/* Button container */
 .btn-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
-  gap: 10px;
 }
 
 .card_submit {
-  background-color: #28a745; /* Solid green */
-  color: #fff;
+  background-color: #007bff;
+  color: white;
   border: none;
-  padding: 12px 16px; /* More padding for a bigger button */
-  font-size: 14px;
-  font-weight: bold;
   border-radius: 4px;
+  padding: 8px 12px;
   cursor: pointer;
-  width: 100%; /* Full-width button for consistency */
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s;
 }
 
 .card_submit:hover {
-  background-color: #1e7e34; /* Darker green */
-  transform: translateY(-2px);
-}
-
-.card_submit:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.3);
+  background-color: #0056b3; /* Darker blue on hover */
 }
 
 .dots-menu {
-  position: relative;
+  position: relative; /* Position for dropdown */
 }
 
 .dots-btn {
-  background-color: #008cff; /* Solid green */
-  color: #fff;
+  background: none;
   border: none;
-  padding: 12px 16px; /* More padding for a bigger button */
-  font-size: 14px;
-  font-weight: bold;
-  border-radius: 4px;
   cursor: pointer;
-  width: 100%; /* Full-width button for consistency */
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.dots-btn:hover {
-  background-color: #005da8; /* Darker green on hover */
-
-  transform: scale(1.1);
-}
-
-.dots-btn:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.3); /* Add focus ring */
+  font-size: 18px;
 }
 
 .dots-dropdown {
   position: absolute;
-  right: 100%;
-  top: 50%; /* Center relative to button */
-  transform: translateY(-50%); /* Adjust alignment */
-  background-color: #fff;
+  top: 100%;
+  right: 0;
+  background: white;
   border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  z-index: 10;
-  transform: translateY(-10px); /* Slide up slightly */
-  transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensure dropdown is above other elements */
 }
 
-.dots-dropdown .dropdown-item {
-  padding: 8px 12px;
-  cursor: pointer;
-  text-align: left;
-  background: none;
+.dropdown-item {
+  padding: 10px 15px;
   border: none;
+  background: none;
+  cursor: pointer;
   width: 100%;
+  text-align: left;
 }
 
-.dots-dropdown .dropdown-item:hover {
-  background-color: #f5f5f5;
+.dropdown-item:hover {
+  background-color: #f1f1f1; /* Highlight on hover */
 }
 
+/*---------------------------*/
 .floating-add-btn {
   position: fixed;
   bottom: 20px;
@@ -290,7 +243,6 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
   z-index: 1000;
 }
 
@@ -322,13 +274,11 @@
   opacity: 0;
   overflow: hidden;
   transform: translateY(-10px); /* Slide up slightly */
-  transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
 }
 
 .dropdown-menu.dropdown-visible {
   max-height: 300px; /* Adjust based on your content */
   opacity: 1;
-  transform: translateY(0); /* Slide back to original position */
 }
 
 .dropdown-item {
@@ -352,58 +302,28 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .header {
+    flex-direction: column; /* Stack elements on smaller screens */
+    align-items: flex-start; /* Align items to the start */
+  }
+
+  .header-actions {
+    flex-direction: column; /* Stack actions vertically */
+    gap: 10px; /* Space between elements */
+    width: 100%; /* Full width for actions */
+  }
+
+  .search-box,
+  .filter-select {
+    width: 100%; /* Full width for inputs */
+  }
   .business-card {
-    max-width: 100%;
-    margin-bottom: 20px; /* Add spacing between cards */
-  }
-
-  .card-container {
-    grid-template-columns: 1fr; /* Stack cards on smaller screens */
-    gap: 16px; /* Ensure space between cards */
-    padding: 10px;
-  }
-
-  .business-card h3 {
-    font-size: 16px; /* Adjust for smaller screens */
-  }
-
-  .business-card p {
-    font-size: 12px; /* Adjust for readability */
-  }
-
-  .card_submit {
-    font-size: 12px; /* Smaller button text */
-    padding: 10px 14px; /* Smaller button */
+    width: calc(50% - 20px); /* Two cards per row on smaller screens */
   }
 }
 
 @media (max-width: 480px) {
   .business-card {
-    padding: 10px;
-  }
-
-  .card_submit {
-    font-size: 12px;
-    padding: 8px 12px;
-  }
-  /* Responsive design for smaller screens */
-  @media (max-width: 768px) {
-    .card-container {
-      grid-template-columns: repeat(
-        2,
-        1fr
-      ); /* 2 cards per row on smaller screens */
-    }
-
-    .card-container.expanded-layout {
-      grid-template-columns: repeat(
-        2,
-        1fr
-      ); /* 2 cards per row when sidebar is hidden */
-    }
-
-    .card-container.collapsed-layout {
-      grid-template-columns: 1fr; /* 1 card per row when sidebar is open */
-    }
+    width: 100%; /* Full width for cards on very small screens */
   }
 }

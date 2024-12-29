@@ -29,14 +29,12 @@ import { CusPaymentComponent } from './cus-payment/cus-payment.component';
 import { AdmHomeComponent } from './adm-home/adm-home.component';
 import { AdmBusinessComponent } from './adm-business/adm-business.component';
 import { AdmPackageComponent } from './adm-package/adm-package.component';
-import { AmdSaleComponent } from './amd-sale/amd-sale.component';
 import { CusEditComponent } from './edit/cus-edit/cus-edit.component';
 import { AdmRegisterComponent } from './adm-register/adm-register.component';
 import { MyCouponComponent } from './my-coupon/my-coupon.component';
 import { AdmSidebarComponent } from './adm-sidebar/adm-sidebar.component';
 import { CusExploreComponent } from './cus-explore/cus-explore.component';
 import { CusPackageComponent } from './cus-package/cus-package.component';
-import { AdmCategorylistServicelistComponent } from './adm-categorylist-servicelist/adm-categorylist-servicelist.component';
 import { AdmCategorylistComponent } from './adm-categorylist/adm-categorylist.component';
 import { AdmServicelistComponent } from './adm-servicelist/adm-servicelist.component';
 import { AdmUserListComponent } from './adm-user-list/adm-user-list.component';
@@ -63,6 +61,9 @@ import { UnauthorizedComponent } from './shared/unauthorized/unauthorized.compon
 import { BusinessPackageComponent } from './business-package/business-package.component';
 import { BusinessAboutComponent } from './business-about/business-about.component';
 import { BusinessContactComponent } from './business-contact/business-contact.component';
+import { AdmCouponSalelistComponent } from './adm-coupon-salelist/adm-coupon-salelist.component';
+import { AdmFeedbackComponent } from './adm-feedback/adm-feedback.component';
+import { AdmBusinessDetailsComponent } from './adm-business-details/adm-business-details.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,6 @@ import { BusinessContactComponent } from './business-contact/business-contact.co
     AdmHomeComponent,
     AdmBusinessComponent,
     AdmPackageComponent,
-    AmdSaleComponent,
     ProfileComponent,
     AdmUserListComponent,
     CreateBusinessComponent,
@@ -98,7 +98,6 @@ import { BusinessContactComponent } from './business-contact/business-contact.co
     CusExploreComponent,
     ScannerComponent,
     CusPackageComponent,
-    AdmCategorylistServicelistComponent,
     EditBusinessComponent,
     EditPackagesComponent,
     AdmCategorylistComponent,
@@ -110,6 +109,9 @@ import { BusinessContactComponent } from './business-contact/business-contact.co
     BusinessPackageComponent,
     BusinessAboutComponent,
     BusinessContactComponent,
+    AdmCouponSalelistComponent,
+    AdmFeedbackComponent,
+    AdmBusinessDetailsComponent,
   ],
   imports: [
     BrowserModule,

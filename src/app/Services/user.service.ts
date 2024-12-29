@@ -9,7 +9,8 @@ import { User } from '../models/user';
 })
 export class UserService {
   private baseUrl = environment.apiUrl;
-  private getAllUrl = 'http://localhost:8080/user/public/list'; // Replace with your API URL
+  private getAllUrl = 'http://localhost:8080/user/public/list';
+  private getById = 'http://localhost:8080/user/getById';
 
   public constructor(private httpClient: HttpClient) {}
 
@@ -19,5 +20,9 @@ export class UserService {
 
   getAllUsers(): Observable<User[]> {
     return this.httpClient.get<User[]>(this.getAllUrl);
+  }
+
+  getUserDetailsById(userId: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.getById}/${userId}`);
   }
 }

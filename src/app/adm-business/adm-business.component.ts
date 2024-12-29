@@ -1,6 +1,8 @@
 import { Component, HostListener } from '@angular/core';
 import { Business } from '../models/business';
 import { BusinessService } from '../Services/business.service';
+import { Service } from '../models/service';
+import { Category } from '../models/category';
 
 @Component({
   selector: 'app-adm-business',
@@ -32,6 +34,11 @@ export class AdmBusinessComponent {
   }
 
   showBusiness: Business[] = [];
+  showService: Service[] = [];
+  showCategory: Category[] = [];
+
+  selectedCategory: string = '';
+  selectedService: string = '';
 
   constructor(private service: BusinessService) {}
 
@@ -46,10 +53,35 @@ export class AdmBusinessComponent {
     );
   }
 
+  fetchCategories() {
+    this.service.getCategory().subscribe(
+      (data) => {
+        this.showCategory = data; // Assign the fetched categories to the showCategory variable
+      },
+      (error) => {
+        console.log('Error fetching categories: ', error);
+      }
+    );
+  }
+
+  fetchServices() {
+    this.service.getService().subscribe(
+      (data) => {
+        this.showService = data; // Assign the fetched categories to the showCategory variable
+      },
+      (error) => {
+        console.log('Error fetching services: ', error);
+      }
+    );
+  }
+
   ngOnInit(): void {
     this.fetchBusiness();
-    console.log(this.showBusiness);
+    this.fetchCategories();
+    this.fetchServices();
   }
+
+  filterCards() {}
 
   isDropdownOpen = false;
 

@@ -12,7 +12,9 @@
     >
       <i
         [class]="
-          isSidebarCollapsed ? 'fas fa-arrow-right' : 'fas fa-arrow-left'
+          isSidebarCollapsed
+            ? 'fa-solid fa-angle-left'
+            : 'fa-solid fa-angle-right'
         "
       ></i>
     </button>
@@ -93,7 +95,6 @@
                 class="image-preview"
               />
             </div>
-            
           </div>
         </div>
 
@@ -132,7 +133,9 @@
 
       <div class="btn-container">
         <button class="card_submit">Add</button>
-        <button type="button" class="card_cancel" (click)="onCancel()">Cancel</button>
+        <button type="button" class="card_cancel" (click)="onCancel()">
+          Cancel
+        </button>
       </div>
     </form>
   </main>

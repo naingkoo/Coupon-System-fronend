@@ -1,0 +1,98 @@
+<div class="app-container">
+  <div class="sidebar-container">
+    <app-adm-sidebar
+      [isSidebarCollapsed]="isSidebarCollapsed"
+      (sidebarToggle)="onSidebarToggle()"
+    >
+    </app-adm-sidebar>
+    <button
+      class="sidebar-toggle-btn"
+      [ngClass]="{ 'sidebar-collapsed': isSidebarCollapsed }"
+      (click)="onSidebarToggle()"
+    >
+      <i
+        [class]="
+          isSidebarCollapsed
+            ? 'fa-solid fa-angle-left'
+            : 'fa-solid fa-angle-right'
+        "
+      ></i>
+    </button>
+  </div>
+
+  <main class="content" [ngClass]="{ 'content-expanded': isSidebarCollapsed }">
+    <div class="business-details">
+      <div class="business-info">
+        <img
+          [src]="'http://localhost:8080' + businessBanner"
+          alt="{{ businessName }} Banner"
+          class="business-image"
+        />
+        <div class="business-details-text">
+          <h1 class="business-name">{{ businessName }}</h1>
+          <p>
+            <strong>Location:</strong> {{ businessStreet }}, {{ businessCity }},
+            {{ businessCountry }}
+          </p>
+          <p><strong>Address:</strong> {{ businessAddress }}</p>
+          <p>
+            <strong>Categories:</strong> {{ businessCategories?.join(", ") }}
+          </p>
+          <p><strong>Services:</strong> {{ businessServices?.join(", ") }}</p>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <button
+          (click)="selectTab('packages')"
+          [class.active]="selectedTab === 'packages'"
+          class="tab-button"
+        >
+          Packages
+        </button>
+        <button
+          (click)="selectTab('reviews')"
+          [class.active]="selectedTab === 'reviews'"
+          class="tab-button"
+        >
+          Reviews
+        </button>
+      </div>
+
+      <div class="tab-content">
+        <div *ngIf="selectedTab === 'packages'" class="packages">
+          <h4>Available Packages</h4>
+          <div class="package-grid">
+            <div *ngFor="let package of packages" class="package-item">
+              <div class="package-image-container">
+                <img
+                  [src]="'http://localhost:8080' + package.image"
+                  alt="{{ package.name }}"
+                  class="package-image"
+                />
+              </div>
+              <div class="package-info">
+                <h5>{{ package.name }}</h5>
+                <p class="package-description">{{ package.description }}</p>
+                <p>{{ package.quantity }} left</p>
+                <p class="package-price">{{ package.unit_price }} MMK</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="selectedTab === 'reviews'" class="reviews">
+          <h4>Customer Reviews</h4>
+          <div *ngFor="let review of reviews" class="review-item">
+            <p>
+              <strong>{{ review.userId }}:</strong> {{ review.message }}
+            </p>
+            <p>
+              <em>Rating: {{ review.rating }}</em>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

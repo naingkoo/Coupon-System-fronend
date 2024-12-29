@@ -24,7 +24,6 @@ import { CreateBusinessComponent } from './create/create-business/create-busines
 import { AddBusinessCategoriesComponent } from './create/add-business-categories/add-business-categories.component';
 import { AddBusinessServicesComponent } from './create/add-business-services/add-business-services.component';
 import { CreatePackagesComponent } from './create/create-packages/create-packages.component';
-import { AdmCategorylistServicelistComponent } from './adm-categorylist-servicelist/adm-categorylist-servicelist.component';
 import { EditBusinessComponent } from './edit/edit-business/edit-business.component';
 import { EditPackagesComponent } from './edit/edit-packages/edit-packages.component';
 import { AdmCategorylistComponent } from './adm-categorylist/adm-categorylist.component';
@@ -38,6 +37,9 @@ import { BusinessContactComponent } from './business-contact/business-contact.co
 import { BusinessAboutComponent } from './business-about/business-about.component';
 import { AdmRegisterComponent } from './adm-register/adm-register.component';
 import { loginGuard } from './core/guards/login.guard';
+import { AdmCouponSalelistComponent } from './adm-coupon-salelist/adm-coupon-salelist.component';
+import { AdmFeedbackComponent } from './adm-feedback/adm-feedback.component';
+import { AdmBusinessDetailsComponent } from './adm-business-details/adm-business-details.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -59,10 +61,7 @@ const routes: Routes = [
     data: { role: 'ADMIN' },
   },
   { path: 'adm-business', component: AdmBusinessComponent },
-  {
-    path: 'adm-categorylist-servicelist',
-    component: AdmCategorylistServicelistComponent,
-  },
+  { path: 'adm-business-details/:id', component: AdmBusinessDetailsComponent },
   {
     path: 'adm-dashboard',
     component: AdmHomeComponent,
@@ -104,6 +103,8 @@ const routes: Routes = [
   { path: 'adm-servicelist', component: AdmServicelistComponent },
   { path: 'adm-package', component: AdmPackageComponent },
   { path: 'adm-user-list', component: AdmUserListComponent },
+  { path: 'adm-coupon', component: AdmCouponSalelistComponent },
+  { path: 'adm-feedback', component: AdmFeedbackComponent },
   { path: 'scanner', component: ScannerComponent },
   {
     path: 'Business/create',

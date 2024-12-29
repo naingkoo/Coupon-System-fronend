@@ -13,15 +13,6 @@ export class CusExploreComponent {
   searchQuery: string = '';
   selectedCategory: string = '';
   selectedService: string = '';
-  categories: string[] = ['Hotel', 'Bar', 'Health', 'Restaurant', 'Gym']; // This could come from Category.createCategories()
-  services: string[] = [
-    'Aircon',
-    'Pool',
-    'Parking',
-    '24hr electric',
-    'Breakfast',
-    'Security',
-  ]; // This could come from Service.createServices()
 
   showBusiness: Business[] = [];
   showService: Service[] = [];

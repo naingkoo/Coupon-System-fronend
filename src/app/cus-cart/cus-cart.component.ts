@@ -2,14 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Cart } from '../models/cart';
 import { CartService } from '../Services/cart.service';
 import { ToastrService } from 'ngx-toastr';
-
-interface CartItem {
-  name: string;
-  description: string;
-  price: number;
-  quantity: number;
-  image: string;
-}
+import { Router } from '@angular/router';
+import { PaymentDataShareService } from '../Services/payment-data-share.service';
 
 @Component({
   selector: 'app-cus-cart',
@@ -17,12 +11,13 @@ interface CartItem {
   styleUrl: './cus-cart.component.css',
 })
 export class CusCartComponent {
-  cartItems: Cart[] = [];
   userId: number = 1; // Example user ID
 
   constructor(
+    private paymentDataShare: PaymentDataShareService,
     private cartService: CartService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   getItemCountText(): string {
@@ -95,9 +90,10 @@ export class CusCartComponent {
     return this.cartItems.reduce((total, item) => total + item.unit_price, 0);
   }
 
+  cartItems: any[] = [];
+
   checkout() {
-    // Implement your checkout logic here
-    console.log('Proceeding to checkout...');
-    // You can navigate to the checkout page or perform any other action
+    this.paymentDataShare.setCartData(this.cartItems);
+    this.router.navigate(['/payment']); // Navigate to the payment page
   }
 }

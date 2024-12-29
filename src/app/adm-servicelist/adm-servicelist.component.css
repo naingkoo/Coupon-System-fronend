@@ -146,9 +146,18 @@
 }
 
 /*-----------------------*/
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  margin-bottom: 10px;
+}
 
-/* Dropdown container styling */
-/* Dropdown container styling */
+.header-title {
+  display: flex;
+}
+
 .dropdown {
   position: relative;
   display: inline-block;
@@ -196,70 +205,64 @@
   color: #fab400;
 }
 
-/* Table container styling */
-.table-container {
-  overflow-x: auto;
-}
-
-/* Table styling */
-.table {
+.service-table {
   width: 100%;
   border-collapse: collapse;
+  background: white; /* White background for the table */
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
-.table th,
-.table td {
-  padding: 12px;
+.service-table th,
+.service-table td {
+  padding: 12px 15px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #ddd; /* Light gray border for rows */
 }
 
-.table th {
-  background-color: #4caf50;
-  color: white;
-  font-weight: bold;
+.service-table th {
+  background-color: #f8f8f8; /* Light gray background for header */
+  color: #333; /* Dark text for contrast */
 }
 
-.table tr:hover {
-  background-color: #f1f1f1;
+.service-table tr:hover {
+  background-color: #f1f1f1; /* Light gray on hover */
 }
 
-/* Button styling */
+.edit-btn-container {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+}
+
 .action-btn {
+  padding: 8px 12px;
   border: none;
   border-radius: 4px;
-  padding: 8px 12px;
   cursor: pointer;
+  font-size: 14px;
   transition: background-color 0.3s;
 }
 
 .edit-btn {
-  background-color: #4caf50;
+  background-color: #007bff; /* Blue background for edit button */
   color: white;
 }
 
 .edit-btn:hover {
-  background-color: #45a049;
+  background-color: #0056b3; /* Darker blue on hover */
 }
 
 .delete-btn {
-  background-color: #f44336;
+  background-color: #dc3545; /* Red background for delete button */
   color: white;
-  margin-left: 10px;
 }
 
 .delete-btn:hover {
-  background-color: #d32f2f;
+  background-color: #c82333; /* Darker red on hover */
 }
 
-@media (max-width: 600px) {
-  .table th,
-  .table td {
-    padding: 8px;
+@media (max-width: 768px) {
+  .service-table {
     font-size: 14px;
-  }
-
-  .action-btn {
-    padding: 6px 10px;
   }
 }
