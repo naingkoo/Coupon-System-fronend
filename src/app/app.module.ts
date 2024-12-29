@@ -37,6 +37,7 @@ import { CusExploreComponent } from './cus-explore/cus-explore.component';
 import { CusPackageComponent } from './cus-package/cus-package.component';
 import { AdmCategorylistComponent } from './adm-categorylist/adm-categorylist.component';
 import { AdmServicelistComponent } from './adm-servicelist/adm-servicelist.component';
+import { PaymentHistoryComponent } from './payment-history/payment-history.component';
 import { AdmUserListComponent } from './adm-user-list/adm-user-list.component';
 
 import { AddBusinessCategoriesComponent } from './create/add-business-categories/add-business-categories.component';
@@ -102,6 +103,7 @@ import { AdmBusinessDetailsComponent } from './adm-business-details/adm-business
     EditPackagesComponent,
     AdmCategorylistComponent,
     AdmServicelistComponent,
+    PaymentHistoryComponent,
     BusinessHomeComponent,
     ScanHistoryComponent,
     BusinessSaleComponent,

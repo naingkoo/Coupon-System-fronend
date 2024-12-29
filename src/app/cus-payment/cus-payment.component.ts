@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { PaymentDataShareService } from '../Services/payment-data-share.service';
 import { AuthService } from '../core/auth/auth.service';
 
+import { PaymentService } from '../Services/payment.service';
+import { Payment } from '../models/payment';
+import { response } from 'express';
 @Component({
   selector: 'app-cus-payment',
   templateUrl: './cus-payment.component.html',
@@ -11,18 +14,14 @@ import { AuthService } from '../core/auth/auth.service';
 export class CusPaymentComponent {
   userId: number = 0;
   packageData: any; // Change this to the appropriate type if available
-  paymentData = {
-    transactionId: '',
-    userId: '',
-    totalAmount: 0,
-    paymentType: 'kbz-pay',
-  };
+  paymentData: Payment = new Payment();
 
   qrCode: string = 'assets/image/payment/KBZ_pay.png'; // Default QR Code for KBZ Pay
   cartData: any[] = [];
 
   constructor(
     private paymentDataShare: PaymentDataShareService,
+    private service: PaymentService,
     private authService: AuthService,
     private router: Router
   ) {}
@@ -52,6 +51,11 @@ export class CusPaymentComponent {
     }
   }
 
+  changePaymentType(paymentType: string) {
+    this.paymentData.paymentType = paymentType;
+    this.changeQR(paymentType);
+  }
+
   calculateTotalAmount(): void {
     let total = 0;
 
@@ -68,16 +72,23 @@ export class CusPaymentComponent {
     }
 
     // Update the total amount in payment data
-    this.paymentData.totalAmount = total;
-  }
-
-  submitPayment(): void {
-    console.log('Payment Data Submitted:', this.paymentData);
-    // Here you would call a service to process the payment
+    //this.paymentData.totalAmount = total;
   }
 
   refreshAndNavigate(): void {
     // Refresh the current page and then navigate to /home
     window.location.href = '/home';
+  }
+
+  submitPayment() {
+    this.service.savePayment(this.paymentData).subscribe(
+      (response) => {
+        console.log('Payment saved successfully:', response);
+        this.router.navigate(['package']);
+      },
+      (error) => {
+        console.error('Error saving payment:', error);
+      }
+    );
   }
 }

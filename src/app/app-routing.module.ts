@@ -29,6 +29,7 @@ import { EditPackagesComponent } from './edit/edit-packages/edit-packages.compon
 import { AdmCategorylistComponent } from './adm-categorylist/adm-categorylist.component';
 import { AdmServicelistComponent } from './adm-servicelist/adm-servicelist.component';
 import { CusPaymentComponent } from './cus-payment/cus-payment.component';
+import { PaymentHistoryComponent } from './payment-history/payment-history.component';
 import { BusinessHomeComponent } from './business-home/business-home.component';
 import { BusinessSaleComponent } from './business-sale/business-sale.component';
 import { ScanHistoryComponent } from './scan-history/scan-history.component';
@@ -156,6 +157,9 @@ const routes: Routes = [
   { path: 'serverIsDown', component: ServerDownpageComponent },
   { path: '401', component: UnauthorizedComponent },
   { path: '**', component: NotFoundComponent, pathMatch: 'full' },
+
+
+
 ];
 
 @NgModule({

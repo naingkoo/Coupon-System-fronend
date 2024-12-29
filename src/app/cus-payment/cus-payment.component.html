@@ -26,6 +26,7 @@
             type="radio"
             name="payment-type"
             value="kbz-pay"
+            [(ngModel)]="paymentData.paymentType"
             (change)="changeQR('kbz-pay')"
             checked
           />
@@ -36,6 +37,7 @@
             type="radio"
             name="payment-type"
             value="wave-pay"
+            [(ngModel)]="paymentData.paymentType"
             (change)="changeQR('wave-pay')"
           />
           <span>Wave Pay</span>
@@ -45,6 +47,7 @@
             type="radio"
             name="payment-type"
             value="aya-pay"
+            [(ngModel)]="paymentData.paymentType"
             (change)="changeQR('aya-pay')"
           />
           <span>AYA Pay</span>
@@ -54,6 +57,7 @@
             type="radio"
             name="payment-type"
             value="cb-pay"
+            [(ngModel)]="paymentData.paymentType"
             (change)="changeQR('cb-pay')"
           />
           <span>CB Pay</span>
@@ -65,7 +69,7 @@
         type="text"
         id="transaction-id"
         name="transaction-id"
-        [(ngModel)]="paymentData.transactionId"
+        [(ngModel)]="paymentData.transaction_id"
         required
       />
 
@@ -74,7 +78,7 @@
         type="text"
         id="user-id"
         name="user-id"
-        [(ngModel)]="paymentData.userId"
+        [(ngModel)]="paymentData.user_id"
         required
       />
 
@@ -83,8 +87,10 @@
         type="number"
         id="total-amount"
         name="total-amount"
-        [(ngModel)]="paymentData.totalAmount"
+        [(ngModel)]="paymentData.total_amount"
+        [value]="paymentData.total_amount"
         readonly
+        required
       />
 
       <button type="submit">Submit Payment</button>

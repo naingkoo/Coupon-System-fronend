@@ -1,0 +1,28 @@
+<div class="payment-list-container">
+    <h2>Payment List</h2>
+  
+
+  
+    <!-- Payments Table -->
+    <table>
+      <thead>
+        <tr>
+          <th>Transaction ID</th>
+          <!-- <th>User ID</th> -->
+          <th>Payment Type</th>
+          <th>Total Amount</th>
+          <!-- <th>Date</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let payment of showPayment">
+          <td>{{ payment.transaction_id }}</td>
+          <!-- <td>{{ payment.user_id }}</td> -->
+          <td>{{ payment.paymentType }}</td>
+          <td>{{ payment.total_amount }} MMK</td>
+          <!-- <td>{{ payment.date | date }}</td> -->
+        </tr>
+      </tbody>
+    </table>
+  
+    
