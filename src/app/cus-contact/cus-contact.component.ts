@@ -1,28 +1,35 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { contact } from '../models/contact';
+import { ContactService } from '../Services/contact.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-cus-contact',
+  selector: 'app-contact',
   templateUrl: './cus-contact.component.html',
-  styleUrl: './cus-contact.component.css',
+  styleUrls: ['./cus-contact.component.css']
 })
-export class CusContactComponent {
-  contactData = {
-    name: '',
-    email: '',
-    message: '',
-  };
+export class ContactComponent {
 
-  onSubmit(form: any): void {
-    if (form.valid) {
-      console.log('Contact Form Submitted:', this.contactData);
-      alert('Thank you for contacting us. We will get back to you soon!');
-      // Reset form
-      this.contactData = {
-        name: '',
-        email: '',
-        message: '',
-      };
-      form.resetForm();
+  contactData: contact = new contact();
+  successMessage: string | null = null;
+  errorMessage: string | null = null;
+
+  constructor(private toastr: ToastrService, private contactService: ContactService) {}
+
+  onSubmit(contactForm: NgForm): void {
+    if (contactForm.valid) {
+      this.contactService.submitContact(this.contactData).subscribe(
+        (response) => {
+          this.toastr.success('Thank you for your message! We will get back to you soon.');
+          contactForm.reset();
+        },
+        (error) => {
+          this.toastr.error('Sorry, there was an error submitting your message. Please try again later.');
+        }
+      );
+    } else {
+      this.toastr.warning('Please fill in all required fields.');
     }
   }
 }

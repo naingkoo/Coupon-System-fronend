@@ -7,7 +7,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { authGuard } from './core/guards/auth.guard';
 import { UnauthorizedComponent } from './shared/unauthorized/unauthorized.component';
 import { CusAboutComponent } from './cus-about/cus-about.component';
-import { CusContactComponent } from './cus-contact/cus-contact.component';
+// import { CusContactComponent } from './cus-contact/cus-contact.component';
 import { CusHistoryComponent } from './cus-history/cus-history.component';
 import { CusCartComponent } from './cus-cart/cus-cart.component';
 import { MyCouponComponent } from './my-coupon/my-coupon.component';
@@ -32,8 +32,8 @@ import { AdmServicelistComponent } from './adm-servicelist/adm-servicelist.compo
 import { CusPaymentComponent } from './cus-payment/cus-payment.component';
 import { loginGuard } from './core/guards/login.guard';
 import { ProfileComponent } from './profile/profile.component';
-import { FeedbackComponent } from './feedback/feedback.component';
 import { FeedbacklistComponent } from './feedbacklist/feedbacklist.component';
+import { ContactComponent } from './cus-contact/cus-contact.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -43,7 +43,7 @@ const routes: Routes = [
   { path: 'package', component: CusPackageComponent },
   { path: 'business/:id', component: CusBusinessComponent },
   { path: 'about', component: CusAboutComponent },
-  { path: 'contact-us', component: CusContactComponent },
+  { path: 'contact-us', component: ContactComponent },
   { path: 'history', component: CusHistoryComponent },
   { path: 'cart', component: CusCartComponent },
   { path: 'payment', component: CusPaymentComponent },
@@ -92,7 +92,6 @@ const routes: Routes = [
     data: { role: 'ADMIN' }},
   { path: 'login', component: LoginComponent,canActivate: [loginGuard]},
   { path: 'profile', component: ProfileComponent},
-  { path: 'feedback', component: FeedbackComponent},
   { path: 'feedbacklist', component: FeedbacklistComponent},
   {path:"404",component:NotFoundComponent},{path:"serverIsDown",component:ServerDownpageComponent},
   {path:"401",component:UnauthorizedComponent},

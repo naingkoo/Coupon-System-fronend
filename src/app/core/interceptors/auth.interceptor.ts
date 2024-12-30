@@ -22,7 +22,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
       }
      
     }
-
+debugger;
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
       let errorMessage = '';

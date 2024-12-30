@@ -1,7 +1,36 @@
-.profile-image {
-  width: 150px;        /* Set width */
-  height: 150px;       /* Set height */
-  border-radius: 50%;  /* Make it circular */
-  object-fit: cover;   /* Crop the image if necessary to fit the container */
-  border: 2px solid #ddd; /* Optional: Border around the image */
+.profile-container {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+}
+
+.profile-image img {
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.file-upload input {
+  margin-bottom: 10px;
+}
+
+.file-upload button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.file-upload button[disabled] {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+img {
+  max-width: 100%;
+  border-radius: 5px;
 }

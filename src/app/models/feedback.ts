@@ -2,20 +2,17 @@ export class Feedback {
   id: number | null;
   name: string;
   email: string;
-  professional: string;  // Feedback on professionalism
-  comments: string;      // Additional comments
+  message: string;      // Additional comments
 
   constructor(
     id: number | null = null, 
     name: string = '', 
     email: string = '', 
-    professional: string = '', 
-    comments: string = ''
+    message: string = ''
   ) {
     this.id = id;
     this.name = name;
     this.email = email;
-    this.professional = professional;
-    this.comments = comments;
+    this.message = message;
   }
 }

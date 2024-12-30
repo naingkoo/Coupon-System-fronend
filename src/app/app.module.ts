@@ -16,7 +16,7 @@ import { RegisterComponent } from './register/register.component';
 import { CusHomeComponent } from './cus-home/cus-home.component';
 import { CusAboutComponent } from './cus-about/cus-about.component';
 import { CusCartComponent } from './cus-cart/cus-cart.component';
-import { CusContactComponent } from './cus-contact/cus-contact.component';
+// import { CusContactComponent } from './cus-contact/cus-contact.component';
 import { CusHistoryComponent } from './cus-history/cus-history.component';
 import { CusBusinessComponent } from './cus-business/cus-business.component';
 import { CusPaymentComponent } from './cus-payment/cus-payment.component';
@@ -51,8 +51,8 @@ import { EditBusinessComponent } from './edit/edit-business/edit-business.compon
 import { EditPackagesComponent } from './edit/edit-packages/edit-packages.component';
 import { AdmCategorylistComponent } from './adm-categorylist/adm-categorylist.component';
 import { AdmServicelistComponent } from './adm-servicelist/adm-servicelist.component';
-import { FeedbackComponent } from './feedback/feedback.component';
 import { FeedbacklistComponent } from './feedbacklist/feedbacklist.component';
+import { ContactComponent } from './cus-contact/cus-contact.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +62,7 @@ import { FeedbacklistComponent } from './feedbacklist/feedbacklist.component';
     CusHomeComponent,
     CusAboutComponent,
     CusCartComponent,
-    CusContactComponent,
+    // CusContactComponent,
     CusHistoryComponent,
     CusBusinessComponent,
     CusPaymentComponent,
@@ -94,8 +94,9 @@ import { FeedbacklistComponent } from './feedbacklist/feedbacklist.component';
     EditPackagesComponent,
     AdmCategorylistComponent,
     AdmServicelistComponent,
-    FeedbackComponent,
     FeedbacklistComponent,
+    ContactComponent,
+   
   ],
   imports: [
     BrowserModule,

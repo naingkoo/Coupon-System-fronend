@@ -42,7 +42,7 @@
       <i class="fi fi-rr-bell-ring"></i>
     </a>
     <div (click)="togglePopup()" class="profile">
-      <img [src]="'assets/image/users/user.png'" />
+      <img [src]="user.photo" />
     </div>
   </div>
 </nav>
@@ -75,12 +75,12 @@
     </button>
     <div class="profile-header">
       <img
-        [src]="'assets/image/users/user.png'"
+        [src]="user.photo"
         alt="Profile Picture"
         class="profile-image"
       />
-      <h3>{{ userName }}</h3>
-      <p>{{ userEmail }}</p>
+      <h3>{{ user.name }}</h3>
+      <p>{{ user.email }}</p>
     </div>
     <div class="my-action">
       <a routerLink="/profile"

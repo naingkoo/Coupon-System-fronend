@@ -5,6 +5,7 @@ export class User {
   password: string;
   confirmPassword: string;
   role: string;
+  
 
   constructor(
     username: string = '',
