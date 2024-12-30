@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { isPlatformBrowser } from '@angular/common';
+import { ToastrModule } from 'ngx-toastr';
 import {
   provideHttpClient,
   withFetch,
@@ -13,6 +15,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
+
+import { NavigationComponent } from './navigation/navigation.component';
+import { FooterComponent } from './footer/footer.component';
 import { CusHomeComponent } from './cus-home/cus-home.component';
 import { CusAboutComponent } from './cus-about/cus-about.component';
 import { CusCartComponent } from './cus-cart/cus-cart.component';
@@ -20,39 +26,47 @@ import { CusCartComponent } from './cus-cart/cus-cart.component';
 import { CusHistoryComponent } from './cus-history/cus-history.component';
 import { CusBusinessComponent } from './cus-business/cus-business.component';
 import { CusPaymentComponent } from './cus-payment/cus-payment.component';
-import { CouponComponent } from './coupon/coupon.component';
-import { NotFoundComponent } from './not-found/not-found.component';
 import { AdmHomeComponent } from './adm-home/adm-home.component';
 import { AdmBusinessComponent } from './adm-business/adm-business.component';
 import { AdmPackageComponent } from './adm-package/adm-package.component';
-import { AmdSaleComponent } from './amd-sale/amd-sale.component';
-import { ProfileComponent } from './profile/profile.component';
-import { AdmUserListComponent } from './adm-user-list/adm-user-list.component';
-import { CreateBusinessComponent } from './create/create-business/create-business.component';
-import { CreatePackagesComponent } from './create/create-packages/create-packages.component';
-import { AddBusinessCategoriesComponent } from './create/add-business-categories/add-business-categories.component';
-import { AddBusinessServicesComponent } from './create/add-business-services/add-business-services.component';
 import { CusEditComponent } from './edit/cus-edit/cus-edit.component';
 import { AdmRegisterComponent } from './adm-register/adm-register.component';
-import { ServerDownpageComponent } from './server-downpage/server-downpage.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
-import { authInterceptor } from './core/interceptors/auth.interceptor';
-import { UnauthorizedComponent } from './shared/unauthorized/unauthorized.component';
-import { NavigationComponent } from './navigation/navigation.component';
-import { FooterComponent } from './footer/footer.component';
 import { MyCouponComponent } from './my-coupon/my-coupon.component';
 import { AdmSidebarComponent } from './adm-sidebar/adm-sidebar.component';
 import { CusExploreComponent } from './cus-explore/cus-explore.component';
-import { ScannerComponent } from './scanner/scanner.component';
 import { CusPackageComponent } from './cus-package/cus-package.component';
-import { AdmCategorylistServicelistComponent } from './adm-categorylist-servicelist/adm-categorylist-servicelist.component';
-import { EditBusinessComponent } from './edit/edit-business/edit-business.component';
-import { EditPackagesComponent } from './edit/edit-packages/edit-packages.component';
 import { AdmCategorylistComponent } from './adm-categorylist/adm-categorylist.component';
 import { AdmServicelistComponent } from './adm-servicelist/adm-servicelist.component';
 import { FeedbacklistComponent } from './feedbacklist/feedbacklist.component';
 import { ContactComponent } from './cus-contact/cus-contact.component';
+import { PaymentHistoryComponent } from './payment-history/payment-history.component';
+import { AdmUserListComponent } from './adm-user-list/adm-user-list.component';
+
+import { AddBusinessCategoriesComponent } from './create/add-business-categories/add-business-categories.component';
+import { AddBusinessServicesComponent } from './create/add-business-services/add-business-services.component';
+import { CreateBusinessComponent } from './create/create-business/create-business.component';
+import { CreatePackagesComponent } from './create/create-packages/create-packages.component';
+
+import { EditBusinessComponent } from './edit/edit-business/edit-business.component';
+import { EditPackagesComponent } from './edit/edit-packages/edit-packages.component';
+
+import { BusinessHomeComponent } from './business-home/business-home.component';
+import { BusinessSaleComponent } from './business-sale/business-sale.component';
+import { BusinessNavigationComponent } from './business-navigation/business-navigation.component';
+import { ScannerComponent } from './scanner/scanner.component';
+import { ScanHistoryComponent } from './scan-history/scan-history.component';
+
+import { NotFoundComponent } from './not-found/not-found.component';
+import { ServerDownpageComponent } from './server-downpage/server-downpage.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { authInterceptor } from './core/interceptors/auth.interceptor';
+import { UnauthorizedComponent } from './shared/unauthorized/unauthorized.component';
+import { BusinessPackageComponent } from './business-package/business-package.component';
+import { BusinessAboutComponent } from './business-about/business-about.component';
+import { BusinessContactComponent } from './business-contact/business-contact.component';
+import { AdmCouponSalelistComponent } from './adm-coupon-salelist/adm-coupon-salelist.component';
+import { AdmFeedbackComponent } from './adm-feedback/adm-feedback.component';
+import { AdmBusinessDetailsComponent } from './adm-business-details/adm-business-details.component';
 
 @NgModule({
   declarations: [
@@ -66,12 +80,10 @@ import { ContactComponent } from './cus-contact/cus-contact.component';
     CusHistoryComponent,
     CusBusinessComponent,
     CusPaymentComponent,
-    CouponComponent,
     NotFoundComponent,
     AdmHomeComponent,
     AdmBusinessComponent,
     AdmPackageComponent,
-    AmdSaleComponent,
     ProfileComponent,
     AdmUserListComponent,
     CreateBusinessComponent,
@@ -89,7 +101,6 @@ import { ContactComponent } from './cus-contact/cus-contact.component';
     CusExploreComponent,
     ScannerComponent,
     CusPackageComponent,
-    AdmCategorylistServicelistComponent,
     EditBusinessComponent,
     EditPackagesComponent,
     AdmCategorylistComponent,
@@ -97,6 +108,17 @@ import { ContactComponent } from './cus-contact/cus-contact.component';
     FeedbacklistComponent,
     ContactComponent,
    
+    PaymentHistoryComponent,
+    BusinessHomeComponent,
+    ScanHistoryComponent,
+    BusinessSaleComponent,
+    BusinessNavigationComponent,
+    BusinessPackageComponent,
+    BusinessAboutComponent,
+    BusinessContactComponent,
+    AdmCouponSalelistComponent,
+    AdmFeedbackComponent,
+    AdmBusinessDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -116,7 +138,8 @@ import { ContactComponent } from './cus-contact/cus-contact.component';
       maxOpened: 3, // Only show up to 3 toasts at a time
     }),
   ],
-  providers: [ provideHttpClient(withFetch(),withInterceptors([authInterceptor])),
+  providers: [
+    provideHttpClient(withFetch(), withInterceptors([authInterceptor])),
   ],
 
   bootstrap: [AppComponent],

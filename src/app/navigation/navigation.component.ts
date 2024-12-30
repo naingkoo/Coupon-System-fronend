@@ -2,19 +2,28 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../core/auth/auth.service';
 import { UserService } from '../Services/user.service';
+<<<<<<< HEAD
 import { User } from '../models/user';
 import { id } from '@swimlane/ngx-charts';
 
+=======
+>>>>>>> acd28e7f0dfad7d80caa84f787be0e87108a83ee
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
-  styleUrl: './navigation.component.css',
+  styleUrls: ['./navigation.component.css'], // Fixed `styleUrl` to `styleUrls`
 })
+<<<<<<< HEAD
 
 export class NavigationComponent implements OnInit{
+=======
+export class NavigationComponent implements OnInit {
+>>>>>>> acd28e7f0dfad7d80caa84f787be0e87108a83ee
   mobileMenuOpen = false;
+  showPopup = false;
 
+<<<<<<< HEAD
   constructor(private router:Router,private authService:AuthService,private userService:UserService){}
   
   user:User=new User();
@@ -31,14 +40,35 @@ ngOnInit(): void {
   // Triggered when the checkbox state changes
   onMenuToggleChange() {
     // You can perform additional actions if needed when toggled
+=======
+  userId: number = 0;
+  userName: string = '';
+  userEmail: string = '';
+  profileImage: string | null = null;
+  userDetails: any = null;
+
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private userService: UserService
+  ) {}
+
+  ngOnInit(): void {
+    // Initialize user ID and load user details
+    this.userId = this.authService.getLoggedUserID();
+    this.loadUserDetails();
+  }
+
+  // Toggles the mobile menu
+  onMenuToggleChange(): void {
+>>>>>>> acd28e7f0dfad7d80caa84f787be0e87108a83ee
     console.log('Menu toggled:', this.mobileMenuOpen);
   }
 
-  // Close the mobile menu when clicking outside
+  // Closes the mobile menu when clicking outside
   @HostListener('document:click', ['$event'])
-  onDocumentClick(event: MouseEvent) {
+  onDocumentClick(event: MouseEvent): void {
     const sidebar = document.querySelector('.mobile-sidebar');
-    const profile = document.querySelector('.profile-container');
     const toggleCheckbox = document.querySelector('.mobile-menu-toggle input');
 
     if (
@@ -52,23 +82,51 @@ ngOnInit(): void {
     }
   }
 
+<<<<<<< HEAD
   showPopup = false;
 
   // Dummy data for demonstration
   
 
+=======
+  // Toggles the profile popup
+>>>>>>> acd28e7f0dfad7d80caa84f787be0e87108a83ee
   togglePopup(): void {
     
     this.showPopup = !this.showPopup;
   }
 
+  // Edits the user's profile
   edit(): void {
-    alert('go to edit page...');
-    // Add navigation logic here if required
+    alert('Navigating to edit profile page...');
     this.togglePopup();
+    // Navigate to the edit profile route
+    this.router.navigate(['/edit']);
   }
 
+  // Loads user details
+  loadUserDetails(): void {
+    if (this.userId > 0) {
+      this.userService.getUserDetailsById(this.userId).subscribe({
+        next: (data) => {
+          this.userDetails = data;
+          this.userName = data.name;
+          this.userEmail = data.email;
+          this.profileImage =
+            data.profileImage || 'assets/image/users/user.png';
+        },
+        error: (err) => {
+          console.error('Error fetching user details:', err);
+        },
+      });
+    } else {
+      console.error('Invalid user ID. Cannot load user details.');
+    }
+  }
+
+  // Logs the user out
   logout(): void {
     this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

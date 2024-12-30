@@ -12,13 +12,29 @@
     >
       <i
         [class]="
-          isSidebarCollapsed ? 'fas fa-arrow-right' : 'fas fa-arrow-left'
+          isSidebarCollapsed
+            ? 'fa-solid fa-angle-left'
+            : 'fa-solid fa-angle-right'
         "
       ></i>
     </button>
   </div>
 
   <main class="content" [ngClass]="{ 'content-expanded': isSidebarCollapsed }">
+    <div class="header">
+      <h4>Package List</h4>
+      <div class="header-actions">
+        <input
+          type="text"
+          placeholder="Search packages..."
+          class="search-box"
+        />
+        <div class="range-filter">
+          <input type="number" placeholder="Min Price" class="number-input" />
+          <input type="number" placeholder="Max Price" class="number-input" />
+        </div>
+      </div>
+    </div>
     <table class="package-table">
       <thead>
         <tr>
@@ -50,9 +66,9 @@
           <td>{{ package.create_date }}</td>
           <td>{{ package.description }}</td>
           <td>
-            <a [routerLink]="['/edit-package', package.id]" class="edit-btn"
-              ><i class="fa-solid fa-pen-to-square"></i
-            ></a>
+            <a [routerLink]="['/edit-package', package.id]" class="edit-btn">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </a>
             <button (click)="onDelete(package.id)" class="delete-btn">
               <i class="fa-solid fa-trash"></i>
             </button>

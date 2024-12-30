@@ -4,6 +4,7 @@ export class User {
   email?: string;
   password?: string;
   phone?: string;
+  register_date: string;
   role?: string;
   photo?:string;
 
@@ -15,8 +16,8 @@ export class User {
     email: string,
     password: string,
     phone: string,
-    role: string,
-    photo:string
+    register_date: string,
+    role: string
   );
 
   constructor(
@@ -25,14 +26,14 @@ export class User {
     email?: string,
     password?: string,
     phone?: string,
-    role?: string,
-    photo?:string
+    register_date?: string,
+    role?: string
   ) {
     this.id = id || 0;
     this.name = name || '';
     this.email = email || '';
     this.password = password || '';
+    this.register_date = register_date || '';
     this.phone = phone || '';
-    this.photo=photo || '';
   }
 }

@@ -12,73 +12,77 @@
     >
       <i
         [class]="
-          isSidebarCollapsed ? 'fas fa-arrow-right' : 'fas fa-arrow-left'
+          isSidebarCollapsed
+            ? 'fa-solid fa-angle-left'
+            : 'fa-solid fa-angle-right'
         "
       ></i>
     </button>
   </div>
 
   <main class="content" [ngClass]="{ 'content-expanded': isSidebarCollapsed }">
-    <!-- Metrics and Profile Section -->
-    <div class="content-inner">
-      <div class="cards-profile-container">
-        <div class="metrics">
-          <div class="metric-card1">
-            <i class="fi fi-rr-users-alt"></i>
-            <div>
-              <h6>Total Login Users</h6>
-              <p>{{ totalLoginUsers }}</p>
-            </div>
-          </div>
-          <div class="metric-card2">
-            <i class="fi fi-rr-chart-histogram"></i>
-            <div>
-              <h6>Total Businesses</h6>
-              <p>{{ totalBusinesses }}</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Admin Profile Section -->
+    <div class="dashboard-container">
+      <!-- Admin Profile Section -->
+      <div class="header">
         <div class="profile-section">
           <img
-            [src]="adminProfile.imageUrl"
+            [src]="'assets/image/users/user.png'"
             alt="Profile Image"
             class="profile-image"
           />
           <div class="profile-text">
-            <p><strong>Name:</strong> {{ adminProfile.name }}</p>
-            <p><strong>Email:</strong> {{ adminProfile.email }}</p>
-            <p><strong>Role:</strong> {{ adminProfile.role }}</p>
+            <p><strong>Name:</strong> {{ userName }}</p>
+            <p><strong>Email:</strong> {{ userEmail }}</p>
           </div>
+        </div>
+        <div class="profile-actions">
+          <button class="actions-btn" alt="Notification">
+            <i class="fi fi-rr-bell-ring"></i>
+          </button>
+          <button
+            class="actions-btn"
+            (click)="navigateTo('/adm-feedback')"
+            alt="Feedback"
+          >
+            <i class="fi fi-rr-comment-alt-dots"></i>
+          </button>
+          <button class="actions-btn" alt="Edit Profile">
+            <i class="fi fi-rr-user-pen"></i>
+          </button>
+          <button class="actions-btn" (click)="logout()" alt="Logout">
+            <i class="fi fi-sr-sign-out-alt"></i>
+          </button>
         </div>
       </div>
 
-      <!-- Chart Filters -->
-      <div class="filters">
-        <div>
-          <label for="year">Year:</label>
-          <select
-            id="year"
-            [(ngModel)]="selectedYear"
-            (change)="filterBarChartData()"
-          >
-            <option *ngFor="let year of availableYears" [value]="year">
-              {{ year }}
-            </option>
-          </select>
+      <div class="Quantity">
+        <div class="Quantity-card" (click)="navigateTo('/adm-user-list')">
+          <div>
+            <h6>Total Login Users</h6>
+            <p>{{ totalLoginUsers }}</p>
+          </div>
+          <i class="fi fi-rr-users-alt"></i>
         </div>
-        <div>
-          <label for="region">Region:</label>
-          <select
-            id="region"
-            [(ngModel)]="selectedRegion"
-            (change)="filterPieChartData()"
-          >
-            <option *ngFor="let region of availableRegions" [value]="region">
-              {{ region }}
-            </option>
-          </select>
+        <div class="Quantity-card" (click)="navigateTo('/adm-business')">
+          <div>
+            <h6>Total Businesses</h6>
+            <p>{{ totalBusinesses }}</p>
+          </div>
+          <i class="fi fi-rr-briefcase"></i>
+        </div>
+        <div class="Quantity-card" (click)="navigateTo('/adm-package')">
+          <div>
+            <h6>Total Packages</h6>
+            <p>{{ totalPackages }}</p>
+          </div>
+          <i class="fi fi-rr-box-alt"></i>
+        </div>
+        <div class="Quantity-card" (click)="navigateTo('/adm-coupon')">
+          <div>
+            <h6>Total Coupon Sales</h6>
+            <p>{{ totalCouponSales }}</p>
+          </div>
+          <i class="fi fi-rr-chart-histogram"></i>
         </div>
       </div>
 

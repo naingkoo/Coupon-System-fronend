@@ -45,7 +45,6 @@ export class AuthService {
     return false; // Check token validity
   }
 
-
   getRoles(): string {
     const token = this.getToken();
     if (token) {
@@ -59,7 +58,8 @@ export class AuthService {
     const token = this.getToken();
     if (token) {
       const decodedToken = this.jwtHelper.decodeToken(token); // Decode the token
-      return decodedToken.id; // Extract roles from the decoded token (or return an empty array if no roles)
+      return decodedToken.id;
+      // Extract roles from the decoded token (or return an empty array if no roles)
     }
     return 0; // If no token is available, return an empty array
   }

@@ -12,7 +12,9 @@
     >
       <i
         [class]="
-          isSidebarCollapsed ? 'fas fa-arrow-right' : 'fas fa-arrow-left'
+          isSidebarCollapsed
+            ? 'fa-solid fa-angle-left'
+            : 'fa-solid fa-angle-right'
         "
       ></i>
     </button>
@@ -20,7 +22,7 @@
 
   <main class="content" [ngClass]="{ 'content-expanded': isSidebarCollapsed }">
     <form (ngSubmit)="onSubmit()" #packageForm="ngForm">
-      <h3 style="text-align: center;">Create Package</h3>
+      <h3 style="text-align: center">Create Package</h3>
 
       <label for="name">Package Name</label>
       <input
@@ -76,11 +78,7 @@
 
       <div class="image-preview-container" *ngIf="imagePreview">
         <p>Image Preview:</p>
-        <img
-          [src]="imagePreview"
-          alt="Image Preview"
-          class="image-preview"
-        />
+        <img [src]="imagePreview" alt="Image Preview" class="image-preview" />
       </div>
 
       <div class="btn-container">
@@ -89,7 +87,6 @@
         </button>
         <button type="button" (click)="onCancel()">Cancel</button>
       </div>
-
     </form>
   </main>
 </div>

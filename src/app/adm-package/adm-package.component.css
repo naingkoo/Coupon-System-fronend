@@ -52,99 +52,119 @@
 }
 
 /*---------------------------*/
-/* Styling for the table container */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  margin-bottom: 10px; /* Space below the header */
+}
+
+.header h4 {
+  margin: 0; /* Remove default margin */
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Space between elements */
+}
+
+.search-box {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 200px; /* Fixed width for the search box */
+}
+
+.range-filter {
+  display: flex;
+  gap: 10px; /* Space between number inputs */
+}
+
+.number-input {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 150px; /* Fixed width for number inputs */
+}
+
 .package-table {
   width: 100%;
   border-collapse: collapse;
-  margin: 20px 0;
-  font-size: 16px;
-  font-family: Arial, sans-serif;
-  border: 1px solid #dddddd;
-  background-color: #ffffff;
+  background: white; /* White background for the table */
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
-.package-table thead {
-  background-color: #f5f5f5;
-  color: #333333;
+.package-table th,
+.package-table td {
+  padding: 12px 15px;
   text-align: left;
+  border-bottom: 1px solid #ddd; /* Light gray border for rows */
 }
 
-.package-table thead th {
-  padding: 12px 15px;
-  font-weight: 600;
-  border-bottom: 2px solid #dddddd;
+.package-table th {
+  background-color: #f8f8f8; /* Light gray background for header */
+  color: #333; /* Dark text for contrast */
 }
 
-.package-table tbody tr {
-  transition: background-color 0.2s ease-in-out;
-}
-
-.package-table tbody tr:nth-of-type(even) {
-  background-color: #f9f9f9;
-}
-
-.package-table tbody tr:hover {
-  background-color: #f3f3f3;
-}
-
-.package-table tbody td {
-  padding: 12px 15px;
-  vertical-align: middle;
-  border-bottom: 1px solid #eeeeee;
+.package-table tr:hover {
+  background-color: #f1f1f1; /* Light gray on hover */
 }
 
 .package-image {
-  width: 60px;
-  height: 60px;
-  border-radius: 4px;
-  object-fit: cover;
-  border: 1px solid #dddddd;
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
 }
 
-/* Action buttons */
-.edit-btn {
-  color: #007bff;
-  text-decoration: none;
-  padding: 8px 10px;
-  border: 1px solid #007bff;
-  border-radius: 4px;
-  transition: all 0.2s ease-in-out;
-  margin-right: 5px;
+.edit-btn,
+.delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #007bff; /* Blue color for edit button */
+  font-size: 18px;
+  margin-right: 10px;
+  transition: color 0.3s;
 }
 
 .edit-btn:hover {
-  background-color: #007bff;
-  color: #ffffff;
+  color: #0056b3; /* Darker blue on hover */
 }
 
 .delete-btn {
-  color: #ffffff;
-  background-color: #e3342f;
-  border: none;
-  padding: 10px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  color: #dc3545; /* Red color for delete button */
 }
 
 .delete-btn:hover {
-  background-color: #d21d17;
+  color: #c82333; /* Darker red on hover */
 }
 
-/* Responsive design for smaller screens */
 @media (max-width: 768px) {
+  .header {
+    flex-direction: column; /* Stack elements on smaller screens */
+    align-items: flex-start; /* Align items to the start */
+  }
+
+  .header-actions {
+    flex-direction: column; /* Stack actions vertically */
+    gap: 10px; /* Space between elements */
+    width: 100%; /* Full width for actions */
+  }
+
+  .search-box,
+  .number-input {
+    width: 100%; /* Full width for inputs */
+  }
+
   .package-table {
     font-size: 14px;
   }
 
   .package-image {
-    width: 50px;
-    height: 50px;
-  }
-
-  .edit-btn,
-  .delete-btn {
-    font-size: 12px;
-    padding: 4px 8px;
+    width: 40px;
+    height: 40px;
   }
 }

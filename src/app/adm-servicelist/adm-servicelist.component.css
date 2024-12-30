@@ -146,8 +146,18 @@
 }
 
 /*-----------------------*/
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  margin-bottom: 10px;
+}
 
-/* Dropdown container styling */
+.header-title {
+  display: flex;
+}
+
 .dropdown {
   position: relative;
   display: inline-block;
@@ -155,100 +165,104 @@
 
 /* Dropdown button styling */
 .dropdown-button {
-  background-color: #007bff;
-  color: white;
+  color: #333;
+  background-color: #f4f6f7;
   border: none;
-  padding: 5px 10px;
+  padding: 5px 5px;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 20px;
 }
 
 /* Dropdown menu container styling */
-.add-btn-container {
+.list-btn-container {
   position: absolute;
+  width: 150px;
   top: 100%;
   left: 0;
   background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   display: none; /* Initially hidden */
+  display: flex;
+  flex-wrap: wrap; /* Ensures buttons wrap on smaller screens */
+  gap: 10px;
+  justify-content: center; /* Centers buttons */
+  margin-bottom: 20px;
 }
 
-/* Button inside the dropdown menu */
-.add-btn-container button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  background: none;
+.list-button {
+  background-color: #fff;
   border: none;
-  text-align: left;
-  font-size: 14px;
+  padding: 10px 20px;
+  border-radius: 5px;
   cursor: pointer;
+  font-size: 16px;
 }
 
-.add-btn-container button:hover {
-  background-color: #f1f1f1;
+.list-button:hover {
+  color: #fab400;
 }
 
-.table-container {
-  margin: 20px 0;
-}
-
-.table {
+.service-table {
   width: 100%;
   border-collapse: collapse;
+  background: white; /* White background for the table */
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
-.table th,
-.table td {
+.service-table th,
+.service-table td {
   padding: 12px 15px;
-  border: 1px solid #ddd;
+  text-align: left;
+  border-bottom: 1px solid #ddd; /* Light gray border for rows */
 }
 
-.table th {
-  background-color: #5a8096;
-  font-weight: bold;
-  text-align: center;
+.service-table th {
+  background-color: #f8f8f8; /* Light gray background for header */
+  color: #333; /* Dark text for contrast */
 }
 
-.table td.edit-btn-container {
-  display: flex;
-  justify-content: center; /* Horizontally center */
-  align-items: center; /* Vertically center */
-  height: 100%; /* Make sure it takes up the full height of the cell */
+.service-table tr:hover {
+  background-color: #f1f1f1; /* Light gray on hover */
 }
 
 .edit-btn-container {
-  gap: 10px;
+  display: flex;
+  gap: 10px; /* Space between buttons */
 }
 
 .action-btn {
   padding: 8px 12px;
-  font-size: 14px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
 }
 
 .edit-btn {
-  background-color: #007bff;
+  background-color: #007bff; /* Blue background for edit button */
   color: white;
-  transition: background-color 0.3s ease;
 }
 
 .edit-btn:hover {
-  background-color: #0056b3;
+  background-color: #0056b3; /* Darker blue on hover */
 }
 
 .delete-btn {
-  background-color: rgb(255, 67, 67);
+  background-color: #dc3545; /* Red background for delete button */
   color: white;
-  transition: background-color 0.3s ease;
 }
 
 .delete-btn:hover {
-  background-color: rgb(146, 0, 0);
+  background-color: #c82333; /* Darker red on hover */
+}
+
+@media (max-width: 768px) {
+  .service-table {
+    font-size: 14px;
+  }
 }
