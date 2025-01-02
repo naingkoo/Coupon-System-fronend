@@ -57,14 +57,14 @@
       <!-- Chart Filters -->
       <div class="filters">
         <div>
-          <label for="year">Year:</label>
+          <label for="weekdays">Weekdays:</label>
           <select
-            id="year"
-            [(ngModel)]="selectedYear"
+            id="weekdays"
+            [(ngModel)]="selectedWeekday"
             (change)="filterBarChartData()"
           >
-            <option *ngFor="let year of availableYears" [value]="year">
-              {{ year }}
+            <option *ngFor="let day of weekdays" [value]="day">
+              {{ day }}
             </option>
           </select>
         </div>
@@ -95,7 +95,7 @@
             [xAxis]="showXAxis"
             [yAxis]="showYAxis"
             [legend]="showLegend"
-            [xAxisLabel]="'Months'"
+            [xAxisLabel]="'Weekdays'"
             [yAxisLabel]="'Sales'"
             [barPadding]="8"
             [roundEdges]="true"

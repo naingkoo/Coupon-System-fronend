@@ -47,7 +47,7 @@
           <td>{{ package.unit_price }}</td>
           <td>{{ package.quantity }}</td>
           <td>{{ package.business_id }}</td>
-          <td>{{ package.create_date }}</td>
+          <td>{{ package.create_date |date:'yyyy-MM-dd' }}</td>
           <td>{{ package.description }}</td>
           <td>
             <a [routerLink]="['/edit-package', package.id]" class="edit-btn"

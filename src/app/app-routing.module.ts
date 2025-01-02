@@ -29,6 +29,8 @@ import { EditBusinessComponent } from './edit/edit-business/edit-business.compon
 import { EditPackagesComponent } from './edit/edit-packages/edit-packages.component';
 import { AdmCategorylistComponent } from './adm-categorylist/adm-categorylist.component';
 import { AdmServicelistComponent } from './adm-servicelist/adm-servicelist.component';
+import { AdmCouponComponent } from './adm-coupon/adm-coupon.component';
+import { CouponComponent } from './coupon/coupon.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -57,6 +59,8 @@ const routes: Routes = [
   { path: 'Business/create', component: CreateBusinessComponent },
   { path: 'Business/edit/:id', component: EditBusinessComponent },
   { path: 'edit-package/:id', component: EditPackagesComponent },
+  {path:'admin/coupon',component:AdmCouponComponent},
+  {path:'public/coupon',component:CouponComponent},
   {
     path: 'adm-business/Category/create',
     component: AddBusinessCategoriesComponent,
@@ -70,7 +74,9 @@ const routes: Routes = [
   { path: 'dashboard', component: CusHomeComponent },
   {path:"404",component:NotFoundComponent},{path:"serverIsDown",component:ServerDownpageComponent},
   {path:"401",component:UnauthorizedComponent},
-  {path:"**",component:NotFoundComponent,pathMatch:"full"}
+  {path:"**",component:NotFoundComponent,pathMatch:"full"},
+
+
   
 
 ];

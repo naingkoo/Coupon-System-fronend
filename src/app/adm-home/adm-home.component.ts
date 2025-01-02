@@ -26,23 +26,24 @@ export class AdmHomeComponent {
     imageUrl: 'https://via.placeholder.com/150',
   };
 
-  // Bar Chart Data
+  weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+  // Bar Chart Configuration
   couponSaleData = [
-    { name: 'January', value: 300, year: 2023 },
-    { name: 'February', value: 500, year: 2023 },
-    { name: 'March', value: 400, year: 2022 },
-    { name: 'April', value: 600, year: 2022 },
-    { name: 'May', value: 800, year: 2022 },
-    { name: 'June', value: 750, year: 2022 },
+    { name: 'Monday', value: 300 },
+    { name: 'Tuesday', value: 500 },
+    { name: 'Wednesday', value: 400 },
+    { name: 'Thursday', value: 600 },
+    { name: 'Friday', value: 800 },
+    { name: 'Saturday', value: 750 },
   ];
 
   filteredBarChartData = [...this.couponSaleData];
-  availableYears = [2022, 2023];
-  selectedYear = this.availableYears[0];
+  selectedWeekday = this.weekdays[0];
 
   filterBarChartData() {
     this.filteredBarChartData = this.couponSaleData.filter(
-      (data) => data.year === this.selectedYear
+      (data) => data.name === this.selectedWeekday
     );
   }
 

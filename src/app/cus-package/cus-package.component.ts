@@ -27,26 +27,37 @@ export class CusPackageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+   this.fetchPackages();
+  }
+  fetchPackages(): void {
     this.service.getALL().subscribe(
       (data) => {
+        this.packages = data;
         this.submittedPackage = data;
       },
       (error) => {
-        console.log('error' + error);
+        console.error('Error fetching packages', error);
       }
     );
   }
+  
 
   filterPackages(): void {
-    // this.filteredPackages = this.packages.filter((pkg) => {
-    //   const matchesBusiness = pkg.business_id?.
-    //     .toLowerCase()
-    //     .includes(this.searchText.toLowerCase());
-    //   const matchesPrice =
-    //     pkg.unit_price >= this.minPrice && pkg.unit_price <= this.maxPrice;
-    //   return matchesBusiness && matchesPrice;
-    // });
+    if (this.searchText) {
+      this.service.getPackagesByBusinessName(this.searchText).subscribe(
+        (packages) => {
+          this.submittedPackage = packages;
+        },
+        (error) => {
+          console.error('Error fetching packages:', error);
+        }
+      );
+    } else {
+      this.submittedPackage = []; // No search text, clear the packages
+    }
   }
+  
+  
 
   openBuyNowPopup(packages: any): void {
     console.log('Opening popup with package:', packages);
