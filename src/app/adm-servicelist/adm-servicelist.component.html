@@ -12,65 +12,67 @@
     >
       <i
         [class]="
-          isSidebarCollapsed ? 'fas fa-arrow-right' : 'fas fa-arrow-left'
+          isSidebarCollapsed
+            ? 'fa-solid fa-angle-left'
+            : 'fa-solid fa-angle-right'
         "
       ></i>
     </button>
   </div>
 
   <main class="content" [ngClass]="{ 'content-expanded': isSidebarCollapsed }">
-    <div style="display: flex; align-items: center">
-      <h3 style="text-align: left; margin-right: 10px">Services List</h3>
-      <div class="dropdown">
-        <button class="dropdown-button" (click)="Dropdown()">▼</button>
-        <div
-          class="add-btn-container"
-          [style.display]="isDropdownVisible ? 'block' : 'none'"
-        >
-          <button class="add-button" routerLink="/adm-business">
-            Business List
+    <div class="header">
+      <div class="header-title">
+        <h4 style="text-align: left; margin-right: 10px">Service List</h4>
+        <div class="dropdown">
+          <button class="dropdown-button" (click)="Dropdown()">
+            <i class="fi fi-rr-angle-small-down"></i>
           </button>
-          <button class="add-button" routerLink="/adm-categorylist">
-            Category List
-          </button>
+          <div
+            class="list-btn-container"
+            [style.display]="isDropdownVisible ? 'block' : 'none'"
+          >
+            <button class="list-button" routerLink="/adm-categorylist">
+              Category List
+            </button>
+            <button class="list-button" routerLink="/adm-business">
+              Business List
+            </button>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="container">
-      <div class="table-container">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Service Name</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let service of showService; let i = index">
-              <td>{{ i + 1 }}</td>
-              <!-- Numbering -->
-              <td>{{ service.name }}</td>
-              <td class="edit-btn-container">
-                <button
-                  class="action-btn edit-btn"
-                  [routerLink]="['/Service/edit', service.id]"
-                >
-                  Edit
-                </button>
-                <button
-                  class="action-btn delete-btn"
-                  [routerLink]="['/Service/delete', service.id]"
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <table class="service-table">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Service Name</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let service of showService; let i = index">
+          <td>{{ i + 1 }}</td>
+          <!-- Numbering -->
+          <td>{{ service.name }}</td>
+          <td class="edit-btn-container">
+            <button
+              class="action-btn edit-btn"
+              [routerLink]="['/Service/edit', service.id]"
+            >
+              Edit
+            </button>
+            <button
+              class="action-btn delete-btn"
+              [routerLink]="['/Service/delete', service.id]"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
     <div class="floating-btn-dropdown">
       <button class="floating-add-btn" (click)="toggleDropdown()">

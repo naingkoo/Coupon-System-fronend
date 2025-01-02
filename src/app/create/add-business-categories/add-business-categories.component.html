@@ -12,7 +12,9 @@
     >
       <i
         [class]="
-          isSidebarCollapsed ? 'fas fa-arrow-right' : 'fas fa-arrow-left'
+          isSidebarCollapsed
+            ? 'fa-solid fa-angle-left'
+            : 'fa-solid fa-angle-right'
         "
       ></i>
     </button>
@@ -23,7 +25,7 @@
       <form #Cform="ngForm" (ngSubmit)="onSubmit(Cform)">
         <div class="card">
           <div class="card_form">
-            <h4 style="text-align: center;">Add Category</h4>
+            <h4 style="text-align: center">Add Category</h4>
             <input
               [(ngModel)]="category.name"
               name="name"
@@ -34,7 +36,9 @@
 
           <div class="btn-container">
             <button class="card_submit" type="submit">Add</button>
-            <button class="card_cancel" type="button" (click)="onCancel()">Cancel</button>
+            <button class="card_cancel" type="button" (click)="onCancel()">
+              Cancel
+            </button>
           </div>
         </div>
       </form>

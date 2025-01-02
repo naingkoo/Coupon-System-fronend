@@ -1,21 +1,24 @@
 <app-navigation></app-navigation>
 <div class="explore-page">
   <div class="filter-section">
+        <!-- Search Box -->
     <input
       type="text"
       class="search-box"
       placeholder="Search..."
       [(ngModel)]="searchQuery"
-      (input)="filterCards()"
+      (input)="onSearchChange()"
     />
 
+
+        <!-- Category Filter Dropdown -->
     <select
       class="filter-select"
       [(ngModel)]="selectedCategory"
-      (change)="filterCards()"
+      (change)="onCategoryChange()"
     >
       <option value="">All Categories</option>
-      <option *ngFor="let category of showCategory" [value]="category.id">
+      <option *ngFor="let category of showCategory" [value]="category.name">
         {{ category.name }}
       </option>
     </select>
@@ -23,17 +26,17 @@
     <select
       class="filter-select"
       [(ngModel)]="selectedService"
-      (change)="filterCards()"
+      (change)="onServiceChange()"
     >
       <option value="">All Services</option>
-      <option *ngFor="let service of showService" [value]="service.id">
+      <option *ngFor="let service of showService" [value]="service.name">
         {{ service.name }}
       </option>
     </select>
   </div>
 
   <div class="card-list">
-    <div class="card" *ngFor="let business of showBusiness">
+    <div class="card" *ngFor="let business of filteredBusiness">
       <div class="card-photo">
         <img
           [src]="'http://localhost:8080' + business.image"
@@ -50,6 +53,6 @@
         </button>
       </div>
     </div>
+    </div>
   </div>
-</div>
 <app-footer></app-footer>

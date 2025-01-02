@@ -12,7 +12,6 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const toastr = inject(ToastrService); 
   const authService=inject(AuthService);
   const token =authService.getToken();
-debugger;
     if (token) {
       if(authService.isAuthenticated()){
         req = req.clone({
@@ -23,40 +22,43 @@ debugger;
       }
      
     }
-  // Retrieve the token from localStorage
-  
- 
-  
-  // If the token exists, clone the request and add the Authorization header
 
-
-  // Continue with the request and handle errors
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
-
       let errorMessage = '';
-
       // Handle error message from the backend (if available)
       if (error.error instanceof Object) {
         errorMessage = error.error.message || 'An unknown error occurred.';
+        if(errorMessage==="Failed to fetch"){
+          router.navigate(["serverIsDown"]);
+        }
       } else {
         errorMessage = error.message || 'An unknown error occurred.';
-      } 
+      }
 
       switch (error.status) {
         case 401:
-          toastr.error('Unauthorized access. Please login again.', 'Authentication Error');
-         
+          toastr.error(
+            'Unauthorized access. Please login again.',
+            'Authentication Error'
+          );
+
           break;
         case 403:
-          toastr.error('Access denied. You do not have permission.', 'Authorization Error');
-          
+      
+          toastr.error(
+            'Access denied. You do not have permission.',
+            'Authorization Error'
+          );
+
           break;
         case 498:
-          toastr.error('Invalid or expired token. Please log in again.', 'Token Error');
+          toastr.error(
+            'Invalid or expired token. Please log in again.',
+            'Token Error'
+          );
           router.navigate(['login']);
           break;
-
       }
 
       // Return the error as a thrown observable

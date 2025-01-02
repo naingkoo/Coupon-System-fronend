@@ -24,7 +24,7 @@
 
 .sidebar-toggle-btn {
   position: absolute;
-  top: 75px;
+  top: 320px;
   left: 230px;
   transform: translateY(-50%);
   background-color: #ffffff;
@@ -49,4 +49,108 @@
 
 .sidebar-toggle-btn.sidebar-collapsed {
   left: 30px;
+}
+
+/*---------------------------*/
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  margin-bottom: 10px; /* Space below the header */
+}
+
+.header h4 {
+  margin: 0; /* Remove default margin */
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Space between elements */
+}
+
+.search-box {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 200px; /* Fixed width for the search box */
+}
+
+.filter-select {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.addUser-btn {
+  background-color: #007bff; /* Blue background for the button */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.addUser -btn:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white; /* White background for the table */
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.user-table th,
+.user-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd; /* Light gray border for rows */
+}
+
+.user-table th {
+  background-color: #f8f8f8; /* Light gray background for header */
+  color: #333; /* Dark text for contrast */
+}
+
+.user-table tr:hover {
+  background-color: #f1f1f1; /* Light gray on hover */
+}
+
+.profile-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%; /* Circular profile image */
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column; /* Stack elements on smaller screens */
+    align-items: flex-start; /* Align items to the start */
+  }
+
+  .header-actions {
+    flex-direction: column; /* Stack actions vertically */
+    gap: 10px; /* Space between elements */
+    width: 100%; /* Full width for actions */
+  }
+
+  .search-box,
+  .filter-select {
+    width: 100%; /* Full width for inputs */
+  }
+
+  .user-table {
+    font-size: 14px;
+  }
+
+  .profile-image {
+    width: 40px;
+    height: 40px;
+  }
 }

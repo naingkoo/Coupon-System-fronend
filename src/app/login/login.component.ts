@@ -1,6 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import {  Router } from '@angular/router';
-import { CheckConService } from '../Services/check-con.service';
+import {  ActivatedRoute, Router } from '@angular/router';
 import { LoggedUser } from '../models/logged-user';
 import { ClientType } from '../models/ClientType';
 import { ToastrService } from 'ngx-toastr';
@@ -9,7 +8,7 @@ import { AuthService } from '../core/auth/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
@@ -20,15 +19,16 @@ export class LoginComponent implements OnInit {
   public erorr:string[] = [];
 
 
-  constructor(public authService:AuthService, private router:Router,private check:CheckConService,
+  constructor(public authService:AuthService, private router:Router,
     private toast: ToastrService, //TODO make toastr service
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private route:ActivatedRoute
   ) { }
 
   // ngOnInit() {
 
   //   this.check.checkCon().subscribe(()=>{
-     
+
   //   }, () =>{
   //     this.router.navigate(["serverIsDown"]);
   //   });
@@ -39,44 +39,41 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
-    
-//here is start from zue
-onSubmit(): void {
-  if (this.loginForm.valid) {
-     this.loggedUser.email = this.loginForm.value.email;
-     this.loggedUser.password=this.loginForm.value.password
-    this.loggin();
-    
-  } else {
-    this.loginForm.markAllAsTouched(); // Highlight validation errors
+
+  //here is start from zue
+  onSubmit(): void {
+    if (this.loginForm.valid) {
+      this.loggedUser.email = this.loginForm.value.email;
+      this.loggedUser.password = this.loginForm.value.password;
+      this.loggin();
+    } else {
+      this.loginForm.markAllAsTouched(); // Highlight validation errors
+    }
   }
-}
 
-public onGoogleLogin(){}
+  public onGoogleLogin() {}
 
-public goToRegister(){}
+  public goToRegister() {}
 
   // here is end from zue 
    public loggin(){
    
       this.authService.login(this.loggedUser).subscribe(c =>{
         this.toast.success("succfully logined!"," Login ");
-        console.log(`token: ${c.data.token}`);
         localStorage.setItem('token', c.data.token);
 
         switch (c.data.role) {
           case ClientType.ADMIN:
             this.authService.ifLoggdIn(this.loggedUser);
-            this.router.navigate(["adm-dashboard"]);
+            const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/adm-dashboard';
+            this.router.navigate([returnUrl]);
             break;
-            case ClientType.COMPANY:
+          case ClientType.CUSTOMER:
             this.authService.ifLoggdIn(this.loggedUser);
-            this.router.navigate(["comapnyPersonalArea"]);
+            const returnUrl1 = this.route.snapshot.queryParams['returnUrl'] || '/home';
+            this.router.navigate([returnUrl1]);
             break;
-            case ClientType.CUSTOMER:
-            this.authService.ifLoggdIn(this.loggedUser);
-            this.router.navigate(["home"]);
-            break;
+            
          
         }
       },err => {

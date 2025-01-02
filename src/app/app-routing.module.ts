@@ -24,13 +24,25 @@ import { CreateBusinessComponent } from './create/create-business/create-busines
 import { AddBusinessCategoriesComponent } from './create/add-business-categories/add-business-categories.component';
 import { AddBusinessServicesComponent } from './create/add-business-services/add-business-services.component';
 import { CreatePackagesComponent } from './create/create-packages/create-packages.component';
-import { AdmCategorylistServicelistComponent } from './adm-categorylist-servicelist/adm-categorylist-servicelist.component';
 import { EditBusinessComponent } from './edit/edit-business/edit-business.component';
 import { EditPackagesComponent } from './edit/edit-packages/edit-packages.component';
 import { AdmCategorylistComponent } from './adm-categorylist/adm-categorylist.component';
 import { AdmServicelistComponent } from './adm-servicelist/adm-servicelist.component';
 import { AdmCouponComponent } from './adm-coupon/adm-coupon.component';
 import { CouponComponent } from './coupon/coupon.component';
+import { CusPaymentComponent } from './cus-payment/cus-payment.component';
+import { PaymentHistoryComponent } from './payment-history/payment-history.component';
+import { BusinessHomeComponent } from './business-home/business-home.component';
+import { BusinessSaleComponent } from './business-sale/business-sale.component';
+import { ScanHistoryComponent } from './scan-history/scan-history.component';
+import { BusinessPackageComponent } from './business-package/business-package.component';
+import { BusinessContactComponent } from './business-contact/business-contact.component';
+import { BusinessAboutComponent } from './business-about/business-about.component';
+import { AdmRegisterComponent } from './adm-register/adm-register.component';
+import { loginGuard } from './core/guards/login.guard';
+import { AdmCouponSalelistComponent } from './adm-coupon-salelist/adm-coupon-salelist.component';
+import { AdmFeedbackComponent } from './adm-feedback/adm-feedback.component';
+import { AdmBusinessDetailsComponent } from './adm-business-details/adm-business-details.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -43,41 +55,114 @@ const routes: Routes = [
   { path: 'contact-us', component: CusContactComponent },
   { path: 'history', component: CusHistoryComponent },
   { path: 'cart', component: CusCartComponent },
+  { path: 'payment', component: CusPaymentComponent },
   { path: 'my-coupon', component: MyCouponComponent },
-  { path: 'adm-dashboard', component: AdmHomeComponent, canActivate: [authGuard], 
-          data: { role: 'ADMIN' } },
-  { path: 'adm-business', component: AdmBusinessComponent },
   {
-    path: 'adm-categorylist-servicelist',
-    component: AdmCategorylistServicelistComponent,
+    path: 'adm-dashboard',
+    component: AdmHomeComponent,
+    canActivate: [authGuard],
+    data: { role: 'ADMIN' },
   },
+  { path: 'adm-business', component: AdmBusinessComponent },
+  { path: 'adm-business-details/:id', component: AdmBusinessDetailsComponent },
+  {
+    path: 'adm-dashboard',
+    component: AdmHomeComponent,
+    canActivate: [authGuard],
+    data: { role: 'ADMIN' },
+  },
+  {
+    path: 'adm-business',
+    component: AdmBusinessComponent,
+    canActivate: [authGuard],
+    data: { role: 'ADMIN' },
+  },
+  {
+    path: 'adm-categorylist',
+    component: AdmCategorylistComponent,
+    canActivate: [authGuard],
+    data: { role: 'ADMIN' },
+  },
+  {
+    path: 'adm-servicelist',
+    component: AdmServicelistComponent,
+    canActivate: [authGuard],
+    data: { role: 'ADMIN' },
+  },
+  {
+    path: 'adm-package',
+    component: AdmPackageComponent,
+    canActivate: [authGuard],
+    data: { role: 'ADMIN' },
+  },
+  {
+    path: 'adm-user-list',
+    component: AdmUserListComponent,
+    canActivate: [authGuard],
+    data: { role: 'ADMIN' },
+  },
+  { path: 'adm-register', component: AdmRegisterComponent },
   { path: 'adm-categorylist', component: AdmCategorylistComponent },
   { path: 'adm-servicelist', component: AdmServicelistComponent },
   { path: 'adm-package', component: AdmPackageComponent },
   { path: 'adm-user-list', component: AdmUserListComponent },
+  { path: 'adm-coupon', component: AdmCouponSalelistComponent },
+  { path: 'adm-feedback', component: AdmFeedbackComponent },
   { path: 'scanner', component: ScannerComponent },
-  { path: 'Business/create', component: CreateBusinessComponent },
-  { path: 'Business/edit/:id', component: EditBusinessComponent },
-  { path: 'edit-package/:id', component: EditPackagesComponent },
   {path:'admin/coupon',component:AdmCouponComponent},
   {path:'public/coupon',component:CouponComponent},
   {
+    path: 'Business/create',
+    component: CreateBusinessComponent,
+    canActivate: [authGuard],
+    data: { role: 'ADMIN' },
+  },
+  {
+    path: 'Business/edit/:id',
+    component: EditBusinessComponent,
+    canActivate: [authGuard],
+    data: { role: 'ADMIN' },
+  },
+  {
+    path: 'edit-package/:id',
+    component: EditPackagesComponent,
+    canActivate: [authGuard],
+    data: { role: 'ADMIN' },
+  },
+  {
     path: 'adm-business/Category/create',
     component: AddBusinessCategoriesComponent,
+    canActivate: [authGuard],
+    data: { role: 'ADMIN' },
   },
   {
     path: 'Service/create',
     component: AddBusinessServicesComponent,
+    canActivate: [authGuard],
+    data: { role: 'ADMIN' },
   },
-  { path: 'Package/create/:id', component: CreatePackagesComponent },
-  { path: 'login', component: LoginComponent},
-  { path: 'dashboard', component: CusHomeComponent },
-  {path:"404",component:NotFoundComponent},{path:"serverIsDown",component:ServerDownpageComponent},
-  {path:"401",component:UnauthorizedComponent},
-  {path:"**",component:NotFoundComponent,pathMatch:"full"},
+
+  { path: 'business-home', component: BusinessHomeComponent },
+  { path: 'business-sale', component: BusinessSaleComponent },
+  { path: 'business-package', component: BusinessPackageComponent },
+  { path: 'business-contact', component: BusinessContactComponent },
+  { path: 'business-about', component: BusinessAboutComponent },
+  { path: 'scan', component: ScannerComponent },
+  { path: 'scan-history', component: ScanHistoryComponent },
+
+  {
+    path: 'Package/create/:id',
+    component: CreatePackagesComponent,
+    canActivate: [authGuard],
+    data: { role: 'ADMIN' },
+  },
+  { path: 'login', component: LoginComponent, canActivate: [loginGuard] },
+  { path: '404', component: NotFoundComponent },
+  { path: 'serverIsDown', component: ServerDownpageComponent },
+  { path: '401', component: UnauthorizedComponent },
+  { path: '**', component: NotFoundComponent, pathMatch: 'full' },
 
 
-  
 
 ];
 

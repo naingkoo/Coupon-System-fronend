@@ -1,30 +1,47 @@
 <app-navigation></app-navigation>
 <div class="cart-container">
-  <div *ngIf="cartItems.length === 0" class="empty-cart">
-    <p>Your cart is empty. Add some products!</p>
+  <div class="cart-header">
+    <h4>Your Cart</h4>
+    <h4>{{ cartItems.length }} items</h4>
   </div>
-
-  <div *ngIf="cartItems.length > 0">
-    <div class="cart-item" *ngFor="let item of cartItems; let i = index">
-      <img [src]="item.image" alt="{{ item.name }}" class="cart-item-image" />
-      <div class="cart-item-details">
-        <h3>{{ item.name }}</h3>
-        <p>{{ item.description }}</p>
-        <div class="cart-item-price">Price: {{ item.price | currency }}</div>
-        <div class="cart-item-actions">
-          <button (click)="increaseQuantity(i)">+</button>
-          {{ item.quantity }}
-          <button (click)="decreaseQuantity(i)">-</button>
-          <button (click)="removeItem(i)" class="remove-btn">Remove</button>
-        </div>
-      </div>
+  <div *ngIf="cartItems.length === 0" class="empty-cart">
+    <p>Your cart is empty.</p>
+  </div>
+  <div *ngFor="let item of cartItems" class="cart-item">
+    <div class="item-image">
+      <img
+        [src]="'http://localhost:8080' + item.packageDetails.image"
+        alt="{{ item.packageDetails.name }}"
+      />
     </div>
-    <div class="cart-summary">
-      <h3>Total: {{ getTotalPrice() | currency }}</h3>
-      <button class="checkout-btn" (click)="checkout()">
-        Proceed to Checkout
-      </button>
+    <div class="item-details">
+      <h3>{{ item.packageDetails.name }}</h3>
+      <p>
+        Unit Price: <span>{{ item.packageDetails.unit_price }} MMK</span>
+      </p>
+      <p>
+        Total Price: <strong>{{ item.unit_price }} MMK</strong>
+      </p>
+      <div class="control-container">
+        <div class="quantity-control">
+          <button class="control" (click)="decreaseQuantity(item)">
+            <i class="fa-solid fa-minus"></i>
+          </button>
+          <input type="number" [value]="item.unit_quantity" readonly />
+          <button class="control" (click)="increaseQuantity(item)">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+        <button class="remove" (click)="removeItem(item.id)">Remove</button>
+      </div>
     </div>
   </div>
 </div>
-<app-footer></app-footer>
+
+<!-- Total Price and Checkout Button -->
+<div class="checkout-container">
+  <div class="total-price">
+    Total Price: <strong>{{ getTotalPrice() }} MMK</strong>
+  </div>
+  <button class="checkout-button" (click)="checkout()">Checkout</button>
+</div>

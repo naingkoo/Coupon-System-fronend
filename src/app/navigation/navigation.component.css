@@ -8,12 +8,12 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #fff;
+  background-color: #fab400;
   color: #000;
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  /*box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);*/
 }
 
 .logo {
@@ -47,7 +47,7 @@ body {
 }
 
 .navbar-links a:hover {
-  color: #fab400;
+  color: #fff;
 }
 
 .navbar-actions {
@@ -57,9 +57,12 @@ body {
 }
 
 .navbar-links a.active,
-.mobile-links a.active,
 .navbar-actions a.active {
-  color: #fab400; /* Highlight color */
+  color: #fff; /* Highlight color */
+}
+
+.mobile-links a.active {
+  color: #fab400;
 }
 
 .icon {
@@ -146,7 +149,7 @@ body {
 
 .line {
   fill: none;
-  stroke: #555;
+  stroke: #333;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 2;
