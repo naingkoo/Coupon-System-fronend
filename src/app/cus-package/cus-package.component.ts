@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Packages } from '../models/package-model';
 import { PackageService } from '../Services/package.service';
+import { CartService } from '../Services/cart.service';
+import { Cart } from '../models/cart';
+import { PaymentDataShareService } from '../Services/payment-data-share.service';
 
 @Component({
   selector: 'app-cus-package',
@@ -23,22 +27,49 @@ export class CusPackageComponent implements OnInit {
   selectedCartPackage: any = null;
   isCartPopupVisible: boolean = false;
 
-  constructor(private service: PackageService, private router: Router) {}
+  user_id: number = 1; // Replace with the logged-in user's ID
+
+  constructor(
+    private paymentDataShare: PaymentDataShareService,
+    private service: PackageService,
+    private cartService: CartService,
+    private router: Router,
+    private toast: ToastrService
+  ) {}
 
   ngOnInit(): void {
+   this.fetchPackages();
+  }
+  fetchPackages(): void {
     this.service.getALL().subscribe(
       (data) => {
+        this.packages = data;
         this.submittedPackage = data;
       },
       (error) => {
-        console.log('error' + error);
+        console.error('Error fetching packages', error);
       }
     );
   }
+  
 
   filterPackages(): void {
+    if (this.searchText) {
+      this.service.getPackagesByBusinessName(this.searchText).subscribe(
+        (packages) => {
+          this.submittedPackage = packages;
+        },
+        (error) => {
+          console.error('Error fetching packages:', error);
+        }
+      );
+    } else {
+      this.submittedPackage = []; // No search text, clear the packages
+    }
     // Add your filtering logic here if needed
   }
+  
+  
 
   openBuyNowPopup(packages: any): void {
     this.selectedPackage = { ...packages, selectedQuantity: 1 };
@@ -65,13 +96,6 @@ export class CusPackageComponent implements OnInit {
     this.isCartPopupVisible = false;
   }
 
-  confirmAddToCart(): void {
-    alert(
-      `Added ${this.selectedCartPackage.selectedQuantity} of ${this.selectedCartPackage.name} to the cart.`
-    );
-    this.closeAddToCartPopup();
-  }
-
   increaseQuantity(packageObj: any): void {
     if (packageObj.selectedQuantity < packageObj.quantity) {
       packageObj.selectedQuantity++;
@@ -84,7 +108,43 @@ export class CusPackageComponent implements OnInit {
     }
   }
 
-  navigateToPayment(packageData: any) {
-    this.router.navigate(['/payment'], { state: { package: packageData } });
+  buynow(packageData: any) {
+    this.paymentDataShare.setPackageData(packageData);
+    this.router.navigate(['/payment']); // Navigate to the payment page
+  }
+
+  //-----------------Add to Cart-----------------
+
+  confirmAddToCart(): void {
+    if (!this.selectedCartPackage) {
+      this.toast.error('No package selected.', 'Error');
+      return;
+    }
+
+    const user_id = this.user_id || 1;
+    const unit_quantity = this.selectedCartPackage?.selectedQuantity || 1;
+    const unit_price =
+      (this.selectedCartPackage?.unit_price || 0) * unit_quantity;
+
+    const cart = new Cart(
+      0,
+      user_id,
+      this.selectedCartPackage?.id,
+      unit_quantity,
+      unit_price
+    );
+
+    this.cartService.addToCart(cart).subscribe(
+      (response) => {
+        this.toast.success('Item added to cart successfully!', 'Success');
+        this.closeAddToCartPopup();
+      },
+      (error) => {
+        this.toast.error(
+          'Failed to add item to cart. Please try again.',
+          'Error'
+        );
+      }
+    );
   }
 }

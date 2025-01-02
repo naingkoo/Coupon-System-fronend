@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Packages } from '../models/package-model';
 import { PackageService } from '../Services/package.service';
@@ -6,15 +6,19 @@ import { PackageService } from '../Services/package.service';
 @Component({
   selector: 'app-adm-package',
   templateUrl: './adm-package.component.html',
-  styleUrl: './adm-package.component.css',
+  styleUrls: ['./adm-package.component.css'], // Corrected typo here
 })
-export class AdmPackageComponent {
+export class AdmPackageComponent implements OnInit {
   isSidebarCollapsed = false;
   title: any;
+  isDeleting: boolean = false; 
+  message: string = '';  
+  messageType: string = '';  
 
   onSidebarToggle() {
     this.isSidebarCollapsed = !this.isSidebarCollapsed;
   }
+
   packages: Packages[] = [];
 
   constructor(
@@ -27,7 +31,7 @@ export class AdmPackageComponent {
     this.fetchPackages();
   }
 
-  // Fetch all packages from the service
+
   fetchPackages(): void {
     this.service.getALL().subscribe(
       (data) => {
@@ -39,17 +43,23 @@ export class AdmPackageComponent {
     );
   }
 
-  // Handle package deletion
+
   onDelete(id: number): void {
     if (confirm('Are you sure you want to delete this package?')) {
+      this.isDeleting = true; 
       this.service.softDeletePackage(id).subscribe(
         (response: string) => {
-          console.log('Package deleted successfully:', response); // Log the response
-
-          this.packages = this.packages.filter((pkg) => pkg.id !== id);
+          console.log('Package deleted successfully:', response);
+          this.packages = this.packages.filter(pkg => pkg.id !== id);
+          this.isDeleting = false;
+          this.message = 'Package deleted successfully';
+          this.messageType = 'success';
         },
         (error) => {
           console.error('Error while deleting:', error);
+          this.isDeleting = false;
+          this.message = 'Error deleting package';
+          this.messageType = 'error';
         }
       );
     }

@@ -1,0 +1,189 @@
+.body {
+  padding: 30px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: auto;
+  background-color: #fff;
+  justify-content: space-between;
+  border-radius: 15px;
+  overflow: hidden;
+  padding: 0;
+  height: 90vh;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.register-left,
+.register-right {
+  flex: 1 1 50%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+p {
+  margin-bottom: 20px;
+  color: #666;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #333;
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+}
+
+.inputForm {
+  border: 1.5px solid #ecedec;
+  border-radius: 10px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  margin-bottom: 10px;
+  transition: border 0.2s ease-in-out;
+}
+
+input {
+  margin-left: 10px;
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+
+input:focus {
+  outline: none;
+}
+
+.inputForm:focus-within {
+  border: 1.5px solid #2d79f3;
+}
+
+.flex-column > label {
+  color: #555;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.radioGroup {
+  display: flex;
+  gap: 20px; /* Space between radio options */
+  align-items: center;
+  margin: 10px 0;
+}
+
+.radioGroup label {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333; /* Text color */
+  cursor: pointer; /* Makes the label clickable */
+}
+
+.radioGroup input[type="radio"] {
+  margin-right: 10px; /* Space between the radio button and the label */
+  accent-color: #007bff; /* Customize radio button color */
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.radioGroup input[type="radio"]:hover {
+  transform: scale(1.1); /* Slightly enlarge on hover */
+  transition: transform 0.2s ease-in-out;
+}
+
+.radioGroup label:hover {
+  color: #007bff; /* Change text color on hover */
+}
+
+/* Submit button */
+.button-submit {
+  margin: 20px 0;
+  background-color: #fab400;
+  border: none;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 10px;
+  height: 50px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.button-submit:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.error-text {
+  color: red;
+  font-size: 13px;
+  margin: 5px 0;
+}
+
+/* Illustration section */
+.register-right {
+  background-color: #fab400;
+  border-radius: 0 10px 10px 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.logo p {
+  font-size: 18px; /* Adjust text size */
+  font-weight: bold;
+  color: #fff; /* Text color */
+  margin: 0; /* Removes unnecessary margin */
+}
+
+.illustration img {
+  width: 100%;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    margin: 10px auto 10px 10px;
+  }
+
+  .register-left,
+  .register-right {
+    flex: 1 1 100%;
+    padding: 20px;
+  }
+
+  .register-right {
+    display: none;
+  }
+}

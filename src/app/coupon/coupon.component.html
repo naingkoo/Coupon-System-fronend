@@ -1,1 +1,22 @@
-<p>coupon works!</p>
+<table>
+    <thead>
+        <tr>
+            
+            <th>Expired Date</th>
+            <th>Transfer Status</th>
+            <th>Purchase_User</th>
+            <th>Unit_price</th>
+            <th>Package </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let coupon of coupons">
+            <td>{{ coupon.expired_date|date:'yyyy-MM-dd' }}</td>
+             <td>{{ coupon.transfer_status }}</td>
+             <td>{{ coupon.purchase?.user?.name }}</td>
+             <td>{{ coupon.packageEntity?.unit_price }}</td>
+
+            <td>{{ coupon.packageEntity?.name }}</td>
+        </tr>
+    </tbody>
+</table>

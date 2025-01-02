@@ -33,6 +33,7 @@
 
 .payment {
   width: 40px;
+  border-radius: 10px;
 }
 
 .footer-section ul {

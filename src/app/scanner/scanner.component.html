@@ -1,12 +1,14 @@
 <div class="header">
-  <a [routerLink]="'/adm-home'" aria-label="Go back to admin home">
+  <a [routerLink]="'/business-home'" aria-label="Go back to admin home">
     <i class="fa-solid fa-arrow-left"></i>
   </a>
-  <a [routerLink]="'/home'" aria-label="Go to home">
+  <a [routerLink]="'/business-home'" aria-label="Go to home">
     <img [src]="'assets/image/logo/logo.png'" class="logo" alt="Coupon Logo" />
     Coupon
   </a>
-  <i class="fa-solid fa-clock-rotate-left" aria-label="History"></i>
+  <a [routerLink]="'/scan-history'" aria-label="Go back to admin home">
+    <i class="fa-solid fa-clock-rotate-left" aria-label="History"></i>
+  </a>
 </div>
 
 <div class="qr-scanner">

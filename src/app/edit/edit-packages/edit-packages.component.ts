@@ -63,7 +63,7 @@ export class EditPackagesComponent {
 
     this.service.updateByid(this.package, selectedFile).subscribe(
       (response) => {
-        this.router.navigate(['/adm-display']);
+        this.router.navigate(['/adm-package']);
       },
       (error) => {
         console.log('Error editing :' + error);

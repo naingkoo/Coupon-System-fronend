@@ -37,7 +37,7 @@
     <div *ngIf="package.image">
       <h4>Current Image:</h4>
       <img
-        [src]="'http://localhost:8080/images/' + package.image"
+        [src]="'http://localhost:8080' + package.image"
         alt="Package Image"
         width="200"
       />
