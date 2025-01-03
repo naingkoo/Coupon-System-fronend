@@ -51,9 +51,8 @@
         required
       />
 
-      <label for="business">Business ID</label>
       <input
-        type="text"
+        type="hidden"
         id="business"
         name="business_id"
         [(ngModel)]="businessId"
@@ -80,6 +79,16 @@
         <p>Image Preview:</p>
         <img [src]="imagePreview" alt="Image Preview" class="image-preview" />
       </div>
+
+      <!-- New Expiration Date Field -->
+      <label for="expiration_date">Expired Date</label>
+      <input
+        type="datetime-local"
+        id="expired_date"
+        name="expired_date"
+        [(ngModel)]="packages.expired_date"
+        required
+      />
 
       <div class="btn-container">
         <button type="submit" [disabled]="!packageForm.valid">

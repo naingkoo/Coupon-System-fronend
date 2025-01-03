@@ -181,7 +181,6 @@
 
 .popup-content {
   width: 50%;
-  max-width: 600px;
   height: auto;
   max-height: 90%;
   background-color: #fff;
@@ -211,15 +210,13 @@
 }
 
 .popup-image {
-  width: 100%;
-  max-width: 300px;
+  width: 40%;
   height: auto;
   border-radius: 8px;
 }
 
 .popup-info {
-  width: 100%;
-  max-width: 300px;
+  width: 60%;
   text-align: left;
 }
 
@@ -233,7 +230,7 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
-  margin: 15px 0;
+  margin: 10px 0;
 }
 
 .qty-btn {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BusinessService } from '../Services/business.service';
 import { PackageService } from '../Services/package.service';
 import { ReviewService } from '../Services/review.service';
@@ -11,9 +11,11 @@ import { Review } from '../models/review.model';
   templateUrl: './adm-business-details.component.html',
   styleUrl: './adm-business-details.component.css',
 })
-export class AdmBusinessDetailsComponent {
+export class AdmBusinessDetailsComponent implements OnInit{
   isSidebarCollapsed = false;
   title: any;
+  loading: boolean = false;
+  error: string = '';
 
   onSidebarToggle() {
     this.isSidebarCollapsed = !this.isSidebarCollapsed;
@@ -41,7 +43,7 @@ export class AdmBusinessDetailsComponent {
   businessCategories?: string[];
   businessServices?: string[];
 
-  businessId: number | null = null;
+  businessId: number = 0;
 
   packages: Packages[] = []; // This will hold the list of packages
 
@@ -56,7 +58,9 @@ export class AdmBusinessDetailsComponent {
         this.businessId = +id; // Convert 'id' to a number
         this.loadBusinessDetails(this.businessId);
         this.loadPackagesByBusinessId(this.businessId);
+        this.businessId = +this.route.snapshot.paramMap.get('businessId')!;
         this.fetchReviews();
+        this.loadReviews();
       }
     });
   }
@@ -95,6 +99,22 @@ export class AdmBusinessDetailsComponent {
     );
   }
 
+  loadReviews(): void {
+    this.loading = true;
+    this.error = '';
+    this.reviewService.getReviewsByBusinessId(this.businessId).subscribe(
+      (data) => {
+        this.reviews = data;
+        console.log('data:', this.businessId);
+        this.loading = false;
+      },
+      (err) => {
+        this.error = 'Failed to load reviews';
+        this.loading = false;
+      }
+    );
+  }
+ 
   fetchReviews(): void {
     this.reviewService.getAllReviews().subscribe(
       (data) => {

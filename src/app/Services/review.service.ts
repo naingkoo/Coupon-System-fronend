@@ -3,12 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Review } from '../models/review.model';
 
+
 @Injectable({
   providedIn: 'root',
 })
 export class ReviewService {
   private apiUrl = 'http://localhost:8080/reviews/save';
   private baseUrl = 'http://localhost:8080/reviews/public/list'; // Replace with your API URL
+  private abiUrl: string = 'http://localhost:8080/reviews/business';
 
   constructor(private http: HttpClient) {}
 
@@ -21,5 +23,10 @@ export class ReviewService {
   // Method to fetch all reviews from the backend
   getAllReviews(): Observable<Review[]> {
     return this.http.get<Review[]>(this.baseUrl);
+
+  }
+
+  getReviewsByBusinessId(businessId: number): Observable<Review[]> {
+    return this.http.get<Review[]>(`${this.abiUrl}/${businessId}`);
   }
 }

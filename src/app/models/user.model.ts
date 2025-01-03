@@ -6,7 +6,6 @@ export class User {
   confirmPassword: string;
 
   role: string;
-  
 
   constructor(
     username: string = '',

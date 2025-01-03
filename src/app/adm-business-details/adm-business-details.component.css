@@ -189,3 +189,18 @@
 .review-item:last-child {
   border-bottom: none; /* Remove last border */
 }
+
+.review-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: #f9f9f9;
+}
+
+.review-card h3 {
+  margin-top: 0;
+}
+
+.review-card p {
+  margin: 5px 0;
+}

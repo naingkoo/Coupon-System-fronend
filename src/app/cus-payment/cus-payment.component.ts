@@ -72,7 +72,7 @@ export class CusPaymentComponent {
     }
 
     // Update the total amount in payment data
-    //this.paymentData.totalAmount = total;
+    this.paymentData.total_amount = total;
   }
 
   refreshAndNavigate(): void {

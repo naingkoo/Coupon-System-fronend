@@ -25,11 +25,7 @@
       <!-- Admin Profile Section -->
       <div class="header">
         <div class="profile-section">
-          <img
-            [src]="'assets/image/users/user.png'"
-            alt="Profile Image"
-            class="profile-image"
-          />
+          <img [src]="profileImage" alt="Profile Image" class="profile-image" />
           <div class="profile-text">
             <p><strong>Name:</strong> {{ userName }}</p>
             <p><strong>Email:</strong> {{ userEmail }}</p>
@@ -46,8 +42,12 @@
           >
             <i class="fi fi-rr-comment-alt-dots"></i>
           </button>
-          <button class="actions-btn" alt="Edit Profile">
-            <i class="fi fi-rr-user-pen"></i>
+          <button
+            class="actions-btn"
+            alt="View Profile"
+            (click)="navigateTo('/adm-profile')"
+          >
+            <i class="fi fi-rr-portrait"></i>
           </button>
           <button class="actions-btn" (click)="logout()" alt="Logout">
             <i class="fi fi-sr-sign-out-alt"></i>

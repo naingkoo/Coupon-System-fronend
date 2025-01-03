@@ -5,6 +5,8 @@ export class Review {
   rating: number;
   message: string;
   reviewDate: Date;
+  user_name: string;
+  user_photo: string;
 
   constructor(
     id: number = 0,
@@ -12,7 +14,9 @@ export class Review {
     userId: number = 0,
     rating: number = 0,
     message: string = '',
-    reviewDate: Date = new Date()
+    reviewDate: Date = new Date(),
+    user_name: string = '',
+    user_photo: string = ''
   ) {
     this.id = id;
     this.businessId = businessId;
@@ -20,5 +24,7 @@ export class Review {
     this.rating = rating;
     this.message = message;
     this.reviewDate = reviewDate;
+    this.user_name = user_name;
+    this.user_photo = user_photo;
   }
 }

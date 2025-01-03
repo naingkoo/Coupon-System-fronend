@@ -344,6 +344,7 @@ body {
   text-decoration: none;
 }
 
+
 @media (max-width: 768px) {
   .package-container {
     display: flex;
@@ -401,4 +402,5 @@ body {
     max-width: 100%;
     margin: 10px 0;
   }
+  
 }

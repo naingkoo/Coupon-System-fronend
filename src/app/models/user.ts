@@ -6,7 +6,6 @@ export class User {
   phone?: string;
   register_date: string;
   role?: string;
-  photo?:string;
 
   constructor();
 

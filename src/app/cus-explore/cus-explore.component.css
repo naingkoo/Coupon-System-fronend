@@ -24,9 +24,7 @@
 
 .search-box:focus,
 .filter-select:focus {
-  border-color: #fab400;
   outline: none;
-  box-shadow: 0 0 5px rgba(250, 180, 0, 0.5);
 }
 
 /* Card List */

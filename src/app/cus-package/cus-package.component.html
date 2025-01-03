@@ -49,6 +49,10 @@
     </div>
     <div class="package-info">
       <h3 class="package-name">{{ package.name }}</h3>
+      <p class="package-qty">
+        Expired date: {{ package.expired_date | date : "dd-MM-yyyy" }}
+      </p>
+
       <p class="package-qty">Quantity: {{ package.quantity }}</p>
       <p class="package-price">Price: {{ package.unit_price }} MMK</p>
     </div>
@@ -87,6 +91,12 @@
           <label>Description:</label>
           <p>{{ selectedPackage?.description }}</p>
         </div>
+
+        <div class="info">
+          <label>Expired date:</label>
+          <p>{{ selectedPackage?.expired_date | date : "dd-MM-yyyy" }}</p>
+        </div>
+
         <div class="info">
           <label>Available Quantity:</label>
           <p>{{ selectedPackage?.quantity }}</p>
@@ -149,6 +159,10 @@
         <div class="info">
           <label>Description:</label>
           <p>{{ selectedPackage?.description }}</p>
+        </div>
+        <div class="info">
+          <label>Expired date:</label>
+          <p>{{ selectedPackage?.expired_date | date : "dd-MM-yyyy" }}</p>
         </div>
         <div class="info">
           <label>Available Quantity:</label>

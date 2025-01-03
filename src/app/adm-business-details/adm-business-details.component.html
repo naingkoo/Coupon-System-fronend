@@ -81,17 +81,22 @@
           </div>
         </div>
 
-        <div *ngIf="selectedTab === 'reviews'" class="reviews">
-          <h4>Customer Reviews</h4>
-          <div *ngFor="let review of reviews" class="review-item">
-            <p>
-              <strong>{{ review.userId }}:</strong> {{ review.message }}
-            </p>
-            <p>
-              <em>Rating: {{ review.rating }}</em>
-            </p>
+        <div *ngIf="!loading && reviews.length > 0">
+          <h4>Customer's Reviews</h4>
+          <div *ngFor="let review of reviews">
+            <div class="review-card">
+              <p>{{ review.user_name }}</p>
+              <p>{{ review.user_photo }}</p>
+              <p>
+                <span *ngFor="let star of [].constructor(review.rating); let i = index">
+                  &#9733; 
+                </span>
+              </p>
+              <p>{{ review.message }}</p>
+            </div>
           </div>
         </div>
+      
       </div>
     </div>
   </main>

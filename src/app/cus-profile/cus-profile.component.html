@@ -1,0 +1,110 @@
+<app-navigation></app-navigation>
+<div class="profile-container">
+  <div class="profile-content">
+    <div class="profile-tab">
+      <a class="tab" (click)="switchTab('account-general')">General</a>
+      <a class="tab" (click)="switchTab('account-change-password')"
+        >Change password</a
+      >
+    </div>
+    <div class="profile-main">
+      <div
+        id="account-general"
+        class="tab-content"
+        [class.active]="activeTab === 'account-general'"
+      >
+        <form (ngSubmit)="onSubmit()" #photoUploadForm="ngForm">
+          <div class="profile-photo-section">
+            <img
+              [src]="photoPreview || profileImage"
+              alt="Profile Photo"
+              class="profile-photo"
+            />
+
+            <div class="upload-section">
+              <label class="upload-label">
+                Browse
+                <input
+                  type="file"
+                  (change)="onPhotoChange($event)"
+                  name="photo"
+                  accept="image/jpeg, image/png, image/gif"
+                  required
+                />
+              </label>
+
+              <div class="upload-info">
+                Allowed JPG, GIF or PNG. Max size of 800K
+              </div>
+
+              <button type="submit" [disabled]="!photoUploadForm.form.valid">
+                Upload Photo
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <div class="form-section">
+          <label>Username</label>
+          <input
+            type="text"
+            [(ngModel)]="userDetails.name"
+            placeholder="Enter your username"
+            
+          />
+          <label>Phone</label>
+          <input
+            type="text"
+            [(ngModel)]="userDetails.phone"
+            placeholder="Enter your phone number"
+           
+          />
+          <label>E-mail</label>
+          <input
+            type="text"
+            [(ngModel)]="userDetails.email"
+            placeholder="Enter your email"
+           
+          />
+        </div>
+        <button (click)="saveChanges()">Save Changes</button> 
+      </div>
+
+      <div
+        id="account-change-password"
+        class="tab-content"
+        [class.active]="activeTab === 'account-change-password'"
+      >
+        <div class="form-section">
+          <label>Current password</label>
+          <input
+            type="password"
+            [(ngModel)]="currentPassword"
+            placeholder="Enter current password"
+          />
+          <label>New password</label>
+          <input
+            type="password"
+            [(ngModel)]="newPassword"
+            placeholder="Enter new password"
+          />
+          <label>Repeat new password</label>
+          <input
+            type="password"
+            [(ngModel)]="repeatNewPassword"
+            placeholder="Repeat new password"
+          />
+        </div>
+      </div>
+      <div class="profile-actions">
+        <button class="btn-save" type="button" (click)="saveChanges()">
+          Save changes
+        </button>
+        <button class="btn-cancel" type="button" (click)="cancelChanges()">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

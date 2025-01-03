@@ -21,119 +21,130 @@
   </div>
 
   <main class="content" [ngClass]="{ 'content-expanded': isSidebarCollapsed }">
-    <form #Bform="ngForm" (ngSubmit)="onSubmit(Bform)">
-      <div class="form-container">
-        <!-- Left div with input fields -->
-        <div class="input-container">
-          <div class="card_form">
+    <form #Bform="ngForm" (ngSubmit)="onSubmit(Bform)" class="business-form">
+      <div class="photo-upload-section">
+        <label for="image-upload" class="upload-label"
+          >Upload Business Image</label
+        >
+        <input
+          id="image-upload"
+          type="file"
+          name="image"
+          (change)="onFileChange($event)"
+          required
+        />
+        <div class="image-preview-container" *ngIf="imagePreview">
+          <p class="preview-title">Image Preview:</p>
+          <img [src]="imagePreview" alt="Image Preview" class="image-preview" />
+        </div>
+      </div>
+
+      <!-- Main Form Container -->
+      <div class="form-content">
+        <!-- Left Section: Business Information -->
+        <div class="form-section">
+          <h4>Business Information</h4>
+          <div class="input-group">
+            <label for="user-id">User ID</label>
             <input
+              id="user-id"
               [(ngModel)]="business.user_id"
               name="user_id"
-              placeholder="Enter user_id"
+              placeholder="Enter User ID"
               type="text"
-            />
-          </div>
-
-          <div class="card_form">
-            <input
-              [(ngModel)]="business.name"
-              name="name"
-              placeholder="Enter your name"
-              type="text"
-            />
-          </div>
-
-          <div class="card_form">
-            <input
-              [(ngModel)]="business.country"
-              name="country"
-              placeholder="Enter your country"
-              type="text"
-            />
-          </div>
-
-          <div class="card_form">
-            <input
-              [(ngModel)]="business.city"
-              name="city"
-              placeholder="Enter your city"
-              type="text"
-            />
-          </div>
-
-          <div class="card_form">
-            <input
-              [(ngModel)]="business.street"
-              name="street"
-              placeholder="Enter your street"
-              type="text"
-            />
-          </div>
-
-          <div class="card_form">
-            <input
-              [(ngModel)]="business.address"
-              name="address"
-              placeholder="Enter your address"
-              type="text"
-            />
-          </div>
-
-          <div class="card_form">
-            <input
-              type="file"
-              name="image"
-              (change)="onFileChange($event)"
               required
             />
-
-            <div class="image-preview-container" *ngIf="imagePreview">
-              <p>Image Preview:</p>
-              <img
-                [src]="imagePreview"
-                alt="Image Preview"
-                class="image-preview"
-              />
-            </div>
+          </div>
+          <div class="input-group">
+            <label for="business-name">Business Name</label>
+            <input
+              id="business-name"
+              [(ngModel)]="business.name"
+              name="name"
+              placeholder="Enter Business Name"
+              type="text"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label for="country">Country</label>
+            <input
+              id="country"
+              [(ngModel)]="business.country"
+              name="country"
+              placeholder="Enter Country"
+              type="text"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label for="city">City</label>
+            <input
+              id="city"
+              [(ngModel)]="business.city"
+              name="city"
+              placeholder="Enter City"
+              type="text"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label for="street">Street</label>
+            <input
+              id="street"
+              [(ngModel)]="business.street"
+              name="street"
+              placeholder="Enter Street"
+              type="text"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label for="address">Address</label>
+            <input
+              id="address"
+              [(ngModel)]="business.address"
+              name="address"
+              placeholder="Enter Address"
+              type="text"
+              required
+            />
           </div>
         </div>
 
-        <!-- Right div with checkboxes -->
-        <div class="checkbox-container">
-          <div class="categories-list">
-            <p>Choose categories</p>
-            <div *ngFor="let category of categories">
-              <label>
-                <input
-                  type="checkbox"
-                  [value]="category.id"
-                  [attr.data-name]="category.name"
-                  (change)="onCategoryChange($event)"
-                />
-                {{ category.name }}
-              </label>
-            </div>
+        <div class="categories-list">
+          <p>Select Categories</p>
+          <div *ngFor="let category of categories">
+            <label>
+              <input
+                type="checkbox"
+                [value]="category.id"
+                [attr.data-name]="category.name"
+                (change)="onCategoryChange($event)"
+              />
+              {{ category.name }}
+            </label>
           </div>
-
-          <div class="service-list">
-            <p>Choose services</p>
-            <div *ngFor="let service of services">
-              <label>
-                <input
-                  type="checkbox"
-                  [value]="service.id"
-                  (change)="onServiceChange($event)"
-                />
-                {{ service.name }}
-              </label>
-            </div>
+        </div>
+        <div class="service-list">
+          <p>Select Services</p>
+          <div *ngFor="let service of services">
+            <label>
+              <input
+                type="checkbox"
+                [value]="service.id"
+                (change)="onServiceChange($event)"
+              />
+              {{ service.name }}
+            </label>
           </div>
         </div>
       </div>
 
-      <div class="btn-container">
-        <button class="card_submit">Add</button>
-        <button type="button" class="card_cancel" (click)="onCancel()">
+      <!-- Button Section -->
+      <div class="button-group">
+        <button class="submit-button" type="submit">Add</button>
+        <button class="cancel-button" type="button" (click)="onCancel()">
           Cancel
         </button>
       </div>
