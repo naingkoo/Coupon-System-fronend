@@ -1,11 +1,13 @@
-import { Company } from './company';
-import {Customer} from './Customer';
-import { Coupontype } from './CouponType';
-
 export class Coupon {
+  id: number | null = null; // Coupon ID
+  expired_date: Date | null = null; // Expiration date of the coupon
+  confirm: boolean | null = null; // Confirmation status
+  status: boolean | null = null; // Coupon usage status
+  transfer_status: boolean | null = null; // Transfer status
+  purchase_id: number | null = null; // Associated purchase ID
+  package_id: number | null = null; // Associated package ID
 
-    constructor(public id:number,public title:string,public messege:string,
-        public image:string ,public amount:number ,public price:number
-        ,public startDate:Date , public endDate:Date,public type:Coupontype,public company:Company,public customerList:Customer[]){}
-        
+  constructor(init?: Partial<Coupon>) {
+    Object.assign(this, init);
+  }
 }

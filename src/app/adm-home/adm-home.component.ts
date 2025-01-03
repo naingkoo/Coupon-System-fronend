@@ -3,6 +3,10 @@ import { Color, ScaleType } from '@swimlane/ngx-charts';
 import { AuthService } from '../core/auth/auth.service';
 import { Router } from '@angular/router';
 import { UserService } from '../Services/user.service';
+import {
+  PurchaseAndUserDTO,
+  PurchaseService,
+} from '../Services/purchase.service';
 
 @Component({
   selector: 'app-adm-home',
@@ -12,6 +16,10 @@ import { UserService } from '../Services/user.service';
 export class AdmHomeComponent {
   isSidebarCollapsed = false;
   title: any;
+
+  purchases: PurchaseAndUserDTO[] = [];
+  isLoading = true;
+  errorMessage = '';
 
   onSidebarToggle() {
     this.isSidebarCollapsed = !this.isSidebarCollapsed;
@@ -30,13 +38,15 @@ export class AdmHomeComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private purchaseService: PurchaseService
   ) {}
 
   ngOnInit(): void {
     // Initialize user ID and load user details
     this.userId = this.authService.getLoggedUserID();
     this.loadUserDetails();
+    this.fetchPurchases();
   }
 
   // Loads user details
@@ -65,6 +75,20 @@ export class AdmHomeComponent {
     } else {
       console.error('Invalid user ID. Cannot load user details.');
     }
+  }
+
+  fetchPurchases(): void {
+    this.purchaseService.getAllPurchases().subscribe(
+      (data) => {
+        this.purchases = data;
+        this.isLoading = false;
+      },
+      (error) => {
+        this.errorMessage = 'Failed to load purchases.';
+        this.isLoading = false;
+        console.error(error);
+      }
+    );
   }
 
   // Metrics

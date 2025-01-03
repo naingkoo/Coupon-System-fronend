@@ -1,73 +1,70 @@
 <app-navigation></app-navigation>
+<div class="package-page">
+  <section>
+    <!-- Filter Section -->
+    <div class="filter-container">
+      <div class="filter-item">
+        <input
+          type="text"
+          id="searchText"
+          [(ngModel)]="searchText"
+          (input)="filterPackages()"
+          placeholder="Search by business"
+        />
+      </div>
+      <div class="filter-item">
+        <input
+          type="number"
+          id="minPrice"
+          (input)="filterPackages()"
+          placeholder="Min Price"
+        />
+      </div>
+      <div class="filter-item">
+        <input
+          type="number"
+          id="maxPrice"
+          (input)="filterPackages()"
+          placeholder="Max Price"
+        />
+      </div>
+    </div>
 
-<!-- Filter Section -->
-<div class="filter-container">
-  <div class="filter-item">
-    <label for="searchText">Business Name</label>
-    <input
-      type="text"
-      id="searchText"
-      [(ngModel)]="searchText"
-      (input)="filterPackages()"
-      placeholder="Search by business"
-    />
-  </div>
-  <div class="filter-item">
-    <label for="minPrice">Min Price</label>
-    <input
-      type="number"
-      id="minPrice"
-      [(ngModel)]="minPrice"
-      (input)="filterPackages()"
-      placeholder="Min Price"
-    />
-  </div>
-  <div class="filter-item">
-    <label for="maxPrice">Max Price</label>
-    <input
-      type="number"
-      id="maxPrice"
-      [(ngModel)]="maxPrice"
-      (input)="filterPackages()"
-      placeholder="Max Price"
-    />
-  </div>
+    <!-- Packages Section -->
+    <div
+      *ngIf="submittedPackage && submittedPackage.length > 0"
+      class="packages-container"
+    >
+      <div class="package-card" *ngFor="let package of submittedPackage">
+        <div *ngIf="package.image" class="package-image-container">
+          <img
+            [src]="'http://localhost:8080' + package.image"
+            alt="Package Image"
+            class="package-image"
+          />
+        </div>
+        <div class="package-info">
+          <h3 class="package-name">{{ package.name }}</h3>
+          <p class="package-qty">
+            Expired date: {{ package.expired_date | date : "dd-MM-yyyy" }}
+          </p>
+
+          <p class="package-qty">Quantity: {{ package.quantity }}</p>
+          <p class="package-price">Price: {{ package.unit_price }} MMK</p>
+        </div>
+
+        <div class="btn-container">
+          <button (click)="openAddToCartPopup(package)" class="btn-cart">
+            Add to Cart
+          </button>
+          <button (click)="openBuyNowPopup(package)" class="btn-buy">
+            Buy Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
-
-<!-- Packages Section -->
-<div
-  *ngIf="submittedPackage && submittedPackage.length > 0"
-  class="packages-container"
->
-  <div class="package-card" *ngFor="let package of submittedPackage">
-    <div *ngIf="package.image" class="package-image-container">
-      <img
-        [src]="'http://localhost:8080' + package.image"
-        alt="Package Image"
-        class="package-image"
-      />
-    </div>
-    <div class="package-info">
-      <h3 class="package-name">{{ package.name }}</h3>
-      <p class="package-qty">
-        Expired date: {{ package.expired_date | date : "dd-MM-yyyy" }}
-      </p>
-
-      <p class="package-qty">Quantity: {{ package.quantity }}</p>
-      <p class="package-price">Price: {{ package.unit_price }} MMK</p>
-    </div>
-
-    <div class="btn-container">
-      <button (click)="openAddToCartPopup(package)" class="btn-cart">
-        Add to Cart
-      </button>
-      <button (click)="openBuyNowPopup(package)" class="btn-buy">
-        Buy Now
-      </button>
-    </div>
-  </div>
-</div>
-
 <app-footer></app-footer>
 
 <!-- "Buy Now" Popup Modal -->
@@ -83,13 +80,10 @@
       />
       <div class="popup-info">
         <h3>{{ selectedPackage?.name }}</h3>
+        <p style="display: none">{{ selectedPackage?.id }}</p>
         <div class="info">
           <label>Price:</label>
           <p>{{ selectedPackage?.unit_price }} MMK</p>
-        </div>
-        <div class="info">
-          <label>Description:</label>
-          <p>{{ selectedPackage?.description }}</p>
         </div>
 
         <div class="info">
@@ -132,6 +126,10 @@
         </button>
       </div>
     </div>
+    <div class="description">
+      <label><strong>Description:</strong></label>
+      <p>{{ selectedPackage?.description }}</p>
+    </div>
   </div>
 </div>
 
@@ -155,10 +153,6 @@
         <div class="info">
           <label>Price:</label>
           <p>{{ selectedPackage?.unit_price }} MMK</p>
-        </div>
-        <div class="info">
-          <label>Description:</label>
-          <p>{{ selectedPackage?.description }}</p>
         </div>
         <div class="info">
           <label>Expired date:</label>
@@ -200,6 +194,10 @@
           Add to Cart
         </button>
       </div>
+    </div>
+    <div class="description">
+      <label><strong>Description:</strong></label>
+      <p>{{ selectedPackage?.description }}</p>
     </div>
   </div>
 </div>

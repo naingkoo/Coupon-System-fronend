@@ -34,6 +34,7 @@
         <div class="profile-actions">
           <button class="actions-btn" alt="Notification">
             <i class="fi fi-rr-bell-ring"></i>
+            <span class="tooltip">Notification</span>
           </button>
           <button
             class="actions-btn"
@@ -41,6 +42,7 @@
             alt="Feedback"
           >
             <i class="fi fi-rr-comment-alt-dots"></i>
+            <span class="tooltip">Feedback</span>
           </button>
           <button
             class="actions-btn"
@@ -48,9 +50,11 @@
             (click)="navigateTo('/adm-profile')"
           >
             <i class="fi fi-rr-portrait"></i>
+            <span class="tooltip">Profile</span>
           </button>
           <button class="actions-btn" (click)="logout()" alt="Logout">
             <i class="fi fi-sr-sign-out-alt"></i>
+            <span class="tooltip">Logout</span>
           </button>
         </div>
       </div>
@@ -126,6 +130,45 @@
           </ngx-charts-pie-chart>
         </div>
       </div>
+    </div>
+    <div *ngIf="isLoading" class="loading">Loading purchases...</div>
+    <div *ngIf="errorMessage" class="error">
+      {{ errorMessage }}
+    </div>
+    <div *ngIf="!isLoading && !errorMessage">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>User Photo</th>
+            <th>User Name</th>
+            <th>Total Amount</th>
+            <th>Total Quantity</th>
+            <th>Payment Type</th>
+            <th>Transaction ID</th>
+            <th>Purchase Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let purchase of purchases">
+            <td>
+              <img
+                *ngIf="purchase.user_photo"
+                [src]="'http://localhost:8080' + purchase.user_photo"
+                alt="User Photo"
+                class="user-photo"
+              />
+            </td>
+            <td>{{ purchase.user_name }}</td>
+            <td>{{ purchase.total_amount | currency }}</td>
+            <td>{{ purchase.total_quantity }}</td>
+            <td>{{ purchase.payment_type }}</td>
+            <td>{{ purchase.transaction_id }}</td>
+            <td>{{ purchase.purchase_date | date : "short" }}</td>
+            <td><button>Accept</button><button>Decline</button></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </main>
 </div>

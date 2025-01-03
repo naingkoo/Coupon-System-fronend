@@ -1,93 +1,118 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { PaymentDataShareService } from '../Services/payment-data-share.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../core/auth/auth.service';
-
+import { ToastrService } from 'ngx-toastr';
 import { PaymentService } from '../Services/payment.service';
-import { Payment } from '../models/payment';
-import { response } from 'express';
+import { PurchaseRequest } from '../models/purchase-request';
+import { PurchaseDTO } from '../models/purchase-dto';
+import { PackageDTO } from '../models/package-dto';
+
 @Component({
   selector: 'app-cus-payment',
   templateUrl: './cus-payment.component.html',
   styleUrls: ['./cus-payment.component.css'],
 })
-export class CusPaymentComponent {
+export class CusPaymentComponent implements OnInit {
   userId: number = 0;
-  packageData: any; // Change this to the appropriate type if available
-  paymentData: Payment = new Payment();
-
-  qrCode: string = 'assets/image/payment/KBZ_pay.png'; // Default QR Code for KBZ Pay
-  cartData: any[] = [];
+  packageDetails: any;
+  totalAmount: number = 0;
+  qrCode: string = 'assets/image/payment/KBZ_pay.png';
+  transactionId: string = '';
+  paymentType: string = 'kbz-pay';
 
   constructor(
-    private paymentDataShare: PaymentDataShareService,
-    private service: PaymentService,
     private authService: AuthService,
-    private router: Router
+    private route: ActivatedRoute,
+    private router: Router,
+    private toastr: ToastrService,
+    private paymentService: PaymentService
   ) {}
 
   ngOnInit(): void {
     this.userId = this.authService.getLoggedUserID();
-    this.packageData = this.paymentDataShare.getPackageData();
-    this.cartData = this.paymentDataShare.getCartData();
 
-    this.calculateTotalAmount();
-
-    // Optionally, handle cases where no data is present
-    if (!this.packageData && this.cartData.length === 0) {
-      console.error('No data to display.');
-    }
+    this.route.queryParams.subscribe((params) => {
+      if (params['package']) {
+        this.packageDetails = JSON.parse(decodeURIComponent(params['package']));
+        this.totalAmount =
+          (this.packageDetails?.unit_price || 0) *
+          (this.packageDetails?.selectedQuantity || 1);
+      }
+    });
   }
 
   changeQR(paymentType: string): void {
-    if (paymentType === 'kbz-pay') {
-      this.qrCode = 'assets/image/payment/KBZ_pay.png';
-    } else if (paymentType === 'wave-pay') {
-      this.qrCode = 'assets/image/payment/Wave_pay.png';
-    } else if (paymentType === 'aya-pay') {
-      this.qrCode = 'assets/image/payment/AYA_pay.png';
-    } else if (paymentType === 'cb-pay') {
-      this.qrCode = 'assets/image/payment/CB_pay.png';
+    this.paymentType = paymentType;
+    switch (paymentType) {
+      case 'kbz-pay':
+        this.qrCode = 'assets/image/payment/KBZ_pay.png';
+        break;
+      case 'wave-pay':
+        this.qrCode = 'assets/image/payment/Wave_pay.png';
+        break;
+      case 'aya-pay':
+        this.qrCode = 'assets/image/payment/AYA_pay.png';
+        break;
+      case 'cb-pay':
+        this.qrCode = 'assets/image/payment/CB_pay.png';
+        break;
+      default:
+        this.qrCode = 'assets/image/payment/default.png';
     }
   }
 
-  changePaymentType(paymentType: string) {
-    this.paymentData.paymentType = paymentType;
-    this.changeQR(paymentType);
-  }
-
-  calculateTotalAmount(): void {
-    let total = 0;
-
-    // If package data exists, add its total price
-    if (this.packageData) {
-      total += this.packageData.unit_price * this.packageData.selectedQuantity;
+  submitPayment(): void {
+    // Validate Transaction ID
+    if (!this.transactionId) {
+      this.toastr.error('Transaction ID is required.', 'Error');
+      return;
     }
 
-    // If cart data exists, calculate and add the total price of cart items
-    if (this.cartData.length > 0) {
-      for (const item of this.cartData) {
-        total += item.packageDetails.unit_price * item.unit_quantity;
-      }
+    // Validate Package Details
+    if (!this.packageDetails || !this.packageDetails.id) {
+      this.toastr.error('Package details are missing.', 'Error');
+      return;
     }
 
-    // Update the total amount in payment data
-    this.paymentData.total_amount = total;
-  }
+    // Construct PurchaseDTO
+    const purchaseDTO: PurchaseDTO = {
+      total_amount: this.totalAmount,
+      total_quantity: this.packageDetails.selectedQuantity || 1,
+      payment_type: this.paymentType,
+      transaction_id: this.transactionId,
+      user_id: this.userId,
+    };
 
-  refreshAndNavigate(): void {
-    // Refresh the current page and then navigate to /home
-    window.location.href = '/home';
-  }
+    // Wrap the selected package into an array
+    const selectedPackages: PackageDTO[] = [
+      {
+        id: this.packageDetails.id,
+        name: this.packageDetails.name,
+        unit_price: this.packageDetails.unit_price,
+        quantity: this.packageDetails.quantity || 0,
+        expired_date: this.packageDetails.expired_date,
+        selected_quantity: this.packageDetails.selectedQuantity,
+      },
+    ];
+    // Construct PurchaseRequest
+    const purchaseRequest: PurchaseRequest = {
+      purchaseDTO,
+      selectedPackages, // Pass the array here
+    };
 
-  submitPayment() {
-    this.service.savePayment(this.paymentData).subscribe(
-      (response) => {
-        console.log('Payment saved successfully:', response);
-        this.router.navigate(['package']);
+    // Call the service method to save the purchase
+    this.paymentService.savePurchase(purchaseRequest).subscribe(
+      (response: string) => {
+        this.toastr.success(
+          'Payment was successful! Please wait for your coupon.',
+          'Success'
+        );
+        this.router.navigate(['/wait']);
       },
       (error) => {
-        console.error('Error saving payment:', error);
+        const errorMessage =
+          error.error?.message || 'Error saving payment. Please try again.';
+        this.toastr.error(errorMessage, 'Error');
       }
     );
   }

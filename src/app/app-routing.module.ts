@@ -44,6 +44,8 @@ import { AdmBusinessDetailsComponent } from './adm-business-details/adm-business
 import { CusProfileComponent } from './cus-profile/cus-profile.component';
 import { AdmProfileComponent } from './adm-profile/adm-profile.component';
 import { BusinessProfileComponent } from './business-profile/business-profile.component';
+import { CusCartPaymentComponent } from './cus-cart-payment/cus-cart-payment.component';
+import { CusWaitingCouponComponent } from './cus-waiting-coupon/cus-waiting-coupon.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -57,6 +59,8 @@ const routes: Routes = [
   { path: 'history', component: CusHistoryComponent },
   { path: 'cart', component: CusCartComponent },
   { path: 'payment', component: CusPaymentComponent },
+  { path: 'cart-payment', component: CusCartPaymentComponent },
+  { path: 'wait', component: CusWaitingCouponComponent },
   { path: 'my-coupon', component: MyCouponComponent },
   { path: 'cus-profile/:userId', component: CusProfileComponent },
   {

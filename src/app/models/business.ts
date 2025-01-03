@@ -3,9 +3,10 @@ import { User } from './user';
 export class Business {
   public id: number;
   public name: string;
-  public country: string;
-  public city: string;
-  public street: string;
+  public phone: string;
+  public email: string;
+  public latitude: string;
+  public longitude: string;
   public address: string;
   public user_id: number;
   public image: string;
@@ -19,9 +20,10 @@ export class Business {
   constructor(
     id: number,
     name: string,
-    country: string,
-    city: string,
-    street: string,
+    phone: string,
+    email: string,
+    latitude: string,
+    longitude: string,
     address: string,
     user_id: number,
     image: string,
@@ -34,9 +36,10 @@ export class Business {
   constructor(
     id?: number,
     name?: string,
-    country?: string,
-    city?: string,
-    street?: string,
+    phone?: string,
+    email?: string,
+    latitude?: string,
+    longitude?: string,
     address?: string,
     user_id?: number,
     image?: string,
@@ -47,9 +50,10 @@ export class Business {
   ) {
     this.id = id || 0;
     this.name = name || '';
-    this.country = country || '';
-    this.city = city || '';
-    this.street = street || '';
+    this.phone = phone || '';
+    this.email = email || '';
+    this.latitude = latitude || '';
+    this.longitude = longitude || '';
     this.address = address || '';
     this.user_id = user_id || 0; // Set the user property to null or passed user
     this.image = image || '';

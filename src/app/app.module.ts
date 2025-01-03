@@ -23,7 +23,6 @@ import { CusCartComponent } from './cus-cart/cus-cart.component';
 import { CusContactComponent } from './cus-contact/cus-contact.component';
 import { CusHistoryComponent } from './cus-history/cus-history.component';
 import { CusBusinessComponent } from './cus-business/cus-business.component';
-import { CusPaymentComponent } from './cus-payment/cus-payment.component';
 import { AdmHomeComponent } from './adm-home/adm-home.component';
 import { AdmBusinessComponent } from './adm-business/adm-business.component';
 import { AdmPackageComponent } from './adm-package/adm-package.component';
@@ -66,6 +65,9 @@ import { AdmBusinessDetailsComponent } from './adm-business-details/adm-business
 import { CusProfileComponent } from './cus-profile/cus-profile.component';
 import { AdmProfileComponent } from './adm-profile/adm-profile.component';
 import { BusinessProfileComponent } from './business-profile/business-profile.component';
+import { CusPaymentComponent } from './cus-payment/cus-payment.component';
+import { CusCartPaymentComponent } from './cus-cart-payment/cus-cart-payment.component';
+import { CusWaitingCouponComponent } from './cus-waiting-coupon/cus-waiting-coupon.component';
 
 @NgModule({
   declarations: [
@@ -117,6 +119,8 @@ import { BusinessProfileComponent } from './business-profile/business-profile.co
     CusProfileComponent,
     AdmProfileComponent,
     BusinessProfileComponent,
+    CusCartPaymentComponent,
+    CusWaitingCouponComponent,
   ],
   imports: [
     BrowserModule,

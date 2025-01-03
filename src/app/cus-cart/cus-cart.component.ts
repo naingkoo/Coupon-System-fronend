@@ -4,6 +4,7 @@ import { CartService } from '../Services/cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { PaymentDataShareService } from '../Services/payment-data-share.service';
+import { AuthService } from '../core/auth/auth.service';
 
 @Component({
   selector: 'app-cus-cart',
@@ -11,13 +12,14 @@ import { PaymentDataShareService } from '../Services/payment-data-share.service'
   styleUrl: './cus-cart.component.css',
 })
 export class CusCartComponent {
-  userId: number = 1; // Example user ID
+  userId: number = 0; // Example user ID
 
   constructor(
     private paymentDataShare: PaymentDataShareService,
     private cartService: CartService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   getItemCountText(): string {
@@ -30,12 +32,13 @@ export class CusCartComponent {
   }
 
   loadCartItems(): void {
+    this.userId = this.authService.getLoggedUserID();
     this.cartService.getCartByUserId(this.userId).subscribe(
       (data: Cart[]) => {
-        this.cartItems = data;
+        this.cartItems = data; // Update the cart items
       },
       (error) => {
-        console.error('Error fetching cart items:', error);
+        console.error('Error fetching cart items:', error); // Log the error
       }
     );
   }
@@ -90,10 +93,12 @@ export class CusCartComponent {
     return this.cartItems.reduce((total, item) => total + item.unit_price, 0);
   }
 
-  cartItems: any[] = [];
+  cartItems: Cart[] = [];
 
   checkout() {
-    this.paymentDataShare.setCartData(this.cartItems);
-    this.router.navigate(['/payment']); // Navigate to the payment page
+    const cartItems = encodeURIComponent(JSON.stringify(this.cartItems));
+    this.router.navigate(['/cart-payment'], {
+      queryParams: { items: cartItems },
+    });
   }
 }

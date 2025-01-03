@@ -170,6 +170,8 @@ export class CusProfileComponent {
     }
   }
 
+
+  // Cancel changes
   cancelChanges() {
     console.log('Cancelling changes...');
   }

@@ -50,14 +50,14 @@
             type="text"
             [(ngModel)]="userDetails.name"
             placeholder="Enter your username"
-            
+            [readonly]="true"
           />
           <label>Phone</label>
           <input
             type="text"
             [(ngModel)]="userDetails.phone"
             placeholder="Enter your phone number"
-           
+            [readonly]="true"
           />
           <label>E-mail</label>
           <input

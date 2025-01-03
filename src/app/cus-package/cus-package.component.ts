@@ -6,6 +6,8 @@ import { PackageService } from '../Services/package.service';
 import { CartService } from '../Services/cart.service';
 import { Cart } from '../models/cart';
 import { PaymentDataShareService } from '../Services/payment-data-share.service';
+import { AuthService } from '../core/auth/auth.service';
+import { id } from '@swimlane/ngx-charts';
 
 @Component({
   selector: 'app-cus-package',
@@ -16,8 +18,6 @@ export class CusPackageComponent implements OnInit {
   packages: Packages[] = [];
   filteredPackages: Packages[] = [];
   searchText: string = '';
-  minPrice: number = 0;
-  maxPrice: number = 10000;
 
   submittedPackage: Packages[] = [];
 
@@ -34,7 +34,8 @@ export class CusPackageComponent implements OnInit {
     private service: PackageService,
     private cartService: CartService,
     private router: Router,
-    private toast: ToastrService
+    private toast: ToastrService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -89,9 +90,28 @@ export class CusPackageComponent implements OnInit {
     }
   }
 
-  buynow(packageData: any) {
-    this.paymentDataShare.setPackageData(packageData);
-    this.router.navigate(['/payment']); // Navigate to the payment page
+  buynow(selectedPackage: any) {
+    // Prepare the package details to be sent as query parameters
+    const packageDetails = {
+      id: selectedPackage.id,
+      name: selectedPackage.name,
+      unit_price: selectedPackage.unit_price,
+      description: selectedPackage.description,
+      expired_date: selectedPackage.expired_date,
+      quantity: selectedPackage.quantity,
+      selectedQuantity: selectedPackage.selectedQuantity || 1,
+      image: selectedPackage.image,
+    };
+
+    // Convert the package details to a JSON string and encode it
+    const packageDetailsString = encodeURIComponent(
+      JSON.stringify(packageDetails)
+    );
+
+    // Navigate to the payment page with the package details as query parameters
+    this.router.navigate(['/payment'], {
+      queryParams: { package: packageDetailsString },
+    });
   }
 
   //-----------------Add to Cart-----------------
@@ -102,7 +122,7 @@ export class CusPackageComponent implements OnInit {
       return;
     }
 
-    const user_id = this.user_id || 1;
+    const user_id = this.authService.getLoggedUserID();
     const unit_quantity = this.selectedCartPackage?.selectedQuantity || 1;
     const unit_price =
       (this.selectedCartPackage?.unit_price || 0) * unit_quantity;

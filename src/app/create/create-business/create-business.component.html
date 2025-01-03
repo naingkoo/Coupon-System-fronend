@@ -67,10 +67,10 @@
             />
           </div>
           <div class="input-group">
-            <label for="country">Country</label>
+            <label for="country">Phone</label>
             <input
               id="country"
-              [(ngModel)]="business.country"
+              [(ngModel)]="business.phone"
               name="country"
               placeholder="Enter Country"
               type="text"
@@ -78,10 +78,10 @@
             />
           </div>
           <div class="input-group">
-            <label for="city">City</label>
+            <label for="city">Email</label>
             <input
               id="city"
-              [(ngModel)]="business.city"
+              [(ngModel)]="business.email"
               name="city"
               placeholder="Enter City"
               type="text"
@@ -89,10 +89,21 @@
             />
           </div>
           <div class="input-group">
-            <label for="street">Street</label>
+            <label for="street">Latitude</label>
             <input
               id="street"
-              [(ngModel)]="business.street"
+              [(ngModel)]="business.latitude"
+              name="street"
+              placeholder="Enter Street"
+              type="text"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label for="street">Longitude</label>
+            <input
+              id="street"
+              [(ngModel)]="business.longitude"
               name="street"
               placeholder="Enter Street"
               type="text"
