@@ -42,7 +42,7 @@
       <i class="fi fi-rr-bell-ring"></i>
     </a>
     <div (click)="togglePopup()" class="profile">
-      <img [src]="'assets/image/users/user.png'" />
+      <img [src]="profileImage" />
     </div>
   </div>
 </nav>
@@ -74,18 +74,16 @@
       <i class="fi fi-rr-angle-small-up"></i>
     </button>
     <div class="profile-header">
-      <img
-        [src]="'assets/image/users/user.png'"
-        alt="Profile Picture"
-        class="profile-image"
-      />
+      <img [src]="profileImage" alt="Profile Picture" class="profile-image" />
       <h3>{{ userName }}</h3>
       <p>{{ userEmail }}</p>
     </div>
     <div class="my-action">
-      <a routerLink="/edit"
-        ><i class="fi fi-rr-edit"><p>Edit profile</p></i></a
-      >
+      <a [routerLink]="['/cus-profile', userId]">
+        <i class="fi fi-rr-portrait">
+          <p>View Profile</p>
+        </i>
+      </a>
       <a routerLink="/my-coupon"
         ><i class="fi fi-rr-ticket"><p>My coupon</p></i></a
       >

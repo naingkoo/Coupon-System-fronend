@@ -39,7 +39,7 @@ export class AddBusinessServicesComponent {
           this.toastr.success('Service created successfully!', 'Success');
 
           // Navigate to the service list page
-          this.router.navigate(['/adm-categorylist-servicelist']);
+          this.router.navigate(['/adm-servicelist']);
         },
         (error) => {
           console.log('Error: ', error);

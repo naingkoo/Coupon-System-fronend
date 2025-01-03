@@ -21,6 +21,7 @@ export class CreatePackagesComponent implements OnInit {
     business_id: '',
     description: '',
     image: null,
+    expired_date: null,
   };
 
   selectedFile: File | null = null;

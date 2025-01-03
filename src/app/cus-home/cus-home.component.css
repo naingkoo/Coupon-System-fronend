@@ -2,29 +2,113 @@
 .main-content {
   font-family: "Roboto", sans-serif;
   margin: 0;
+  background-color: #fab400;
 }
 
 /* Banner Section */
 .banner {
   display: flex;
+  justify-content: center;
+  padding: 20px 40px;
   position: relative;
   width: 100%;
   overflow: hidden;
   margin: auto auto 20px auto;
   background-color: #fab400;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .banner-video {
   width: 50%;
   object-fit: contain;
+  margin-right: 40px;
+}
+
+.banner-content {
+  width: 50%;
+  padding: 100px;
+}
+
+.slogan {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+  color: #333;
+}
+
+.description {
+  color: #fff;
+}
+
+.button {
   margin: auto;
+  line-height: 1;
+  text-decoration: none;
+  display: inline-flex;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: var(--clr);
+  color: #fff;
+  border-radius: 10rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  padding-left: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background-color 0.3s;
+}
+
+.button__icon-wrapper {
+  flex-shrink: 0;
+  width: 25px;
+  height: 25px;
+  position: relative;
+  color: var(--clr);
+  background-color: #fff;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.button:hover {
+  background-color: #000;
+}
+
+.button:hover .button__icon-wrapper {
+  color: #000;
+}
+
+.button__icon-svg--copy {
+  position: absolute;
+  transform: translate(-150%, 150%);
+}
+
+.button:hover .button__icon-svg:first-child {
+  transition: transform 0.3s ease-in-out;
+  transform: translate(150%, -150%);
+}
+
+.button:hover .button__icon-svg--copy {
+  transition: transform 0.3s ease-in-out 0.1s;
+  transform: translate(0);
+}
+
+section {
+  width: 100%;
+  border-radius: 30px 30px 0 0;
+  background-color: #fff;
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1); /* Shadow on top */
 }
 
 /* Search and Select Section */
 .search-section {
-  width: auto;
-  margin: auto 10px;
+  justify-content: center;
+  padding: 10px;
+  width: fit-content;
+  margin: 0 auto;
 }
 
 .radio-inputs {
@@ -102,7 +186,7 @@
   display: flex;
   overflow-x: auto;
   gap: 20px;
-  padding: 20px;
+  padding: 0 20px 20px 20px;
   margin: 0 auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: thin;
@@ -187,11 +271,19 @@
   }
 
   .banner {
-    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 10px;
   }
 
   .banner-video {
-    width: 80%;
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .banner-content {
+    display: none;
   }
 }
 
@@ -207,9 +299,5 @@
 
   .radio-label {
     font-size: 0.5rem;
-  }
-
-  .banner {
-    height: 180px; /* Adjust height for extra small devices */
   }
 }

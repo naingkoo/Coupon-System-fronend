@@ -33,9 +33,10 @@ export class CusBusinessComponent implements OnInit {
 
   businessName: string = '';
   businessBanner: string = '';
-  businessCountry: string = '';
-  businessCity: string = '';
-  businessStreet: string = '';
+  businessPhone: string = '';
+  businessEmail: string = '';
+  businessLatitude: string = '';
+  businessLongitude: string = '';
   businessAddress: string = '';
   businessCategories?: string[];
   businessServices?: string[];
@@ -77,9 +78,10 @@ export class CusBusinessComponent implements OnInit {
         this.businessId = business.id;
         this.businessName = business.name;
         this.businessBanner = business.image;
-        this.businessCountry = business.country;
-        this.businessCity = business.city;
-        this.businessStreet = business.street;
+        this.businessPhone = business.phone;
+        this.businessEmail = business.email;
+        this.businessLatitude = business.latitude;
+        this.businessLongitude = business.longitude;
         this.businessAddress = business.address;
 
         this.businessCategories = business.categoryName;

@@ -52,116 +52,77 @@
 }
 /*---------------------------*/
 
-/* Table Container */
-
-
-  .btn-container {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
-  }
-
-  .card_submit {
-    background-color: #fab400;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-  }
-
-  .card_submit:hover {
-    background-color: #ecbc41;
-  }
-
-  .card_cancel {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-  }
-
-  .card_cancel:hover {
-    background-color: #a71d2a;
-  }
-
-  .form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    padding: 20px;
-  }
-
-  .card {
-    background: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-  }
-
-  .card_form {
-    margin-bottom: 20px;
-  }
-
-  input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-
-  input[type="text"]:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-/* Responsive Design */
-@media (max-width: 768px) {
-  .form-container {
-    padding: 15px;
-    margin-top: 20px;
-  }
-
-  .card_form input {
-    font-size: 14px;
-    padding: 8px;
-  }
-
-  .card_submit {
-    font-size: 14px;
-    padding: 10px 20px;
-  }
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
 }
 
-/* Responsive design for smaller screens */
-@media (max-width: 768px) {
-  .form-container {
-    width: 90%;
-    padding: 15px;
-  }
-
-  .card_submit {
-    width: 100%;
-  }
+.card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: none;
+  padding: 30px;
+  width: 350px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-@media (max-width: 480px) {
-  .sidebar-container {
-    width: 200px;
-  }
+.card_form {
+  margin-bottom: 20px;
+}
 
-  .content {
-    padding: 15px;
-  }
+.card_form h4 {
+  margin-bottom: 20px;
+  color: #343a40;
+  text-align: center;
+  font-weight: 600;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ced4da;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+  border-color: #495057;
+  outline: none;
+}
+
+.btn-container {
+  margin: auto;
+  display: flex;
+  gap: 20px;
+}
+
+.card_submit {
+  background-color: #007bff;
+  color: white;
+  border: 2px solid #007bff;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 12px 30px;
+}
+
+.card_submit:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.card_cancel {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #007bff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.card_cancel:hover {
+  background-color: #007bff;
+  color: #fff;
 }

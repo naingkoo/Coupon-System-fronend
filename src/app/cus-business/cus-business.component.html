@@ -21,6 +21,9 @@
         </p>
       </div>
     </div>
+    <p>{{ businessPhone }}</p>
+    <p>{{ businessEmail }}</p>
+    <p>{{ businessAddress }}</p>
   </div>
 </div>
 
@@ -70,16 +73,10 @@
     </div>
 
     <div *ngIf="selectedTab === 2">
-      <div
-        *ngIf="
-          businessCountry || businessCity || businessStreet || businessAddress
-        "
-      >
+      <div *ngIf="businessLatitude || businessLongitude || businessAddress">
         <h3>Location</h3>
-        <p>Country: {{ businessCountry }}</p>
-        <p>City: {{ businessCity }}</p>
-        <p>Street: {{ businessStreet }}</p>
-        <p>Address: {{ businessAddress }}</p>
+        <p>Latitude: {{ businessLatitude }}</p>
+        <p>Longitude: {{ businessLongitude }}</p>
       </div>
     </div>
 

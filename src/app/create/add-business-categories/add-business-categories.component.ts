@@ -38,7 +38,7 @@ export class AddBusinessCategoriesComponent {
           // Show success toast
           this.toastr.success('Category created successfully!', 'Success');
 
-          this.router.navigate(['/adm-categorylist-servicelist']);
+          this.router.navigate(['/adm-categorylist']);
         },
         (error) => {
           console.log('Error: ', error);

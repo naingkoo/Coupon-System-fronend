@@ -73,8 +73,16 @@ export class NavigationComponent implements OnInit {
           this.userDetails = data;
           this.userName = data.name;
           this.userEmail = data.email;
-          this.profileImage =
-            data.profileImage || 'assets/image/users/user.png';
+
+          // Check if the photo is present and not null
+          if (data.photo) {
+            this.profileImage = 'http://localhost:8080' + data.photo;
+          } else {
+            this.profileImage =
+              'http://localhost:8080/users_images/default.png'; // Fallback image
+          }
+
+          console.log('Profile image:', this.profileImage);
         },
         error: (err) => {
           console.error('Error fetching user details:', err);

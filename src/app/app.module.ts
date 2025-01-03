@@ -15,8 +15,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { ProfileComponent } from './profile/profile.component';
-
 import { NavigationComponent } from './navigation/navigation.component';
 import { FooterComponent } from './footer/footer.component';
 import { CusHomeComponent } from './cus-home/cus-home.component';
@@ -25,7 +23,6 @@ import { CusCartComponent } from './cus-cart/cus-cart.component';
 import { CusContactComponent } from './cus-contact/cus-contact.component';
 import { CusHistoryComponent } from './cus-history/cus-history.component';
 import { CusBusinessComponent } from './cus-business/cus-business.component';
-import { CusPaymentComponent } from './cus-payment/cus-payment.component';
 import { AdmHomeComponent } from './adm-home/adm-home.component';
 import { AdmBusinessComponent } from './adm-business/adm-business.component';
 import { AdmPackageComponent } from './adm-package/adm-package.component';
@@ -65,6 +62,12 @@ import { BusinessContactComponent } from './business-contact/business-contact.co
 import { AdmCouponSalelistComponent } from './adm-coupon-salelist/adm-coupon-salelist.component';
 import { AdmFeedbackComponent } from './adm-feedback/adm-feedback.component';
 import { AdmBusinessDetailsComponent } from './adm-business-details/adm-business-details.component';
+import { CusProfileComponent } from './cus-profile/cus-profile.component';
+import { AdmProfileComponent } from './adm-profile/adm-profile.component';
+import { BusinessProfileComponent } from './business-profile/business-profile.component';
+import { CusPaymentComponent } from './cus-payment/cus-payment.component';
+import { CusCartPaymentComponent } from './cus-cart-payment/cus-cart-payment.component';
+import { CusWaitingCouponComponent } from './cus-waiting-coupon/cus-waiting-coupon.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +85,6 @@ import { AdmBusinessDetailsComponent } from './adm-business-details/adm-business
     AdmHomeComponent,
     AdmBusinessComponent,
     AdmPackageComponent,
-    ProfileComponent,
     AdmUserListComponent,
     CreateBusinessComponent,
     CreatePackagesComponent,
@@ -114,6 +116,11 @@ import { AdmBusinessDetailsComponent } from './adm-business-details/adm-business
     AdmCouponSalelistComponent,
     AdmFeedbackComponent,
     AdmBusinessDetailsComponent,
+    CusProfileComponent,
+    AdmProfileComponent,
+    BusinessProfileComponent,
+    CusCartPaymentComponent,
+    CusWaitingCouponComponent,
   ],
   imports: [
     BrowserModule,

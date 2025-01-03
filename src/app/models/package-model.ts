@@ -7,6 +7,7 @@ export class Packages {
   public image?: string; // Optional property
   public description?: string; // Optional property
   public business_id: number; // Optional property
+  public expired_date: string; // New optional property
   public selectedQuantity: number;
 
   constructor(
@@ -18,6 +19,7 @@ export class Packages {
     image?: string,
     description?: string,
     business_id?: number,
+    expired_date?: string,
     selectedQuantity?: number
   ) {
     this.id = id;
@@ -28,6 +30,7 @@ export class Packages {
     this.image = image;
     this.description = description;
     this.business_id = business_id || 0;
+    this.expired_date = expired_date || ''; // Initialize expiration date
     this.selectedQuantity = selectedQuantity || 0;
   }
 }

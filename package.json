@@ -26,6 +26,7 @@
     "@fortawesome/fontawesome-free": "^6.7.1",
     "@ng-bootstrap/ng-bootstrap": "^17.0.1",
     "@swimlane/ngx-charts": "^21.0.0",
+    "@types/leaflet": "^1.9.15",
     "@zxing/browser": "^0.1.5",
     "angular-datatables": "^18.0.0",
     "bootstrap": "^5.3.3",

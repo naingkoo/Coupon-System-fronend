@@ -41,6 +41,11 @@ import { loginGuard } from './core/guards/login.guard';
 import { AdmCouponSalelistComponent } from './adm-coupon-salelist/adm-coupon-salelist.component';
 import { AdmFeedbackComponent } from './adm-feedback/adm-feedback.component';
 import { AdmBusinessDetailsComponent } from './adm-business-details/adm-business-details.component';
+import { CusProfileComponent } from './cus-profile/cus-profile.component';
+import { AdmProfileComponent } from './adm-profile/adm-profile.component';
+import { BusinessProfileComponent } from './business-profile/business-profile.component';
+import { CusCartPaymentComponent } from './cus-cart-payment/cus-cart-payment.component';
+import { CusWaitingCouponComponent } from './cus-waiting-coupon/cus-waiting-coupon.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -54,15 +59,22 @@ const routes: Routes = [
   { path: 'history', component: CusHistoryComponent },
   { path: 'cart', component: CusCartComponent },
   { path: 'payment', component: CusPaymentComponent },
+  { path: 'cart-payment', component: CusCartPaymentComponent },
+  { path: 'wait', component: CusWaitingCouponComponent },
   { path: 'my-coupon', component: MyCouponComponent },
+  { path: 'cus-profile/:userId', component: CusProfileComponent },
   {
     path: 'adm-dashboard',
     component: AdmHomeComponent,
     canActivate: [authGuard],
     data: { role: 'ADMIN' },
   },
-  { path: 'adm-business', component: AdmBusinessComponent },
-  { path: 'adm-business-details/:id', component: AdmBusinessDetailsComponent },
+  {
+    path: 'adm-business-details/:id',
+    component: AdmBusinessDetailsComponent,
+    canActivate: [authGuard],
+    data: { role: 'ADMIN' },
+  },
   {
     path: 'adm-dashboard',
     component: AdmHomeComponent,
@@ -99,14 +111,30 @@ const routes: Routes = [
     canActivate: [authGuard],
     data: { role: 'ADMIN' },
   },
-  { path: 'adm-register', component: AdmRegisterComponent },
-  { path: 'adm-categorylist', component: AdmCategorylistComponent },
-  { path: 'adm-servicelist', component: AdmServicelistComponent },
-  { path: 'adm-package', component: AdmPackageComponent },
-  { path: 'adm-user-list', component: AdmUserListComponent },
-  { path: 'adm-coupon', component: AdmCouponSalelistComponent },
-  { path: 'adm-feedback', component: AdmFeedbackComponent },
-  { path: 'scanner', component: ScannerComponent },
+  {
+    path: 'adm-register',
+    component: AdmRegisterComponent,
+    canActivate: [authGuard],
+    data: { role: 'ADMIN' },
+  },
+  {
+    path: 'adm-coupon',
+    component: AdmCouponSalelistComponent,
+    canActivate: [authGuard],
+    data: { role: 'ADMIN' },
+  },
+  {
+    path: 'adm-feedback',
+    component: AdmFeedbackComponent,
+    canActivate: [authGuard],
+    data: { role: 'ADMIN' },
+  },
+  {
+    path: 'adm-profile',
+    component: AdmProfileComponent,
+    canActivate: [authGuard],
+    data: { role: 'ADMIN' },
+  },
   {
     path: 'Business/create',
     component: CreateBusinessComponent,
@@ -137,29 +165,26 @@ const routes: Routes = [
     canActivate: [authGuard],
     data: { role: 'ADMIN' },
   },
-
-  { path: 'business-home', component: BusinessHomeComponent },
-  { path: 'business-sale', component: BusinessSaleComponent },
-  { path: 'business-package', component: BusinessPackageComponent },
-  { path: 'business-contact', component: BusinessContactComponent },
-  { path: 'business-about', component: BusinessAboutComponent },
-  { path: 'scan', component: ScannerComponent },
-  { path: 'scan-history', component: ScanHistoryComponent },
-
   {
     path: 'Package/create/:id',
     component: CreatePackagesComponent,
     canActivate: [authGuard],
     data: { role: 'ADMIN' },
   },
+
+  { path: 'business-home', component: BusinessHomeComponent },
+  { path: 'business-sale', component: BusinessSaleComponent },
+  { path: 'business-package', component: BusinessPackageComponent },
+  { path: 'business-contact', component: BusinessContactComponent },
+  { path: 'business-about', component: BusinessAboutComponent },
+  { path: 'business-profile', component: BusinessProfileComponent },
+  { path: 'scanner', component: ScannerComponent },
+  { path: 'scan-history', component: ScanHistoryComponent },
   { path: 'login', component: LoginComponent, canActivate: [loginGuard] },
   { path: '404', component: NotFoundComponent },
   { path: 'serverIsDown', component: ServerDownpageComponent },
   { path: '401', component: UnauthorizedComponent },
   { path: '**', component: NotFoundComponent, pathMatch: 'full' },
-
-
-
 ];
 
 @NgModule({

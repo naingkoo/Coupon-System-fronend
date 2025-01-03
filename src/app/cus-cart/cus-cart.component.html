@@ -16,6 +16,15 @@
     </div>
     <div class="item-details">
       <h3>{{ item.packageDetails.name }}</h3>
+      <p style="display: none">
+        {{ item.packageDetails.id }}
+      </p>
+      <p>
+        Expired date:
+        <span
+          >{{ item.packageDetails.expired_date | date : "dd-MM-yyyy" }}
+        </span>
+      </p>
       <p>
         Unit Price: <span>{{ item.packageDetails.unit_price }} MMK</span>
       </p>

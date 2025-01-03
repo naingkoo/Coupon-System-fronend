@@ -69,7 +69,6 @@
                   "with": "src/environments/environment.development.ts"
                 }
               ]
-      
             }
           },
           "defaultConfiguration": "production"
